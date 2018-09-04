@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           backgroundColor: Colors.transparent,
           child: new Icon(
             Icons.school,
-            size: 50.0,
+            size: 45.0,
           ),
         ),
       ),
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
           'AVA SMS',
           style: new TextStyle(
               fontStyle: FontStyle.italic,
-              fontSize: 50.0,
+              fontSize: 30.0,
               fontWeight: FontWeight.bold),
         ),
       ),
