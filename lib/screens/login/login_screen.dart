@@ -37,11 +37,16 @@ class _LoginScreenState extends State<LoginScreen> {
       tag: Hero,
       child: new Center(
         child: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          child: new Icon(
-            Icons.school,
-            size: 45.0,
-          ),
+          radius: 40.0,
+          child: new Image(
+            image: AssetImage('images/avasms_login.png'),
+            
+          )
+       //   backgroundColor: Colors.transparent,
+         // child: new Icon(
+         //   Icons.school,
+         //   size: 45.0,
+        //  ),
         ),
       ),
     );
