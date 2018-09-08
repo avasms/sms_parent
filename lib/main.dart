@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/login/login_screen.dart';
 import 'package:sms_parent/screens/home/home_screen.dart';
+import 'package:sms_parent/screens/exam/exam_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
 import 'package:sms_parent/util/application.dart';
+import 'package:fluro/fluro.dart';
 
-void main() => runApp(new MyApp());
+void main(){
+
+runApp(new MyApp());
+}
 
 class MyApp extends StatefulWidget {
    @override
   _MyAppState createState() => _MyAppState();
+
 }
-
-  // Route
-  final routes = <String, WidgetBuilder>{   
-    '/home': (BuildContext context) => new HomeScreen(),
-    '/': (BuildContext context) => new LoginScreen(),
-  };
-
+  
   class _MyAppState extends State<MyApp> {
   AppTranslationsDelegate _newLocaleDelegate;
 
@@ -42,14 +42,38 @@ class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    // Create the router.
+  Router router = new Router();
+  // Define our Home page.
+  router.define('home', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new HomeScreen();
+  }));
+// Define our Login page.
+  router.define('login', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new LoginScreen();
+  }));
+
+// Define our Login page.
+  router.define('exam', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    String _title = params["title"]?.first;
+    return new ExamScreen(title: _title,);
+  }));
+
+
+
+  // Defind Router
+  Application.router = router;
+
      return new MaterialApp(
       title: 'AVASMS',
       debugShowCheckedModeBanner: false,
-      theme: new ThemeData(        
+      theme: ThemeData(        
         primarySwatch: Colors.lightBlue,
+        fontFamily: 'Myanmar'
       ),
-      routes: routes,
-      initialRoute: '/',
+      onGenerateRoute: Application.router.generator,
+      home: new LoginScreen(),
       localizationsDelegates: [
          _newLocaleDelegate,
         const AppTranslationsDelegate(),

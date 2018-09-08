@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:fluro/fluro.dart';
 
 class Application {
 
   static final Application _application = Application._internal();
+  static Router router;
 
   factory Application() {
     return _application;

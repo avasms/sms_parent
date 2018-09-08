@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/util/application.dart';
-import 'package:fluro/fluro.dart';
-//import 'package:flutter/services.dart';
 //import 'package:sms_parent/screens/login/login_screen.dart';
 
-class HomeScreen extends StatefulWidget{
+class ExamScreen extends StatefulWidget{
+
+
 @override
-_HomeScreenState createState() => new _HomeScreenState();
+_ExamScreenState createState() => new _ExamScreenState();
+  // In the constructor, require a Todo
+  ExamScreen({Key key, @required title}) : super(key: key);
 }
 
-class _HomeScreenState extends State<HomeScreen>{
-
-TransitionType transitionType = TransitionType.native;
+class _ExamScreenState extends State<ExamScreen>{
 
 List<Card> _buildGridCards() {
     List<Card> cards = [
@@ -23,7 +23,7 @@ List<Card> _buildGridCards() {
             children: <Widget>[
               FlatButton(
                 onPressed: (){
-               Application.router.navigateTo(context, "login",transition: transitionType);
+                Navigator.of(context).pushReplacementNamed("login");
                 },
                 padding: EdgeInsets.all(10.0),
                 child: Column( // Replace with a Row for horizontal icon + text
@@ -52,9 +52,7 @@ List<Card> _buildGridCards() {
             children: <Widget>[
               FlatButton(
                 onPressed: () {
-                //Navigator.of(context).pushReplacementNamed("login");
-                String _exam = "exam_menu";
-                Application.router.navigateTo(context, "exam?title=$_exam",transition: transitionType,replace: false);
+                Navigator.of(context).pushReplacementNamed("login");
                 },
                 padding: EdgeInsets.all(10.0),
                 child: Column( // Replace with a Row for horizontal icon + text
@@ -84,13 +82,12 @@ List<Card> _buildGridCards() {
 
 @override
  Widget build(BuildContext context) {
+
    return new Scaffold(
         appBar: new AppBar(
          
          backgroundColor: Colors.lightBlue,
-         leading: Image.asset('images/avasms_login.png'),
-         // title: new Text(AppTranslations.of(context).text("test")),
-          title: Text(AppTranslations.of(context).text("test"),style: TextStyle(fontFamily: 'Myanmar'),),
+          title: Text(AppTranslations.of(context).text("exam_menu"),style: TextStyle(fontFamily: 'Myanmar'),),
           actions: <Widget>[
           new PopupMenuButton<SettingMenu>(
             itemBuilder: (BuildContext context) => <PopupMenuItem<SettingMenu>>[

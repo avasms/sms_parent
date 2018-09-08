@@ -8,9 +8,16 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //BuildContext _contx;
   // bool _isLoading = false;
-  final formKey = new GlobalKey<FormState>();
+  final _formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   
+  void _login(){
+    if (_formKey.currentState.validate()) {
+
+      Navigator.of(context).pushReplacementNamed("/home");   
+    }
+ 
+  }
   // String _username, _password;
   @override
   Widget build(BuildContext context) {
@@ -23,10 +30,11 @@ class _LoginScreenState extends State<LoginScreen> {
         child: MaterialButton(
           minWidth: 170.0,
           height: 50.0,
-          onPressed: () {          
-            Navigator.of(context).pushReplacementNamed("/home");            
+          onPressed: () { 
+            _login();         
+                    
           },
-          color: Colors.lightBlueAccent,
+          color: Colors.blueAccent,
           child: Text('Log In', style: TextStyle(color: Colors.white)),
         ),
       ),
@@ -35,10 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
     
     final logo = Hero(
       tag: Hero,
-      child: new Center(
+      child: Center(
         child: CircleAvatar(
           radius: 40.0,
-          child: new Image(
+          child: Image(
             image: AssetImage('images/avasms_login.png'),
             
           )
@@ -51,10 +59,14 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
-    final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
+    final username = TextFormField(
+      //keyboardType: TextInputType.emailAddress,
       autofocus: false,
-    
+      validator: (value){
+        if(value.isEmpty){
+           return 'Please enter username';
+        }
+      },
       decoration: InputDecoration(
         labelText: 'Username',
         contentPadding: EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
@@ -64,6 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
     final password = TextFormField(
       autofocus: false,
       obscureText: true,
+      validator: (value){
+        if(value.isEmpty){
+           return 'Please enter password';
+        }
+      },
       decoration: InputDecoration(
         labelText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
@@ -71,10 +88,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     final companyTitle = new Center(
-      child: new Container(
-        child: new Text(
+      child: Container(
+        child: Text(
           'AVA SMS',
-          style: new TextStyle(
+          style: TextStyle(
               fontStyle: FontStyle.italic,
               fontSize: 30.0,
               fontWeight: FontWeight.bold),
@@ -83,17 +100,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     final loginForm = new ClipRect(
-      child: new Card(
+      child: Card(
         color: Colors.white,
-        child: new Container(
+        child: Container(
           padding: EdgeInsets.all(25.0),
           child: new Form(
-            key: formKey,
+            key: _formKey,
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 logo,
-                email,
+                username,
                 SizedBox(height: 8.0),
                 password,
                 SizedBox(height: 24.0),
@@ -112,8 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
         decoration: new BoxDecoration(
           color: Colors.blueAccent,
         ),
-        child: new Center(
-          child: new ListView(
+        child: Center(
+          child: ListView(
             shrinkWrap: true,
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             children: <Widget>[
