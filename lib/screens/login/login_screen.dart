@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluro/fluro.dart';
+import 'package:sms_parent/util/application.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -8,13 +10,16 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //BuildContext _contx;
   // bool _isLoading = false;
+  bool _obscureText = true;
   final _formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
-  
+  IconData _passVisible = Icons.visibility_off;
+  TransitionType transitionType = TransitionType.native;
+
+
   void _login(){
     if (_formKey.currentState.validate()) {
-
-      Navigator.of(context).pushReplacementNamed("/home");   
+     Application.router.navigateTo(context, "home",transition: transitionType,replace: true);
     }
  
   }
@@ -40,7 +45,18 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
-    
+    _togglePassword() {
+		setState(() {
+			_obscureText = !_obscureText;
+      if(_obscureText){
+      _passVisible = Icons.visibility_off;
+      }else{
+      _passVisible = Icons.visibility;
+      }
+      
+		});
+	}
+
     final logo = Hero(
       tag: Hero,
       child: Center(
@@ -75,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final password = TextFormField(
       autofocus: false,
-      obscureText: true,
+      obscureText: _obscureText,
       validator: (value){
         if(value.isEmpty){
            return 'Please enter password';
@@ -84,6 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
       decoration: InputDecoration(
         labelText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
+        suffixIcon: new GestureDetector(
+							onTap: _togglePassword ,
+							child: new Icon(_passVisible),
+			  )
       ),
     );
 
@@ -127,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: null,
       body: new Container(
         decoration: new BoxDecoration(
-          color: Colors.blueAccent,
+          color: Colors.indigo.shade700,
         ),
         child: Center(
           child: ListView(

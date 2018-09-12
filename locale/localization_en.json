@@ -1,5 +1,12 @@
 {
     "test": "Aung Phyo Oo",
     "exam_menu": "Exam",
-    "child_menu": "Child"
+    "child_menu": "Student",
+    "noticeboard_menu": "Noticeboard",
+    "message_menu": "Message",
+    "timetable_menu": "Timetable",
+    "leave_menu": "Leave",
+    "ferry_menu": "Ferry",
+    "dormitory_menu": "Dormitory",
+    "about_us": "About School"
 }

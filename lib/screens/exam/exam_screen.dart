@@ -4,12 +4,12 @@ import 'package:sms_parent/util/application.dart';
 //import 'package:sms_parent/screens/login/login_screen.dart';
 
 class ExamScreen extends StatefulWidget{
-
+final title;
 
 @override
 _ExamScreenState createState() => new _ExamScreenState();
   // In the constructor, require a Todo
-  ExamScreen({Key key, @required title}) : super(key: key);
+  ExamScreen({Key key, @required this.title}) : super(key: key);
 }
 
 class _ExamScreenState extends State<ExamScreen>{
@@ -87,7 +87,7 @@ List<Card> _buildGridCards() {
         appBar: new AppBar(
          
          backgroundColor: Colors.lightBlue,
-          title: Text(AppTranslations.of(context).text("exam_menu"),style: TextStyle(fontFamily: 'Myanmar'),),
+          title: Text(AppTranslations.of(context).text(widget.title),style: TextStyle(fontFamily: 'Myanmar'),),
           actions: <Widget>[
           new PopupMenuButton<SettingMenu>(
             itemBuilder: (BuildContext context) => <PopupMenuItem<SettingMenu>>[

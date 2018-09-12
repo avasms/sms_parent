@@ -25,11 +25,11 @@ List<Card> _buildGridCards() {
                 onPressed: (){
                Application.router.navigateTo(context, "login",transition: transitionType);
                 },
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(5.0),
                 child: Column( // Replace with a Row for horizontal icon + text
                   children: <Widget>[
                     CircleAvatar(
-                   radius: 40.0,
+                   radius: 30.0,
                   child: Image(
                   image: AssetImage('images/student.jpg'),
             
@@ -56,11 +56,11 @@ List<Card> _buildGridCards() {
                 String _exam = "exam_menu";
                 Application.router.navigateTo(context, "exam?title=$_exam",transition: transitionType,replace: false);
                 },
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(5.0),
                 child: Column( // Replace with a Row for horizontal icon + text
                   children: <Widget>[
                     CircleAvatar(
-                   radius: 40.0,
+                   radius: 30.0,
                   child: Image(
                   image: AssetImage('images/exam.jpg'),
             
@@ -76,6 +76,156 @@ List<Card> _buildGridCards() {
         ),
       ),
       
+      new Card(
+        child: Center(
+         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: (){
+               Application.router.navigateTo(context, "login",transition: transitionType);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column( // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                   radius: 30.0,
+                  child: Image(
+                  image: AssetImage('images/timetable.jpg'),
+            
+                   ),
+                    ),
+                   // Icon(Icons.directions_bus,size: 100.0,),
+                   new Text(AppTranslations.of(context).text("timetable_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      new Card(
+        
+        child: Center(
+         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                //Navigator.of(context).pushReplacementNamed("login");
+                String _exam = "exam_menu";
+                Application.router.navigateTo(context, "exam?title=$_exam",transition: transitionType,replace: false);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column( // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                   radius: 30.0,
+                  child: Image(
+                  image: AssetImage('images/leave.jpg'),
+            
+                   ),
+                    ),
+                    //Icon(Icons.view_list,size: 100.0,),
+                    new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      
+      new Card(
+        child: Center(
+         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: (){
+               Application.router.navigateTo(context, "login",transition: transitionType);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column( // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                   radius: 30.0,
+                  child: Image(
+                  image: AssetImage('images/ferry.jpg'),
+            
+                   ),
+                    ),
+                   // Icon(Icons.directions_bus,size: 100.0,),
+                   new Text(AppTranslations.of(context).text("ferry_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      new Card(
+        
+        child: Center(
+         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                //Navigator.of(context).pushReplacementNamed("login");
+                String _exam = "exam_menu";
+                Application.router.navigateTo(context, "exam?title=$_exam",transition: transitionType,replace: false);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column( // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                   radius: 30.0,
+                  child: Image(
+                  image: AssetImage('images/hostle.jpg'),
+            
+                   ),
+                    ),
+                    //Icon(Icons.view_list,size: 100.0,),
+                    new Text(AppTranslations.of(context).text("dormitory_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      
+      new Card(
+        child: Center(
+         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: (){
+               Application.router.navigateTo(context, "login",transition: transitionType);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column( // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                   radius: 30.0,
+                  child: Image(
+                  image: AssetImage('images/school.png'),
+            
+                   ),
+                    ),
+                   // Icon(Icons.directions_bus,size: 100.0,),
+                   new Text(AppTranslations.of(context).text("about_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+   
+      
     ];
 
     return cards;
@@ -87,12 +237,14 @@ List<Card> _buildGridCards() {
    return new Scaffold(
         appBar: new AppBar(
          
-         backgroundColor: Colors.lightBlue,
-         leading: Image.asset('images/avasms_login.png'),
+         backgroundColor: Colors.indigo.shade700,
+         //leading: Image.asset('images/avasms_login.png'),
          // title: new Text(AppTranslations.of(context).text("test")),
-          title: Text(AppTranslations.of(context).text("test"),style: TextStyle(fontFamily: 'Myanmar'),),
+          title: new Image.asset('images/avasms_logo.png'),
           actions: <Widget>[
+          
           new PopupMenuButton<SettingMenu>(
+            icon: new Icon(Icons.settings,color: Colors.white,),
             itemBuilder: (BuildContext context) => <PopupMenuItem<SettingMenu>>[
               const PopupMenuItem<SettingMenu>(
                 value: SettingMenu.English,
@@ -105,6 +257,10 @@ List<Card> _buildGridCards() {
               const PopupMenuItem<SettingMenu>(
                 value: SettingMenu.Setting,
                 child: Text('Setting')
+              ),
+              const PopupMenuItem<SettingMenu>(
+                value: SettingMenu.Logout,
+                child: Text('Logout')
               )
               ],
             
@@ -128,6 +284,12 @@ List<Card> _buildGridCards() {
                   }
                   );
                   break;
+                  case SettingMenu.Logout:
+                  setState((){
+                  Application.router.navigateTo(context, "login",transition: transitionType,replace: true);
+                  }
+                  );
+                  break;
               }
             }
           ),
@@ -137,7 +299,7 @@ List<Card> _buildGridCards() {
 
      body: new GridView.count(
           crossAxisCount: 2,
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(10.0),
           children: _buildGridCards(),
         ),
         //backgroundColor: Colors.grey,
@@ -149,6 +311,7 @@ List<Card> _buildGridCards() {
 enum SettingMenu {
   English,
   Myanmar,
-  Setting
+  Setting,
+  Logout
 }
 

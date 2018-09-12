@@ -23,6 +23,8 @@ class Application {
 
   //function to be invoked when changing the language
   LocaleChangeCallback onLocaleChanged;
+
+  
 }
 
 Application application = Application();
