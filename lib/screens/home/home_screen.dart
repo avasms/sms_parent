@@ -16,6 +16,36 @@ TransitionType transitionType = TransitionType.native;
 
 List<Card> _buildGridCards() {
     List<Card> cards = [
+
+       new Card(
+        child: Center(
+         child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: (){
+               Application.router.navigateTo(context, "login",transition: transitionType);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column( // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                   radius: 30.0,
+                  child: Image(
+                  image: AssetImage('images/noticeboard.jpg'),
+            
+                   ),
+                    ),
+                   // Icon(Icons.directions_bus,size: 100.0,),
+                   new Text(AppTranslations.of(context).text("noticboard"),style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+
       new Card(
         child: Center(
          child: Column(
@@ -260,7 +290,7 @@ List<Card> _buildGridCards() {
               ),
               const PopupMenuItem<SettingMenu>(
                 value: SettingMenu.Logout,
-                child: Text('Logout')
+                child: Text('Log Out')
               )
               ],
             
