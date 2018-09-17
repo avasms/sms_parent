@@ -1,13 +1,13 @@
 {
     "test": "အောင်ဖြိုးဦး",
-    "exam_menu": "စာမေးပွဲများ",
+    "exam_menu": "စာမေးပွဲ",
     "child_menu": "ကျောင်းသား/သူ",
-    "noticeboard_menu": "‌ကြေငြာစာများ",
+    "noticeboard_menu": "‌ကြေငြာစာ",
     "message_menu": "Message",
     "timetable_menu": "အချိန်ဇယား",
     "leave_menu": "ခွင့်တိုင်ရန်",
-    "ferry_menu": "ကြိုပို့ယာဉ်များ",
-    "dormitory_menu": "အဆောင်များ",
+    "ferry_menu": "ကြိုပို့ယာဉ်",
+    "dormitory_menu": "အဆောင်",
     "about_menu": "About School",
-    "noticboard": "ကြေငြာစာများ"
+    "noticboard": "ကြေငြာစာ"
 }
