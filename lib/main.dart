@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
 import 'package:sms_parent/util/application.dart';
 import 'package:fluro/fluro.dart';
+import 'package:sms_parent/dao/authdao.dart';
 
 void main(){
 
@@ -24,13 +25,14 @@ class MyApp extends StatefulWidget {
 
 // Language
 
-
+  var isLogin;
 
   @override
   void initState() {
     super.initState();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
+    isLogin = AuthManager.isLogined();
   }
 
  void onLocaleChange(Locale locale) {
