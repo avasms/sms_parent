@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+//import 'package:flutter/material.dart';
 
 class CommonComponents {
 
@@ -30,6 +31,7 @@ class CommonComponents {
                         new Container(height: 10.0),
                         new Container(
                             child: new Text("Please Wait!"),
+                            ),
                       ],
                     ),
                   ),
