@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async{
     if (_formKey.currentState.validate()) {
     _formKey.currentState.save();
-   CommonComponents.showLoadingDialog(context);
+   //CommonComponents.showLoadingDialog(context);
     AuthManager.login(_username.trim(), _password.trim()).then((result){
       if(result == null){
       Fluttertoast.showToast(
