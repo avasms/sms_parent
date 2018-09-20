@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-//import 'package:flutter/material.dart';
+
 
 class CommonComponents {
 
   static Future<Null> showLoadingDialog(BuildContext context) {
     return showDialog(
         context: context,
+        barrierDismissible: true,
         builder: (BuildContext context) {
           return new Material(
               color: Colors.transparent,
@@ -40,22 +41,31 @@ class CommonComponents {
         });
   }
 
-static Future<Null> showAlertDialog(BuildContext context, String contentMsg,String title) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text(title),
-            content: new Text(contentMsg),
-            actions: <Widget>[
-              new FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: new Text("OK"),
-              )
+static Future<Null> showCommonAlertDialog(BuildContext context, String contentMsg,String title) async {
+   return showDialog<Null>(
+    context: context,
+    barrierDismissible: true, // user must tap button!
+    builder: (BuildContext context) {
+      return new AlertDialog(
+        title: new Text('Rewind and remember'),
+        content: new SingleChildScrollView(
+          child: new ListBody(
+            children: <Widget>[
+              new Text('You will never be satisfied.'),
+              new Text('You\’re like me. I’m never satisfied.'),
             ],
-          );
-        });
-  }
+          ),
+        ),
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text('Regret'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/login/login_screen.dart';
 import 'package:sms_parent/screens/home/home_screen.dart';
@@ -6,10 +8,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
 import 'package:sms_parent/util/application.dart';
 import 'package:fluro/fluro.dart';
-import 'package:sms_parent/util/localStorage.dart';
-import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/dao/authdao.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/util/commonComponent.dart';
 
 void main(){
@@ -26,7 +27,8 @@ class MyApp extends StatefulWidget {
   class _MyAppState extends State<MyApp> {
   AppTranslationsDelegate _newLocaleDelegate;
 
-
+final Connectivity _connectivity = new Connectivity();
+  StreamSubscription<ConnectivityResult> _connectivitySubscription;
 // Language
 
   var isLogin = false;
@@ -36,24 +38,40 @@ class MyApp extends StatefulWidget {
     super.initState();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
+
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+          if(result == ConnectivityResult.none){
+       Fluttertoast.showToast(
+        msg: "Plese Open Mobile Data or Wifi",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIos: 20,
+        bgcolor: '#ffffff',
+        textcolor: '#d50000'
+   );
+          }
+         
+        });
     checkLoginInit();
         
       }
     
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
+
      void checkLoginInit()async{
        AuthManager.checkLogin().then((res){
          isLogin = res;
        });
 
-    var connectivityResult = await (new Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.none) {
-    
-    _showDailog();
-      
-        }
     
       }
       
+  
          void onLocaleChange(Locale locale) {
             setState(() {
             _newLocaleDelegate = AppTranslationsDelegate(newLocale: locale);
@@ -106,10 +124,6 @@ class MyApp extends StatefulWidget {
               supportedLocales: application.supportedLocales(),
             ); 
           }
-    
-      void _showDailog() {
-          CommonComponents.showAlertDialog(context,"Please Open Wifi or Mobile Data","Connection Check");
-      }
     
      
 }
