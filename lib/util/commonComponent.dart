@@ -1,8 +1,9 @@
-//import 'dart:async';
-//import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CommonComponents {
-  /*
+
   static Future<Null> showLoadingDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -25,12 +26,10 @@ class CommonComponents {
                       children: <Widget>[
                         new Container(
                             child:
-                                SpinKitCubeGrid(color: Color(GSYColors.white))),
+                                SpinKitCubeGrid(color: Colors.white)),
                         new Container(height: 10.0),
                         new Container(
-                            child: new Text(
-                                CommonUtils.getLocale(context).loading_text,
-                                style: GSYConstant.normalTextWhite)),
+                            child: new Text("Please Wait!"),
                       ],
                     ),
                   ),
@@ -38,7 +37,7 @@ class CommonComponents {
               ));
         });
   }
-
+/*
   static Future<Null> showEditDialog(
     BuildContext context,
     String dialogTitle,
@@ -137,4 +136,28 @@ class CommonComponents {
         });
   }
 */
+
+// user defined function
+  static Future<Null> showAlertDialog(BuildContext context,String message,String title) {
+    // flutter defined function
+   return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert Dialog title"),
+          content: new Text("Alert Dialog body"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

@@ -7,9 +7,9 @@ class HttpAPIManager {
 // Url parameter start with /
 static getWithUrl(String url,String method) async{
  
- String requestUrl = Config.BASE_URL+url;
+ String requestUrl = Config.BASE_URL+Config.MOBILE_API_URL+url;
  Options option = new Options();
- option.headers = {"SMSAuth": getAuthorization().toString()};
+ option.headers = {"SMSAuth": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAyMiIsImlhdCI6MTUzNzI2MTc0NCwic3ViIjoiNSIsImlzcyI6IkFNLTEwIn0.TsM3zwqgjXms11Ihxm4vnky6uqI85OiQoSwkDJ_m0R0"};
  option.method = method;
 
  var dio = new Dio();
@@ -18,11 +18,12 @@ static getWithUrl(String url,String method) async{
   response = await dio.request(requestUrl,options: option);
 
  } on DioError catch(e) {
+   print(e);
    Fluttertoast.showToast(
         msg: e.toString(),
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
+        timeInSecForIos: 10,
         bgcolor: "#e74c3c",
         textcolor: '#ffffff'
    );
@@ -35,7 +36,7 @@ return response;
 
 // Url FormData formData = new FormData.from({"name": "wendux","age": 12})
 static postWithParam(String url,FormData formData,String method) async{
- String requestUrl = Config.BASE_URL+url;
+ String requestUrl = Config.BASE_URL+Config.MOBILE_API_URL+url;
  Options option = new Options();
  option.headers = {"SMSAuth": getAuthorization().toString()};
  option.method = method;
@@ -61,27 +62,20 @@ return response;
 }
 
 // Url FormData formData = new FormData.from({"name": "wendux","age": 12})
-static postLogin(String url,FormData formData,String method) async{
+static postLogin(String url,var formData,String method) async{
  String requestUrl = Config.BASE_URL+url;
  Options option = new Options();
- //option.headers = {"SMSAuth": getAuthorization().toString()};
  option.method = method;
 
  var dio = new Dio();
  var response;
+ print(requestUrl);
  try{
   response = await dio.post(requestUrl, data: formData,options: option);
 
  } on DioError catch(e) {
-   Fluttertoast.showToast(
-        msg: e.toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
-        bgcolor: "#e74c3c",
-        textcolor: '#ffffff'
-   );
-  return null;
+  print(e);
+  return response;
  }
 
 return response;

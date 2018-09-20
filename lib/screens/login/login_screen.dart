@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:sms_parent/util/application.dart';
+import 'package:sms_parent/dao/authdao.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sms_parent/util/commonComponent.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -10,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //BuildContext _contx;
   // bool _isLoading = false;
+  String _username, _password;
   bool _obscureText = true;
   final _formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -17,13 +21,30 @@ class _LoginScreenState extends State<LoginScreen> {
   TransitionType transitionType = TransitionType.native;
 
 
-  void _login(){
+  void _login() async{
     if (_formKey.currentState.validate()) {
-     Application.router.navigateTo(context, "home",transition: transitionType,replace: true);
+    _formKey.currentState.save();
+    CommonComponents.showLoadingDialog(context);
+    AuthManager.login(_username.trim(), _password.trim()).then((result){
+      if(result == null){
+      Fluttertoast.showToast(
+        msg: "Username or Password is invalid!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIos: 1,
+        bgcolor: '#ffffff',
+        textcolor: '#d50000'
+   );
+      }else{
+         Application.router.navigateTo(context, "home",transition: transitionType,replace: true);
+      }
+      
+    });
+    
     }
  
   }
-  // String _username, _password;
+
   @override
   Widget build(BuildContext context) {
     final loginButton = Padding(
@@ -78,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final username = TextFormField(
       //keyboardType: TextInputType.emailAddress,
       autofocus: false,
+      onSaved: (value) => _username = value,
       validator: (value){
         if(value.isEmpty){
            return 'Please enter username';
@@ -92,6 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final password = TextFormField(
       autofocus: false,
       obscureText: _obscureText,
+      onSaved: (value) => _password = value,
       validator: (value){
         if(value.isEmpty){
            return 'Please enter password';
