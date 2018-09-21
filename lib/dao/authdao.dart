@@ -4,6 +4,7 @@ import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/models/user.dart';
 import 'package:sms_parent/util/api.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 class AuthManager{
@@ -18,7 +19,8 @@ class AuthManager{
        {
          res = true;
        }
-      
+     // print(token);
+     
   return res; 
   }
   static login(String username,String password) async {
@@ -40,6 +42,7 @@ class AuthManager{
   //Map userMap = json.decode(response.data["data"]);
   //var user = User.fromJson(userMap);
   //print('Howdy, ${user.tokenId}');
+ // print(response.data['tokenId'].toString());
   await LocalStorage.save(Config.TOKEN_KEY, response.data['tokenId'].toString());
   
   return response;

@@ -67,8 +67,8 @@ final Connectivity _connectivity = new Connectivity();
        AuthManager.checkLogin().then((res){
          isLogin = res;
        });
-
-    
+   //   print(isLogin);
+   
       }
       
   
@@ -112,7 +112,7 @@ final Connectivity _connectivity = new Connectivity();
                 fontFamily: 'Myanmar'
               ),
               onGenerateRoute: Application.router.generator,
-              home:isLogin?new HomeScreen():new LoginScreen(),
+              home:new LoginScreen(),
               localizationsDelegates: [
                  _newLocaleDelegate,
                 const AppTranslationsDelegate(),
