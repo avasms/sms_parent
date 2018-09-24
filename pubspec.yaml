@@ -79,6 +79,8 @@ flutter:
     - family: Myanmar
       fonts:
         - asset: fonts/Myanmar3.ttf
+    - family: Zawgyi
+      fonts:
         - asset: fonts/zawgyi.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

@@ -9,9 +9,10 @@ static getWithUrl(String url,String method) async{
  
  String requestUrl = Config.BASE_URL+Config.MOBILE_API_URL+url;
  Options option = new Options();
- //option.headers = {"SMSAuth": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAyMiIsImlhdCI6MTUzNzI2MTc0NCwic3ViIjoiNSIsImlzcyI6IkFNLTEwIn0.TsM3zwqgjXms11Ihxm4vnky6uqI85OiQoSwkDJ_m0R0"};
+ String token = await LocalStorage.get(Config.TOKEN_KEY);
+ option.headers = {"SMSAuth": token};
  option.method = method;
-
+ print(requestUrl);
  var dio = new Dio();
  var response;
  try{
@@ -38,7 +39,8 @@ return response;
 static postWithParam(String url,FormData formData,String method) async{
  String requestUrl = Config.BASE_URL+Config.MOBILE_API_URL+url;
  Options option = new Options();
- option.headers = {"SMSAuth": getAuthorization().toString()};
+ String token = await LocalStorage.get(Config.TOKEN_KEY);
+ option.headers = {"SMSAuth": token};
  option.method = method;
 
  var dio = new Dio();
@@ -81,11 +83,5 @@ static postLogin(String url,var formData,String method) async{
 return response;
 }
 
-static getAuthorization() async {
-    String token = await LocalStorage.get(Config.TOKEN_KEY);
-
-    return token;
-    
-  }
 }
 

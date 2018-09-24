@@ -44,6 +44,7 @@ class AuthManager{
   //print('Howdy, ${user.tokenId}');
  // print(response.data['tokenId'].toString());
   await LocalStorage.save(Config.TOKEN_KEY, response.data['tokenId'].toString());
+  await LocalStorage.save(Config.USER_ID, response.data['id'].toString());
   
   return response;
 

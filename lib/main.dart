@@ -12,7 +12,8 @@ import 'package:sms_parent/dao/authdao.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/screens/dormitory/dormitory_screen.dart';
-import 'package:sms_parent/util/commonComponent.dart';
+import 'package:sms_parent/screens/ferry/ferry_screen.dart';
+//import 'package:sms_parent/util/commonComponent.dart';
 
 void main(){
 
@@ -101,11 +102,16 @@ final Connectivity _connectivity = new Connectivity();
           }));
         
          // Define our Dormantory page.
-          router.define('dormantory', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-           return new DomortoryListData(); 
+          router.define('dormitory', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+           return new DormitoryListData(); 
           }));
         
+        // Define our Dormantory page.
+          router.define('ferry', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+           return new TransportListData(); 
+          }));
         
+
           // Defind Router
           Application.router = router;
         
