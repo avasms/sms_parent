@@ -214,8 +214,7 @@ void initState(){
                FlatButton(
                  onPressed: () {
                  //Navigator.of(context).pushReplacementNamed("login");
-                 String _exam = "exam_menu";
-                 Application.router.navigateTo(context, "exam?title=$_exam",transition: transitionType,replace: false);
+                 Application.router.navigateTo(context, "dormitory",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text

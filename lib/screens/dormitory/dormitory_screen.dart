@@ -1,66 +1,20 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'detailPage.dart';
-Future<List<Domortory>> fetchPhotos(http.Client client) async {
-  final response =
-      await client.get('http://192.168.100.12:8080/AVASMS/api/transport_data_list');
-
-  // Use the compute function to run parsePhotos in a separate isolate
-  return compute(parsePhotos, response.body);
-}
-
-// A function that will convert a response body into a List<Photo>
-List<Domortory> parsePhotos(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-
-  return parsed.map<Domortory>((json) => Domortory.fromJson(json)).toList();
-}
-
-class Domortory{
-  int id;
-  String name;
-  int roomNo;
-  String description;
-  String schoolName;
-  String teacherName;
-  Domortory({
-    this.id,
-    this.name,
-    this.roomNo,
-    this.description,
-    this.schoolName,
-    this.teacherName,
-
- });
+import 'package:sms_parent/models/dormitory.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
 
 
- factory Domortory.fromJson(Map<String, dynamic> json) {
-    return Domortory(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      roomNo: json['roomNo'] as int,
-      description: json['description'] as String,
-      schoolName: json['schoolName'] as String,
-      teacherName: json['teacherName'] as String,
-    );
-  }
-}
-
-
-class DomortoryListData extends StatelessWidget {
+class DormitoryListData extends StatelessWidget {
   static const String routeName = '/material/two-level-list';
- final List<Domortory> stu;
+ final List<Dormitory> stu;
 
-  const DomortoryListData({Key key, this.stu}) : super(key: key);
+  const DormitoryListData({Key key, this.stu}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Student Domority List ')),
-       body: FutureBuilder<List<Domortory>>(
-        future: fetchPhotos(http.Client()),
+       body: FutureBuilder<List<Dormitory>>(
+        future: new ApiCommonDao().fetchPhotos(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 
@@ -74,7 +28,7 @@ class DomortoryListData extends StatelessWidget {
   }
 }
 class StudentList extends StatelessWidget {
-  final List<Domortory> transport;
+  final List<Dormitory> transport;
 StudentList({Key key, this.transport}) : super(key: key);
   //StudentList({Key key, this.student}) : super(key: key);
   
@@ -96,12 +50,12 @@ StudentList({Key key, this.transport}) : super(key: key);
              ListTile(
             leading: Icon(Icons.person),
              title: Text('School Name :${item.schoolName} '),
-              onTap: () {
+           /*   onTap: () {
                  Navigator.push(
                   context,
-               MaterialPageRoute(builder: (context) => SecondScreen()),
+              MaterialPageRoute(builder: (context) => SecondScreen()),
                   );
-              },
+              },*/
              subtitle: new RichText(    
              text: new TextSpan(
              //text: 'Driver Name: U Maung Maung\n ' ,

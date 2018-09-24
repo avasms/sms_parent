@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'detailPage.dart';
+
 Future<List<Transport>> fetchPhotos(http.Client client) async {
   final response =
       await client.get('http://192.168.100.13:8080/AVASMS/api/transport_data_list');

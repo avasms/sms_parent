@@ -11,6 +11,7 @@ import 'package:fluro/fluro.dart';
 import 'package:sms_parent/dao/authdao.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sms_parent/screens/dormitory/dormitory_screen.dart';
 import 'package:sms_parent/util/commonComponent.dart';
 
 void main(){
@@ -93,12 +94,16 @@ final Connectivity _connectivity = new Connectivity();
             return new LoginScreen();
           }));
         
-        // Define our Login page.
+        // Define our Exam page.
           router.define('exam', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
             String _title = params["title"]?.first;
             return new ExamScreen(title: _title,);
           }));
         
+         // Define our Dormantory page.
+          router.define('dormantory', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+           return new DomortoryListData(); 
+          }));
         
         
           // Defind Router

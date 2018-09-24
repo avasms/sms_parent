@@ -9,7 +9,7 @@ static getWithUrl(String url,String method) async{
  
  String requestUrl = Config.BASE_URL+Config.MOBILE_API_URL+url;
  Options option = new Options();
- option.headers = {"SMSAuth": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAyMiIsImlhdCI6MTUzNzI2MTc0NCwic3ViIjoiNSIsImlzcyI6IkFNLTEwIn0.TsM3zwqgjXms11Ihxm4vnky6uqI85OiQoSwkDJ_m0R0"};
+ //option.headers = {"SMSAuth": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDAyMiIsImlhdCI6MTUzNzI2MTc0NCwic3ViIjoiNSIsImlzcyI6IkFNLTEwIn0.TsM3zwqgjXms11Ihxm4vnky6uqI85OiQoSwkDJ_m0R0"};
  option.method = method;
 
  var dio = new Dio();
