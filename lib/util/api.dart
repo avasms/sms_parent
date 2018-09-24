@@ -12,7 +12,7 @@ static getWithUrl(String url,String method) async{
  String token = await LocalStorage.get(Config.TOKEN_KEY);
  option.headers = {"SMSAuth": token};
  option.method = method;
- print(requestUrl);
+ //print(requestUrl);
  var dio = new Dio();
  var response;
  try{
