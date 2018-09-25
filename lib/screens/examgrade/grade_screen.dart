@@ -5,16 +5,16 @@ import 'package:sms_parent/models/examGrade.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 
-class DomortoryListData extends StatelessWidget {
+class ExamGradeListData extends StatelessWidget {
   
-  final List<ExamGrade> stu;
+  final String studentId;
 
-  const DomortoryListData({Key key, this.stu}) : super(key: key);
+  const ExamGradeListData({Key key, this.studentId}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<List<ExamGrade>>(
-        future: new ApiCommonDao().getExamGradeList('2'),
+        future: new ApiCommonDao().getExamGradeList(this.studentId),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 

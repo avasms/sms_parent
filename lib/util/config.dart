@@ -12,5 +12,6 @@ class Config {
 
   static const STUDENT_SCREEN = "student_screen";
   static const GRADE_SCREEN = "grade_screen";
+  static const EXAM_SCREEN = "exam_screen";
 
 }

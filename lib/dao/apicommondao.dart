@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:sms_parent/models/dormitory.dart';
 import 'package:sms_parent/models/ferry.dart';
 import 'package:sms_parent/models/student.dart';
+import 'package:sms_parent/models/examGrade.dart';
+import 'package:sms_parent/models/exam.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -44,6 +46,21 @@ Future<List<Student>> getStudentList(String parentId) async {
  final data = response.data;
   if(response != null){
     return data.map<Student>((json) => Student.fromJson(json)).toList();
+  }
+ return null;
+  
+}
+
+
+Future<List<Exam>> getExamListByClassId(String classId) async {
+  String url = "/listStudentExam/$classId";
+ // print('APO');
+ // print(parentId);
+  final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+ final data = response.data;
+  if(response != null){
+    return data.map<Exam>((json) => Exam.fromJson(json)).toList();
   }
  return null;
   

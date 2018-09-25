@@ -62,12 +62,19 @@ class StudentList extends StatelessWidget {
                       
                       ListTile(
                         onTap: (){
-                          if(screenType == Config.STUDENT_SCREEN){
-                            Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
-                          }else{
-                            Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
+                          switch(screenType){
+                            case Config.STUDENT_SCREEN:
+                               Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
+                            break;
+                            case Config.EXAM_SCREEN:
+                              Application.router.navigateTo(context, "exam?classId="+item.classLevelId, transition: transitionType,replace: false);
+                            break;
+                            case Config.GRADE_SCREEN:
+                              Application.router.navigateTo(context, "grade?studentId="+item.id.toString(), transition: transitionType,replace: false);
+                            break;
+
                           }
-                           
+                         
                         },
                         leading: new CircleAvatar(
                           backgroundColor: Colors.white,

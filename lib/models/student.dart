@@ -8,6 +8,7 @@ class Student{
   String photoPath;
   String rollNo;
   String className;
+  String classLevelId;
   Student({
     this.id,
     this.name,
@@ -18,6 +19,7 @@ class Student{
     this.rollNo,
     this.runningYear,
     this.className,
+    this.classLevelId,
  });
 
 
@@ -32,6 +34,7 @@ class Student{
       rollNo: json['rollNo'] as String,
       runningYear: json['runningYear'] as String,
       className:json['className'] as String ,
+      classLevelId:json['classLevelId'] as String ,
     );
   }
 }

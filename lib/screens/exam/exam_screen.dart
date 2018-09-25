@@ -1,151 +1,70 @@
+
 import 'package:flutter/material.dart';
-import 'package:sms_parent/util/app_translation.dart';
-import 'package:sms_parent/util/application.dart';
-//import 'package:sms_parent/screens/login/login_screen.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:sms_parent/models/exam.dart';
 
-class ExamScreen extends StatefulWidget{
-final title;
 
-@override
-_ExamScreenState createState() => new _ExamScreenState();
-  // In the constructor, require a Todo
-  ExamScreen({Key key, @required this.title}) : super(key: key);
+
+class ExamScreen extends StatefulWidget {
+  final classId;
+  ExamScreen({Key key, this.classId}) : super(key: key);
+  _ExamScreenState createState() => _ExamScreenState();
+
+  
 }
 
-class _ExamScreenState extends State<ExamScreen>{
-
-List<Card> _buildGridCards() {
-    List<Card> cards = [
-      new Card(
-        child: Center(
-         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FlatButton(
-                onPressed: (){
-                Navigator.of(context).pushReplacementNamed("login");
-                },
-                padding: EdgeInsets.all(10.0),
-                child: Column( // Replace with a Row for horizontal icon + text
-                  children: <Widget>[
-                    CircleAvatar(
-                   radius: 40.0,
-                  child: Image(
-                  image: AssetImage('images/student.jpg'),
-            
-                   ),
-                    ),
-                   // Icon(Icons.directions_bus,size: 100.0,),
-                   new Text(AppTranslations.of(context).text("child_menu"),style: TextStyle(fontFamily: 'Myanmar'))
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      new Card(
-        
-        child: Center(
-         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FlatButton(
-                onPressed: () {
-                Navigator.of(context).pushReplacementNamed("login");
-                },
-                padding: EdgeInsets.all(10.0),
-                child: Column( // Replace with a Row for horizontal icon + text
-                  children: <Widget>[
-                    CircleAvatar(
-                   radius: 40.0,
-                  child: Image(
-                  image: AssetImage('images/exam.jpg'),
-            
-                   ),
-                    ),
-                    //Icon(Icons.view_list,size: 100.0,),
-                    new Text(AppTranslations.of(context).text("exam_menu"),style: TextStyle(fontFamily: 'Myanmar'))
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      
-    ];
-
-    return cards;
-  }
-
-
-@override
- Widget build(BuildContext context) {
-
-   return new Scaffold(
-        appBar: new AppBar(
-         
-         backgroundColor: Colors.lightBlue,
-          title: Text(AppTranslations.of(context).text(widget.title),style: TextStyle(fontFamily: 'Myanmar'),),
-          actions: <Widget>[
-          new PopupMenuButton<SettingMenu>(
-            itemBuilder: (BuildContext context) => <PopupMenuItem<SettingMenu>>[
-              const PopupMenuItem<SettingMenu>(
-                value: SettingMenu.English,
-                child: Text('English')
-              ),
-              const PopupMenuItem<SettingMenu>(
-                value: SettingMenu.Myanmar,
-                child: Text('Myanmar')
-              ),
-              const PopupMenuItem<SettingMenu>(
-                value: SettingMenu.Setting,
-                child: Text('Setting')
-              )
-              ],
-            
-              onSelected: (SettingMenu action) {
-              switch (action) {
-                case SettingMenu.English:
-                  setState((){
-                    application.onLocaleChanged(Locale("en"));
-                  }
-                  );
-                  break;
-                 case SettingMenu.Myanmar:
-                  setState((){
-                    application.onLocaleChanged(Locale("my"));
-                  }
-                  );
-                  break;
-                  case SettingMenu.Setting:
-                  setState((){
-                  //  application.onLocaleChanged(Locale("en"));
-                  }
-                  );
-                  break;
-              }
-            }
-          ),
+class _ExamScreenState extends State<ExamScreen> {
+ List<Exam> list = List();
+ var isLoading = false;
     
-          ],
-        ),
 
-     body: new GridView.count(
-          crossAxisCount: 2,
-          padding: EdgeInsets.all(16.0),
-          children: _buildGridCards(),
-        ),
-        //backgroundColor: Colors.grey,
-        );
-   
- }
+  @override
+ void initState() {
+    super.initState();
+    _selectExamWith(widget.classId);
+      } 
+     
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+              title: Text("View Exam"),
+            ),
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.all(8.0),
+    
+            ),
+            body: isLoading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    itemCount: list.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return new Column(
+                        children: <Widget>[
+                          new ListTile(
+                        leading: Icon(Icons.star),
+                        title: new Text(list[index].name),
+                    onTap: (){
+                        Navigator.of(context).pop();
+                      Navigator.of(context).pushNamed('/exam');
+                      }
+    
+                      ),
+                      new Divider(color: Colors.red,height: 4.0,)
+                        ],
+                      );
+                      
+     
+                    }));
+      }
+    
+      void _selectExamWith(classId) {
+      ApiCommonDao dao = new ApiCommonDao();
+      dao.getExamListByClassId(classId).then((res){
+        isLoading = true;
+        list = res;
+      });
+      }
 }
-
-enum SettingMenu {
-  English,
-  Myanmar,
-  Setting
-}
-

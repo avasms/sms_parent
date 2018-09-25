@@ -67,7 +67,7 @@ void initState(){
                FlatButton(
                  onPressed: (){
                   
-                  Application.router.navigateTo(context, "student?parentId=$_parentId&screenType=$Config.STUDENT_SCREEN",transition: transitionType,replace: false);
+                  Application.router.navigateTo(context, "student?parentId=$_parentId&screenType="+Config.STUDENT_SCREEN,transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -97,8 +97,7 @@ void initState(){
                FlatButton(
                  onPressed: () {
                  //Navigator.of(context).pushReplacementNamed("login");
-                 String _exam = "exam_menu";
-                 Application.router.navigateTo(context, "exam?title=$_exam",transition: transitionType,replace: false);
+                Application.router.navigateTo(context, "student?parentId=$_parentId&screenType="+Config.EXAM_SCREEN,transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -127,7 +126,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-                Application.router.navigateTo(context, "student?parentId=$_parentId&screenType=$Config.GRADE_SCREEN",transition: transitionType,replace: false);
+                Application.router.navigateTo(context, "student?parentId=$_parentId&screenType="+Config.GRADE_SCREEN,transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
