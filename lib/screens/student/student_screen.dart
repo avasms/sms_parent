@@ -1,19 +1,22 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_parent/models/student.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:sms_parent/util/config.dart';
+import 'package:sms_parent/util/app_translation.dart';
 
 class StudentListData extends StatelessWidget {
-  static const String routeName = '/material/two-level-list';
+
  final List<Student> stu;
-  
+
   const StudentListData({Key key, this.stu}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Student List ')),
+        appBar: new AppBar(
+       backgroundColor: Colors.indigo.shade700,
+       title: new Text(AppTranslations.of(context).text("child_menu"),style: TextStyle(fontFamily: 'Myanmar',color: Colors.white),)
+       ),
        body: FutureBuilder<List<Student>>(
         future: new ApiCommonDao().getStudentList('1'),
         builder: (context, snapshot) {
@@ -31,9 +34,7 @@ class StudentListData extends StatelessWidget {
 class StudentList extends StatelessWidget {
   final List<Student> student;
 StudentList({Key key, this.student}) : super(key: key);
-  //StudentList({Key key, this.student}) : super(key: key);
-
-             //String url="http://192.168.100.7:8080/AVASMS/api/transport_data_list/${item.photoPath}";
+ 
   @override
   Widget build(BuildContext context) { 
     return new ListView.builder
@@ -42,8 +43,6 @@ StudentList({Key key, this.student}) : super(key: key);
         itemBuilder: (BuildContext ctxt, int index)
          
          {
-          
-  String testUrl="http://demo.avasms.net/Images/Student/316407280153424_student.png"; 
  
             final item=student[index];
             
@@ -60,16 +59,11 @@ StudentList({Key key, this.student}) : super(key: key);
                ListTile(
                leading: new CircleAvatar(
               backgroundColor: Colors.white,
-              child: new Image(image: new NetworkImage(testUrl)),
+              child: new Image(image: new NetworkImage(Config.BASE_URL+item.photoPath)),
                maxRadius: 50.0,
                ),
                title: Text('Student Name ',maxLines: 1, style: new TextStyle(color: Colors.blue[700],fontSize: 18.0,wordSpacing:2.0),),
-               onTap: () {
-                   Navigator.push(
-                    context,
-                 MaterialPageRoute(builder: (context) => SecondScreen()),
-                    );
-                },
+              
                subtitle: new RichText(    
                text: new TextSpan(
              //text: 'Driver Name: U Maung Maung\n ' ,

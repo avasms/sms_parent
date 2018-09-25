@@ -8,6 +8,12 @@
     "leave_menu": "Leave",
     "ferry_menu": "Ferry",
     "dormitory_menu": "Dormitory",
-    "about_menu": "About School"
+    "about_menu": "About School",
+
+    "english_setting":"English",
+    "myanmar_setting":"Myanmar",
+    "setting_setting":"Setting",
+    "logout_setting":"Log Out"
+
    
 }

@@ -8,6 +8,11 @@
     "leave_menu": "ခွင့်တိုင်ရန်",
     "ferry_menu": "ကြိုပို့ယာဉ်",
     "dormitory_menu": "အဆောင်",
-    "about_menu": "About School"
+    "about_menu": "About School",
+
+    "english_setting":"အင်္ဂလိပ်",
+    "myanmar_setting":"Myanmar",
+    "setting_setting":"Setting",
+    "logout_setting":"Log Out"
     
 }

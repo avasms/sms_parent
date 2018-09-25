@@ -13,6 +13,8 @@ import 'package:connectivity/connectivity.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/screens/dormitory/dormitory_screen.dart';
 import 'package:sms_parent/screens/ferry/ferry_screen.dart';
+import 'package:sms_parent/screens/student/student_screen.dart';
+
 //import 'package:sms_parent/util/commonComponent.dart';
 
 void main(){
@@ -111,6 +113,12 @@ final Connectivity _connectivity = new Connectivity();
            return new TransportListData(); 
           }));
         
+        // Define our Student page.
+          router.define('student', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+          // String _parentId = params[""]?.first;
+           return new StudentListData(); 
+          }));
+
 
           // Defind Router
           Application.router = router;

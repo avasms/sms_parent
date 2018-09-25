@@ -64,7 +64,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-                Application.router.navigateTo(context, "login",transition: transitionType);
+                 Application.router.navigateTo(context, "student",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
