@@ -61,6 +61,7 @@ flutter:
     - images/ferry.jpg
     - images/hostle.jpg
     - images/noticeboard.jpg
+    - images/grade.jpg
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

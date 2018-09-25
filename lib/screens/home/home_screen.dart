@@ -17,11 +17,13 @@ _HomeScreenState createState() => new _HomeScreenState();
 class _HomeScreenState extends State<HomeScreen>{
 
 TransitionType transitionType = TransitionType.native;
-
+String _parentId;
 @override
 void initState(){
  super.initState();
- getCode();
+ getCode().then((res){
+ _parentId = res;
+ });
  
  }
  
@@ -64,7 +66,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-                 Application.router.navigateTo(context, "student",transition: transitionType,replace: false);
+                  Application.router.navigateTo(context, "student?parentId=$_parentId&screenType=$Config.STUDENT_SCREEN",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -116,7 +118,36 @@ void initState(){
            ),
          ),
        ),
-       
+
+       new Card(
+         child: Center(
+          child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: <Widget>[
+               FlatButton(
+                 onPressed: (){
+                Application.router.navigateTo(context, "login",transition: transitionType);
+                 },
+                 padding: EdgeInsets.all(5.0),
+                 child: Column( // Replace with a Row for horizontal icon + text
+                   children: <Widget>[
+                     CircleAvatar(
+                    radius: 30.0,
+                   child: Image(
+                   image: AssetImage('images/grade.jpg'),
+             
+                    ),
+                     ),
+                    // Icon(Icons.directions_bus,size: 100.0,),
+                    new Text(AppTranslations.of(context).text("grade_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                   ],
+                 ),
+               ),
+             ],
+           ),
+         ),
+       ),
+
        new Card(
          child: Center(
           child: Column(
@@ -348,8 +379,8 @@ void initState(){
     
   }
  
-   void getCode() async{
-    //  print(await LocalStorage.get(Config.TOKEN_KEY)+'hello');
+getCode() async{
+    return await LocalStorage.get(Config.USER_RELATED_ID);
    }
 }
 

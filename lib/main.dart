@@ -14,7 +14,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/screens/dormitory/dormitory_screen.dart';
 import 'package:sms_parent/screens/ferry/ferry_screen.dart';
 import 'package:sms_parent/screens/student/student_screen.dart';
-
+import 'package:sms_parent/util/localStorage.dart';
+import 'package:sms_parent/util/config.dart';
 //import 'package:sms_parent/util/commonComponent.dart';
 
 void main(){
@@ -115,34 +116,40 @@ final Connectivity _connectivity = new Connectivity();
         
         // Define our Student page.
           router.define('student', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-          // String _parentId = params[""]?.first;
-           return new StudentListData(); 
-          }));
-
-
-          // Defind Router
-          Application.router = router;
-        
-             return new MaterialApp(
-              title: 'AVASMS',
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(        
-                primarySwatch: Colors.lightBlue,
-                fontFamily: 'Myanmar'
-              ),
-              onGenerateRoute: Application.router.generator,
-              home:new LoginScreen(),
-              localizationsDelegates: [
-                 _newLocaleDelegate,
-                const AppTranslationsDelegate(),
-                //provides localised strings
-                GlobalMaterialLocalizations.delegate,
-                //provides RTL support
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: application.supportedLocales(),
-            ); 
-          }
+          String _parentId = params["parentId"]?.first;
+          String _screenType = params["screenType"]?.first;
+         return new StudentListData(parentId: _parentId,screenType: _screenType); 
+          
+         }));
+          
+          
+                    // Defind Router
+                    Application.router = router;
+                  
+                       return new MaterialApp(
+                        title: 'AVASMS',
+                        debugShowCheckedModeBanner: false,
+                        theme: ThemeData(        
+                          primarySwatch: Colors.lightBlue,
+                          fontFamily: 'Myanmar'
+                        ),
+                        onGenerateRoute: Application.router.generator,
+                        home:new LoginScreen(),
+                        localizationsDelegates: [
+                           _newLocaleDelegate,
+                          const AppTranslationsDelegate(),
+                          //provides localised strings
+                          GlobalMaterialLocalizations.delegate,
+                          //provides RTL support
+                          GlobalWidgetsLocalizations.delegate,
+                        ],
+                        supportedLocales: application.supportedLocales(),
+                      ); 
+                    }
+          
+           Future<String> getLocalStorageData() async{
+              return await LocalStorage.get(Config.USER_RELATED_ID);
+            }
     
      
 }

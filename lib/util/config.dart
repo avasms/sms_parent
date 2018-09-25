@@ -6,7 +6,11 @@ class Config {
   static const TOKEN_KEY = "api_token";
   static const USER_NAME = "user_name";
   static const USER_ID = "user_id";
+  static const USER_RELATED_ID = "user_related_id";
   static const REQUEST_GET ="get";
   static const REQUEST_POST = "post";
+
+  static const STUDENT_SCREEN = "student_screen";
+  static const GRADE_SCREEN = "grade_screen";
 
 }

@@ -38,14 +38,14 @@ class AuthManager{
   if(response == null){
     return response;
   }
-  //print(response.data);
+  print(response.data);
   //Map userMap = json.decode(response.data["data"]);
   //var user = User.fromJson(userMap);
   //print('Howdy, ${user.tokenId}');
  // print(response.data['tokenId'].toString());
   await LocalStorage.save(Config.TOKEN_KEY, response.data['tokenId'].toString());
   await LocalStorage.save(Config.USER_ID, response.data['id'].toString());
-  
+  await LocalStorage.save(Config.USER_RELATED_ID, response.data['userRelatedId'].toString());
   return response;
 
 }

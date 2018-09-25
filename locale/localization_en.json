@@ -1,6 +1,7 @@
 {
     "test": "Aung Phyo Oo",
     "exam_menu": "Exam",
+    "grade_menu": "Grade",
     "child_menu": "Student",
     "noticeboard_menu": "Noticeboard",
     "message_menu": "Message",
