@@ -1,25 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-
-Future<List<Student>> fetchPhotos(http.Client client) async {
-  
-  final response =
-      await client.get('http://192.168.100.4:8080/AVASMS/api/student_data_list/pid=1');
-
-  // Use the compute function to run parsePhotos in a separate isolate
-  return compute(parsePhotos, response.body);
-}
-
-// A function that will convert a response body into a List<Photo>
-List<Student> parsePhotos(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-
-  return parsed.map<Student>((json) => Student.fromJson(json)).toList();
-}
-
+import 'package:sms_parent/models/student.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
 
 class StudentListData extends StatelessWidget {
   static const String routeName = '/material/two-level-list';
@@ -31,7 +15,7 @@ class StudentListData extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Student List ')),
        body: FutureBuilder<List<Student>>(
-        future: fetchPhotos(http.Client()),
+        future: new ApiCommonDao().getStudentList('1'),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 

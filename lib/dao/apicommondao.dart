@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:sms_parent/models/dormitory.dart';
 import 'package:sms_parent/models/ferry.dart';
+import 'package:sms_parent/models/student.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -34,5 +35,17 @@ Future<List<Transport>> getFerryList() async {
   
 }
 
+Future<List<Student>> getStudentList(String parentId) async {
+  String url = "/student_data_list/pid=$parentId";
+  
+  final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+ final data = response.data;
+  if(response != null){
+    return data.map<Student>((json) => Student.fromJson(json)).toList();
+  }
+ return null;
+  
+}
 
 }
