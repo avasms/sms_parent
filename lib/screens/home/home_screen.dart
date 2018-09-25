@@ -66,6 +66,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
+                  
                   Application.router.navigateTo(context, "student?parentId=$_parentId&screenType=$Config.STUDENT_SCREEN",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
@@ -103,7 +104,7 @@ void initState(){
                  child: Column( // Replace with a Row for horizontal icon + text
                    children: <Widget>[
                      CircleAvatar(
-                    radius: 30.0,
+                    radius: 33.0,
                    child: Image(
                    image: AssetImage('images/exam.jpg'),
              
@@ -126,15 +127,15 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-                Application.router.navigateTo(context, "login",transition: transitionType);
+                Application.router.navigateTo(context, "student?parentId=$_parentId&screenType=$Config.GRADE_SCREEN",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
                    children: <Widget>[
                      CircleAvatar(
-                    radius: 30.0,
+                    radius: 45.0,
                    child: Image(
-                   image: AssetImage('images/grade.jpg'),
+                   image: AssetImage('images/grade_menu.jpg'),
              
                     ),
                      ),
