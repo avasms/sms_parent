@@ -25,16 +25,18 @@ class _ExamScreenState extends State<ExamScreen> {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ? ExamList(exam: snapshot.data)
+              ? ExamList(exam: snapshot.data,cl: widget.classId,)
               : Center(child: CircularProgressIndicator());
         },
       ),
     );
   }
 }
-class ExamList extends StatelessWidget {
+
+class ExamSubjectList extends StatelessWidget {
   final List<Exam> exam;
-  ExamList({Key key, this.exam}) : super(key: key);
+ 
+  ExamSubjectList({Key key, this.exam}) : super(key: key);
  
  
   @override
@@ -46,9 +48,45 @@ class ExamList extends StatelessWidget {
          
           return new Column(
             children: <Widget>[
-              new ListTile(
+              
+            ]
+            );
+         };
+    );
+  }
+}
+
+class ExamList extends StatelessWidget {
+  final List<Exam> exam;
+  final cl;
+  ExamList({Key key, this.exam, this.cl}) : super(key: key);
+ 
+ 
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      
+         itemCount: exam.length,
+         itemBuilder: (context, index) {
+         
+          return new Column(
+            children: <Widget>[
+              new ExpansionTile(
                 leading: new Icon(Icons.stars,size: 30.0,),
                 title: new Text(exam[index].name,style:TextStyle(fontFamily: 'Zawgyi',fontSize: 20.0),),
+                children: <Widget>[
+               FutureBuilder<List<Exam>>(
+                 future: new ApiCommonDao().getExamListByClassId(this.cl),
+           builder: (context, snapshot) {
+
+          if (snapshot.hasError) print(snapshot.error);
+
+          return snapshot.hasData
+              ? ExamSubjectList(exam: snapshot.data)
+              : Center(child: CircularProgressIndicator());
+        },
+      ),
+                ],
               ),
               new Divider(height: 2.0,color: Colors.grey,),
               
