@@ -23,7 +23,7 @@ class TransportListData extends StatelessWidget {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ? StudentList(transport: snapshot.data)
+              ? FerryList(transport: snapshot.data)
               : Center(child: CircularProgressIndicator());
         },
       ),
@@ -31,11 +31,10 @@ class TransportListData extends StatelessWidget {
     
   }
 }
-class StudentList extends StatelessWidget {
+class FerryList extends StatelessWidget {
   final List<Transport> transport;
-StudentList({Key key, this.transport}) : super(key: key);
-  //StudentList({Key key, this.student}) : super(key: key);
-  
+FerryList({Key key, this.transport}) : super(key: key);
+ 
  
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ StudentList({Key key, this.transport}) : super(key: key);
          itemBuilder: (context, index) {
          final item=transport[index];
      //     const ListTile(title: Text('Student List')),
-        return   ExpansionTile(
+        return ExpansionTile(
               title:  Text('Transport Name:${item.name}'),
              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
               

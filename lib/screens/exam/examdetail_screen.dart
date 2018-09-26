@@ -74,24 +74,4 @@ class _ExamState extends State<Exam> {
   }
 }
 
-class ExamStudent {
-  final int id;
-  final String name;
-  final String examDateFrom;
-  final String examDateTo;
-  final String startTime;
-  final String endTime;
-  
-  ExamStudent({this.id,this.name,this.examDateFrom,this.examDateTo,this.startTime,this.endTime});
 
-  factory ExamStudent.fromJson(Map<String, dynamic> json) {
-    return ExamStudent(
-      id:json['id'] as int,
-      name: json['name'] as String,
-      examDateFrom:json['examDateFrom'] as String,
-      examDateTo:json['examDateTo'] as String,
-      startTime: json['startTime'] as String,
-      endTime: json['endTime'] as String,
-    );
-  }
-}
