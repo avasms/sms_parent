@@ -64,10 +64,10 @@ class StudentList extends StatelessWidget {
                         onTap: (){
                           switch(screenType){
                             case Config.STUDENT_SCREEN:
-                               Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
+                              Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
                             break;
                             case Config.EXAM_SCREEN:
-                              Application.router.navigateTo(context, "exam?classId="+item.classLevelId, transition: transitionType,replace: false);
+                              Application.router.navigateTo(context, "exam?classId="+item.classLevelId.toString(), transition: transitionType,replace: false);
                             break;
                             case Config.GRADE_SCREEN:
                               Application.router.navigateTo(context, "grade?studentId="+item.id.toString(), transition: transitionType,replace: false);

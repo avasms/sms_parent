@@ -93,15 +93,6 @@ class _MyAppState extends State<MyApp> {
       return new LoginScreen();
     }));
 
-    // Define our Exam page.
-    router.define('exam', handler: new Handler(
-        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-      String _title = params["title"]?.first;
-      return new ExamScreen(
-        title: _title,
-      );
-    }));
-
     // Define our Dormantory page.
     router.define('dormitory', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
@@ -135,9 +126,7 @@ class _MyAppState extends State<MyApp> {
     router.define('exam', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _classId = params["classId"]?.first;
-      return new ExamGradeListData(
-        studentId: _classId,
-      );
+      return new ExamScreen(classId: _classId,);
     }));
 
     // Defind Router

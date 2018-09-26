@@ -23,6 +23,8 @@ Future<List<Dormitory>> getDormitoryList() async {
   
 }
 
+
+
 Future<List<Transport>> getFerryList() async {
   String url = "/transport_data_list";
   
@@ -37,10 +39,12 @@ Future<List<Transport>> getFerryList() async {
   
 }
 
+
+
 Future<List<Student>> getStudentList(String parentId) async {
   String url = "/student_data_list/pid=$parentId";
  // print('APO');
- // print(parentId);
+  print(parentId);
   final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
  final data = response.data;
@@ -50,6 +54,22 @@ Future<List<Student>> getStudentList(String parentId) async {
  return null;
   
 }
+
+
+Future<List<ExamGrade>> getExamGradeList(String studentId) async {
+  String url = "/student_mark_data_list/$studentId";
+ // print('APO');
+ // print(parentId);
+  final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+ final data = response.data;
+  if(response != null){
+    return data.map<ExamGrade>((json) => ExamGrade.fromJson(json)).toList();
+  }
+ return null;
+  
+}
+
 
 
 Future<List<Exam>> getExamListByClassId(String classId) async {
@@ -65,5 +85,4 @@ Future<List<Exam>> getExamListByClassId(String classId) async {
  return null;
   
 }
-
 }
