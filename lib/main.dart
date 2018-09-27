@@ -5,6 +5,7 @@ import 'package:sms_parent/screens/login/login_screen.dart';
 import 'package:sms_parent/screens/home/home_screen.dart';
 import 'package:sms_parent/screens/exam/exam_screen.dart';
 import 'package:sms_parent/screens/examgrade/grade_screen.dart';
+import 'package:sms_parent/screens/timetable/timetable_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
 import 'package:sms_parent/util/application.dart';
@@ -17,6 +18,7 @@ import 'package:sms_parent/screens/ferry/ferry_screen.dart';
 import 'package:sms_parent/screens/student/student_screen.dart';
 import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
+
 //import 'package:sms_parent/util/commonComponent.dart';
 
 void main() {
@@ -113,7 +115,7 @@ class _MyAppState extends State<MyApp> {
       return new StudentListData(parentId: _parentId, screenType: _screenType);
     }));
 
-    // Define our Grade3 page.
+    // Define our Grade page.
     router.define('grade', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _studentId = params["studentId"]?.first;
@@ -122,12 +124,20 @@ class _MyAppState extends State<MyApp> {
       );
     }));
 
-// Define our Grade3 page.
+// Define our Exam page.
     router.define('exam', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _classId = params["classId"]?.first;
       return new ExamScreen(classId: _classId,);
     }));
+
+// Define our Time Table page.
+    router.define('timetable', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      String _classId = params["classId"]?.first;
+      return new TimeTable(classId: _classId,);
+    }));
+
 
     // Defind Router
     Application.router = router;

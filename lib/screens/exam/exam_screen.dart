@@ -25,7 +25,7 @@ class _ExamScreenState extends State<ExamScreen> {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ? ExamList(exam: snapshot.data,cl: widget.classId,)
+              ? ExamSubjectList(examList: snapshot.data)
               : Center(child: CircularProgressIndicator());
         },
       ),
@@ -34,68 +34,63 @@ class _ExamScreenState extends State<ExamScreen> {
 }
 
 class ExamSubjectList extends StatelessWidget {
-  final List<Exam> exam;
- 
-  ExamSubjectList({Key key, this.exam}) : super(key: key);
- 
- 
+  final List<Exam> examList;
+
+  ExamSubjectList({Key key, this.examList}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      
-         itemCount: exam.length,
-         itemBuilder: (context, index) {
-         
-          return new Column(
-            children: <Widget>[
-              
-            ]
-            );
-         };
+    return new SafeArea(
+      child: ListView.builder(
+          shrinkWrap: true,
+          padding: new EdgeInsets.all(0.0),
+          itemCount: examList.length,
+          itemBuilder: (context, index) {
+            final item = examList[index];
+            return ExpansionTile(
+
+                title: Text('Exam Name:${item.name}',textAlign:TextAlign.start,),
+               
+                backgroundColor:
+                    Theme.of(context).accentColor.withOpacity(0.025),
+                children: <Widget>[
+                  new Column(
+                    children: _buildExamDetailChild(item),
+                  ),
+                ]);
+          }),
     );
   }
-}
 
-class ExamList extends StatelessWidget {
-  final List<Exam> exam;
-  final cl;
-  ExamList({Key key, this.exam, this.cl}) : super(key: key);
- 
- 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
+  _buildExamDetailChild(Exam item) {
+    List<Widget> columnContent = [];
+
+    for (ExamDetail sub in item.examSubList)
+      columnContent.add(new Column(
+     crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+           new Divider(color: Colors.red,height: 4.0,),
+          new Row(children: <Widget>[
+            new Expanded(
+              child: new Text(sub.name!=null?sub.name:'',textAlign: TextAlign.start,),
+            ),
+             new Expanded(
+              child: new Text(sub.examDateFrom!=null?sub.examDateFrom:'',textAlign: TextAlign.end,),
+            ),
+             new Expanded(
+              child: new Text(sub.startTime!=null&&sub.endTime!=null?sub.startTime+'\n'+sub.endTime:'',textAlign: TextAlign.end,),
+            )
+
+          ]
+          ),
+       
       
-         itemCount: exam.length,
-         itemBuilder: (context, index) {
-         
-          return new Column(
-            children: <Widget>[
-              new ExpansionTile(
-                leading: new Icon(Icons.stars,size: 30.0,),
-                title: new Text(exam[index].name,style:TextStyle(fontFamily: 'Zawgyi',fontSize: 20.0),),
-                children: <Widget>[
-               FutureBuilder<List<Exam>>(
-                 future: new ApiCommonDao().getExamListByClassId(this.cl),
-           builder: (context, snapshot) {
+        ],
+       
+      )
+      
+      );
 
-          if (snapshot.hasError) print(snapshot.error);
-
-          return snapshot.hasData
-              ? ExamSubjectList(exam: snapshot.data)
-              : Center(child: CircularProgressIndicator());
-        },
-      ),
-                ],
-              ),
-              new Divider(height: 2.0,color: Colors.grey,),
-              
-            ],
-          );
-        
-         }
-         
-    );
-        
+    return columnContent;
   }
 }

@@ -155,7 +155,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-                Application.router.navigateTo(context, "login",transition: transitionType);
+                 Application.router.navigateTo(context, "student?parentId=$_parentId&screenType="+Config.TIMETABLE_SCREEN,transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text

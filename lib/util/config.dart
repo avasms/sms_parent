@@ -1,7 +1,7 @@
 
 class Config {
-  static const BASE_URL = "http://demo.avasms.net";
-  //static const BASE_URL = "http://192.168.100.17:8080/AVASMS";
+  //static const BASE_URL = "http://demo.avasms.net";
+  static const BASE_URL = "http://192.168.100.4:8080/AVASMS";
   static const MOBILE_API_URL = "/mapi";
   static const TOKEN_KEY = "api_token";
   static const USER_NAME = "user_name";
@@ -13,5 +13,6 @@ class Config {
   static const STUDENT_SCREEN = "student_screen";
   static const GRADE_SCREEN = "grade_screen";
   static const EXAM_SCREEN = "exam_screen";
+  static const TIMETABLE_SCREEN = "timetable_screen";
 
 }
