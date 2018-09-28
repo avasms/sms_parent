@@ -1,90 +1,52 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-class SatPage extends StatefulWidget{
+import 'package:sms_parent/models/timetable.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
+
+class SatScreen extends StatefulWidget{
+final sectionId;
+const SatScreen({Key key, this.sectionId}) : super(key: key);
 @override
-  _SatPageState createState() => new _SatPageState();
+_SatScreenState createState() => new _SatScreenState();
 }
 
-class _SatPageState extends State<SatPage>{
-    @override
- void initState() {
-    super.initState();
-    _fetchData();
-  } 
+class _SatScreenState extends State<SatScreen>{
 
-  List<TimeTable> list = List();
-  var isLoading = false;
+@override
+Widget build(BuildContext context) {
+    return Scaffold(
+       body: FutureBuilder<List<TimeTable>>(
+        future: new ApiCommonDao().getTimeTableListByClassId(widget.sectionId, 'Satursday'),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
 
-  _fetchData() async {
-    isLoading = true;
-    setState(() {
-      //
-    });
-    final response =
-        await http.get("http://192.168.100.4:8080/AVASMS/api/studentTimeTable/9/Satursday");
-    if (response.statusCode == 200) {
-      list = (json.decode(response.body) as List)
-          .map((data) => new TimeTable.fromJson(data))
-          .toList();
-      setState(() {
-        isLoading = false;
-      });
-    } else {
-      throw Exception('Failed to load Exam Data');
-    }
+          return snapshot.hasData
+              ? TimeTableList(timetable: snapshot.data)
+              : Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
   }
+}
 
+class TimeTableList extends StatelessWidget {
+  final List<TimeTable> timetable;
+TimeTableList({Key key, this.timetable}) : super(key: key);
+ 
+ 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-         
-         
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(8.0),
-
-        ),
-        body: isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (BuildContext context, int index) {
-              
-                  return new Column(
-                    children:[
-                       
-                    new ListTile(
-                    leading: Icon(Icons.star),
-                    title: new Text(list[index].subjectName),
-                    
-
-
-                  ),
-                  new Divider(height: 2.0,color: Colors.red,),
-                    ]
-
-                  );
- 
-                }));
-  }
-}
-
-class TimeTable {
-  final int id;
-  final String subjectName;
-
-  
-  TimeTable({this.id,this.subjectName});
-
-  factory TimeTable.fromJson(Map<String, dynamic> json) {
-    return TimeTable(
-      id:json['id'] as int,
-      subjectName: json['subjectName'] as String,
-
-    );
+    return ListView.builder(
+      
+         itemCount: timetable.length,
+         itemBuilder: (context, index) {
+         final item=timetable[index];
+         return ListTile(
+          title: new Text(item.subjectName+'           '+item.startTime+' - '+item.endTime), 
+          
+         );
+         }
+      );
+    
+        
   }
 }

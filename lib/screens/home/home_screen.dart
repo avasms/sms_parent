@@ -37,7 +37,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-                Application.router.navigateTo(context, "login",transition: transitionType);
+               // Application.router.navigateTo(context, "login",transition: transitionType);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -96,7 +96,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: () {
-                 //Navigator.of(context).pushReplacementNamed("login");
+               
                 Application.router.navigateTo(context, "student?parentId=$_parentId&screenType="+Config.EXAM_SCREEN,transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
@@ -109,7 +109,7 @@ void initState(){
              
                     ),
                      ),
-                     //Icon(Icons.view_list,size: 100.0,),
+                    
                      new Text(AppTranslations.of(context).text("exam_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),
@@ -138,7 +138,7 @@ void initState(){
              
                     ),
                      ),
-                    // Icon(Icons.directions_bus,size: 100.0,),
+                   
                     new Text(AppTranslations.of(context).text("grade_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),
@@ -167,7 +167,7 @@ void initState(){
              
                     ),
                      ),
-                    // Icon(Icons.directions_bus,size: 100.0,),
+                   
                     new Text(AppTranslations.of(context).text("timetable_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),
@@ -184,9 +184,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: () {
-                 //Navigator.of(context).pushReplacementNamed("login");
-                 String _exam = "exam_menu";
-                 Application.router.navigateTo(context, "exam?title=$_exam",transition: transitionType,replace: false);
+                
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -244,7 +242,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: () {
-                 //Navigator.of(context).pushReplacementNamed("login");
+                
                  Application.router.navigateTo(context, "dormitory",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
@@ -257,7 +255,7 @@ void initState(){
              
                     ),
                      ),
-                     //Icon(Icons.view_list,size: 100.0,),
+                    
                      new Text(AppTranslations.of(context).text("dormitory_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),
@@ -274,7 +272,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-                Application.router.navigateTo(context, "login",transition: transitionType);
+              
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -286,7 +284,7 @@ void initState(){
              
                     ),
                      ),
-                    // Icon(Icons.directions_bus,size: 100.0,),
+                    
                     new Text(AppTranslations.of(context).text("about_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),

@@ -2,6 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/screens/timetable/mon_screen.dart';
+import 'package:sms_parent/screens/timetable/tue_screen.dart';
+import 'package:sms_parent/screens/timetable/wed_screen.dart';
+import 'package:sms_parent/screens/timetable/thu_screen.dart';
+import 'package:sms_parent/screens/timetable/fri_screen.dart';
+import 'package:sms_parent/screens/timetable/sat_screen.dart';
+import 'package:sms_parent/screens/timetable/sun_screen.dart';
+
 
 class TimeTable extends StatelessWidget {
   final String sectionId;
@@ -47,7 +54,12 @@ class TimeTable extends StatelessWidget {
           body: TabBarView(
             children: [
               new MonScreen(sectionId: sectionId),
-             
+              new TueScreen(sectionId: sectionId),
+              new WedScreen(sectionId: sectionId),
+              new ThuScreen(sectionId: sectionId),
+              new FriScreen(sectionId: sectionId),
+              new SatScreen(sectionId: sectionId),
+              new SunScreen(sectionId: sectionId),             
             ],
           ),
         ),

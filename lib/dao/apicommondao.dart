@@ -93,14 +93,14 @@ Future<List<Exam>> getExamListByClassId(String classId) async {
 
 
 Future<List<TimeTable>> getTimeTableListByClassId(String sectionId,String day) async {
-  String url = "/studentTimeTable/$sectionId/$day";
+  String url = "/studentTimeTable?day=$day&sid=$sectionId";
  // print('APO');
- print(url);
+ //print(url);
  
   final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
  final data = response.data;
- print(data);
+// print(data);
   if(response != null){
     return data.map<TimeTable>((json) => TimeTable.fromJson(json)).toList();
   }

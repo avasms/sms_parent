@@ -51,6 +51,7 @@ class ExamSubjectList extends StatelessWidget {
 
                 title: Text('Exam Name:${item.name}',textAlign:TextAlign.start,),
                
+               leading: Icon(Icons.text_fields),
                 backgroundColor:
                     Theme.of(context).accentColor.withOpacity(0.025),
                 children: <Widget>[
