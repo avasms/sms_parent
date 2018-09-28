@@ -92,10 +92,10 @@ Future<List<Exam>> getExamListByClassId(String classId) async {
 }
 
 
-Future<List<TimeTable>> getTimeTableListByClassId(String classId,String day) async {
-  String url = "/studentTimeTable/$classId/$day";
+Future<List<TimeTable>> getTimeTableListByClassId(String sectionId,String day) async {
+  String url = "/studentTimeTable/$sectionId/$day";
  // print('APO');
- //print(classId);
+ print(url);
  
   final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
