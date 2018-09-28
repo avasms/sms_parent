@@ -134,8 +134,8 @@ class _MyAppState extends State<MyApp> {
 // Define our Time Table page.
     router.define('timetable', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-      String _classId = params["classId"]?.first;
-      return new TimeTable(classId: _classId,);
+      String _sectionId = params["sectionId"]?.first;
+      return new TimeTable(sectionId: _sectionId,);
     }));
 
 

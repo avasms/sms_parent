@@ -9,6 +9,7 @@ class Student{
   String rollNo;
   String className;
   int classLevelId;
+  int sectionId;
   Student({
     this.id,
     this.name,
@@ -20,6 +21,7 @@ class Student{
     this.runningYear,
     this.className,
     this.classLevelId,
+    this.sectionId,
  });
 
 
@@ -35,6 +37,7 @@ class Student{
       runningYear: json['runningYear'] as String,
       className:json['className'] as String ,
       classLevelId:json['classLevelId'] as int ,
+      sectionId:json['sectionId'] as int ,
     );
   }
 }

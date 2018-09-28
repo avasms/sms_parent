@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:sms_parent/models/dormitory.dart';
+import 'package:sms_parent/models/timetable.dart';
 import 'package:sms_parent/models/ferry.dart';
 import 'package:sms_parent/models/student.dart';
 import 'package:sms_parent/models/examGrade.dart';
@@ -89,4 +90,22 @@ Future<List<Exam>> getExamListByClassId(String classId) async {
  return null;
   
 }
+
+
+Future<List<TimeTable>> getTimeTableListByClassId(String classId,String day) async {
+  String url = "/studentTimeTable/$classId/$day";
+ // print('APO');
+ //print(classId);
+ 
+  final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+ final data = response.data;
+ print(data);
+  if(response != null){
+    return data.map<TimeTable>((json) => TimeTable.fromJson(json)).toList();
+  }
+ return null;
+  
+}
+
 }

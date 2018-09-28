@@ -73,7 +73,7 @@ class StudentList extends StatelessWidget {
                               Application.router.navigateTo(context, "grade?studentId="+item.id.toString(), transition: transitionType,replace: false);
                             break;
                             case Config.TIMETABLE_SCREEN:
-                              Application.router.navigateTo(context, "timetable?classId="+item.id.toString(), transition: transitionType,replace: false);
+                              Application.router.navigateTo(context, "timetable?sectionId="+item.sectionId.toString(), transition: transitionType,replace: false);
                             break;
                           }
                          

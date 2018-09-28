@@ -4,9 +4,9 @@ import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/screens/timetable/mon_screen.dart';
 
 class TimeTable extends StatelessWidget {
-  final String classId;
+  final String sectionId;
 
-  const TimeTable({Key key, this.classId}) : super(key: key);
+  const TimeTable({Key key, this.sectionId}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,13 +46,8 @@ class TimeTable extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              new MonScreen(classId: classId,),
-              // new TuePage(),
-              // new WedPage(),
-              // new ThuPage(),
-              // new FriPage(),
-              //  new SatPage(),
-              //  new SunPage(),
+              new MonScreen(sectionId: sectionId),
+             
             ],
           ),
         ),
