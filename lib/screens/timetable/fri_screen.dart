@@ -41,7 +41,9 @@ TimeTableList({Key key, this.timetable}) : super(key: key);
          itemBuilder: (context, index) {
          final item=timetable[index];
          return ListTile(
-          title: new Text(item.subjectName+'           '+item.startTime+' - '+item.endTime), 
+          title: new Text(item.subjectName+'           '+item.startTime+' - '+item.endTime,
+          style: TextStyle(fontFamily:'Zawgyi' ),),
+          
           
          );
          }

@@ -49,7 +49,7 @@ class ExamSubjectList extends StatelessWidget {
             final item = examList[index];
             return ExpansionTile(
 
-                title: Text('Exam Name:${item.name}',textAlign:TextAlign.start,),
+                title: Text('Exam Name:${item.name}',style: TextStyle(fontFamily: 'Zawgyi'),textAlign:TextAlign.start,),
                
                leading: Icon(Icons.text_fields),
                 backgroundColor:
@@ -73,7 +73,8 @@ class ExamSubjectList extends StatelessWidget {
            new Divider(color: Colors.red,height: 4.0,),
           new Row(children: <Widget>[
             new Expanded(
-              child: new Text(sub.name!=null?sub.name:'',textAlign: TextAlign.start,),
+              child: new Text(sub.name!=null?sub.name:'',textAlign: TextAlign.start,
+              style: TextStyle(fontFamily:'Zawgyi' ),),
             ),
              new Expanded(
               child: new Text(sub.examDateFrom!=null?sub.examDateFrom:'',textAlign: TextAlign.end,),

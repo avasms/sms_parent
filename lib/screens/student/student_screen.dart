@@ -64,7 +64,7 @@ class StudentList extends StatelessWidget {
                         onTap: (){
                           switch(screenType){
                             case Config.STUDENT_SCREEN:
-                              Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
+                              //Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
                             break;
                             case Config.EXAM_SCREEN:
                               Application.router.navigateTo(context, "exam?classId="+item.classLevelId.toString(), transition: transitionType,replace: false);
@@ -85,6 +85,7 @@ class StudentList extends StatelessWidget {
                                   Config.BASE_URL + item.photoPath)),
                           maxRadius: 50.0,
                         ),
+                        trailing: Icon(Icons.keyboard_arrow_right,size: 35.0,),
                         title: Text(
                           'Student Name ',
                           maxLines: 1,
@@ -93,6 +94,7 @@ class StudentList extends StatelessWidget {
                               fontSize: 18.0,
                               wordSpacing: 2.0),
                         ),
+                        
                         subtitle: new RichText(
                           text: new TextSpan(
                             //text: 'Driver Name: U Maung Maung\n ' ,

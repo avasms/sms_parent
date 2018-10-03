@@ -45,27 +45,28 @@ FerryList({Key key, this.transport}) : super(key: key);
          final item=transport[index];
      //     const ListTile(title: Text('Student List')),
         return ExpansionTile(
-              title:  Text('Transport Name:${item.name}'),
+              title:  Text('Transport Name:${item.name}',style: TextStyle(fontFamily: 'Zawgyi'),),
+              
              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
               
              children:  <Widget>[
              new Container(height: 15.0,),
              ListTile(
             leading: Icon(Icons.directions_bus,size: 50.0,),
-             title: Text('School Name :${item.schoolName} '),
+             title: Text('School Name :${item.schoolName} ',style: TextStyle(fontFamily:'Zawgyi' )),
              subtitle: new RichText(    
              text: new TextSpan(
              //text: 'Driver Name: U Maung Maung\n ' ,
              style: DefaultTextStyle.of(context).style,
              children: <TextSpan>[
              new TextSpan(text:'Route Far :${item.routeFare}\n',
-             style: new TextStyle(color: Colors.black,fontSize: 16.0,),
+             style: new TextStyle(color: Colors.black,fontSize: 16.0,fontFamily: 'Zawgyi'),
              ),
               new TextSpan(text:'Vehical No.:${item.vehicleNo}\n',
-             style: new TextStyle(color: Colors.black,fontSize: 16.0,),
+             style: new TextStyle(color: Colors.black,fontSize: 16.0,fontFamily: 'Zawgyi'),
              ),
              new TextSpan(text: 'Driver Name :${item.driverName}\n',
-             style: new TextStyle(color: Colors.black,fontSize: 16.0,),),
+             style: new TextStyle(color: Colors.black,fontSize: 16.0,fontFamily: 'Zawgyi'),),
            
             ],
               ),

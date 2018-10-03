@@ -46,7 +46,7 @@ class StudentList extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = examList[index];
             return ExpansionTile(
-                title: Text('Exam Name:${item.examName}'),
+                title: Text('Exam Name:${item.examName}',style: TextStyle(fontFamily: 'Zawgyi')),
                 backgroundColor:
                     Theme.of(context).accentColor.withOpacity(0.025),
                 children: <Widget>[
@@ -66,12 +66,12 @@ class StudentList extends StatelessWidget {
         new ListTile(
           title: new Text(
             grade['subjectName'].toString(),
-            style: new TextStyle(fontSize: 18.0),
+            style: new TextStyle(fontSize: 18.0,fontFamily: 'Zawgyi'),
           ),
           leading: new Icon(Icons.star_border),
           trailing:  new Text(
             grade['grade'].toString(),
-            style: new TextStyle(fontSize: 18.0),
+            style: new TextStyle(fontSize: 18.0,fontFamily: 'Zawgyi'),
           ),
         ),
       );
