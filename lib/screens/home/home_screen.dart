@@ -184,7 +184,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: () {
-                
+                 Application.router.navigateTo(context,"leave?parentId=$_parentId",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -196,7 +196,7 @@ void initState(){
              
                     ),
                      ),
-                     //Icon(Icons.view_list,size: 100.0,),
+                     //Icon(Icons.view_list,size: 100.0,),  new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                      new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),
