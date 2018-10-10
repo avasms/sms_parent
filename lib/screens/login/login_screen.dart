@@ -82,10 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
       tag: Hero,
       child: Center(
         child: CircleAvatar(
-          radius: 40.0,
+          radius: 65.0,
           child: Image(
-            image: AssetImage('images/avasms_login.png'),
-            
+            image: AssetImage('images/avasms_logo.png'),
+          
           )
        //   backgroundColor: Colors.transparent,
          // child: new Icon(
@@ -175,9 +175,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Center(
           child: ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            padding: EdgeInsets.only(left: 22.0, right: 22.0),
             children: <Widget>[
-              companyTitle,
+              //companyTitle,
               SizedBox(height: 30.0),
               loginForm,
             ],

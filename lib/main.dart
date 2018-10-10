@@ -138,6 +138,7 @@ class _MyAppState extends State<MyApp> {
       return new TimeTable(sectionId: _sectionId,);
     }));
 
+//Define our Setting Page.
 
     // Defind Router
     Application.router = router;
@@ -145,7 +146,7 @@ class _MyAppState extends State<MyApp> {
     return new MaterialApp(
       title: 'AVASMS',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.lightBlue, fontFamily: 'Myanmar'),
+      theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Myanmar'),
       onGenerateRoute: Application.router.generator,
       home: new LoginScreen(),
       localizationsDelegates: [

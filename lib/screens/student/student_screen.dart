@@ -6,11 +6,13 @@ import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/util/application.dart';
 import 'package:fluro/fluro.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class StudentListData extends StatelessWidget {
   final String parentId;
   final String screenType;
-  const StudentListData({Key key, this.parentId,this.screenType}) : super(key: key);
+  const StudentListData({Key key, this.parentId, this.screenType})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,10 @@ class StudentListData extends StatelessWidget {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ? StudentList(student: snapshot.data,screenType: screenType,)
+              ? StudentList(
+                  student: snapshot.data,
+                  screenType: screenType,
+                )
               : Center(child: CircularProgressIndicator());
         },
       ),
@@ -38,7 +43,7 @@ class StudentList extends StatelessWidget {
   final List<Student> student;
   final String screenType;
   TransitionType transitionType = TransitionType.native;
-  StudentList({Key key, this.student,this.screenType}) : super(key: key);
+  StudentList({Key key, this.student, this.screenType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,44 +53,57 @@ class StudentList extends StatelessWidget {
           final item = student[index];
 
           return new SafeArea(
-            
             top: false,
             bottom: false,
             child: Container(
-              
               padding: const EdgeInsets.all(5.0),
               child: Card(
                 color: Colors.white,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      
                       ListTile(
-                        onTap: (){
-                          switch(screenType){
+                        onTap: () {
+                          switch (screenType) {
                             case Config.STUDENT_SCREEN:
                               //Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
-                            break;
+                              break;
                             case Config.EXAM_SCREEN:
-                              Application.router.navigateTo(context, "exam?classId="+item.classLevelId.toString(), transition: transitionType,replace: false);
-                            break;
+                              Application.router.navigateTo(
+                                  context,
+                                  "exam?classId=" +
+                                      item.classLevelId.toString(),
+                                  transition: transitionType,
+                                  replace: false);
+                              break;
                             case Config.GRADE_SCREEN:
-                              Application.router.navigateTo(context, "grade?studentId="+item.id.toString(), transition: transitionType,replace: false);
-                            break;
+                              Application.router.navigateTo(context,
+                                  "grade?studentId=" + item.id.toString(),
+                                  transition: transitionType, replace: false);
+                              break;
                             case Config.TIMETABLE_SCREEN:
-                              Application.router.navigateTo(context, "timetable?sectionId="+item.sectionId.toString(), transition: transitionType,replace: false);
-                            break;
+                              Application.router.navigateTo(
+                                  context,
+                                  "timetable?sectionId=" +
+                                      item.sectionId.toString(),
+                                  transition: transitionType,
+                                  replace: false);
+                              break;
                           }
-                         
                         },
                         leading: new CircleAvatar(
                           backgroundColor: Colors.white,
-                          child: new Image(
-                              image: new NetworkImage(
-                                  Config.BASE_URL + item.photoPath)),
+                          child: new CachedNetworkImage(
+                            imageUrl: Config.BASE_URL + item.photoPath,
+                            placeholder: new CircularProgressIndicator(),
+                            errorWidget: new Icon(Icons.error),
+                          ),
                           maxRadius: 50.0,
                         ),
-                        trailing: Icon(Icons.keyboard_arrow_right,size: 35.0,),
+                        trailing: Icon(
+                          Icons.keyboard_arrow_right,
+                          size: 35.0,
+                        ),
                         title: Text(
                           'Student Name ',
                           maxLines: 1,
@@ -94,7 +112,6 @@ class StudentList extends StatelessWidget {
                               fontSize: 18.0,
                               wordSpacing: 2.0),
                         ),
-                        
                         subtitle: new RichText(
                           text: new TextSpan(
                             //text: 'Driver Name: U Maung Maung\n ' ,

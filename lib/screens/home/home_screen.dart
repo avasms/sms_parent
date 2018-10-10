@@ -305,10 +305,8 @@ void initState(){
   Widget build(BuildContext context) {
     return new Scaffold(
          appBar: new AppBar(
-          
           backgroundColor: Colors.indigo.shade700,
-          //leading: Image.asset('images/avasms_login.png'),
-          // title: new Text(AppTranslations.of(context).text("test")),
+
            title: new Image.asset('images/avasms_logo.png'),
            actions: <Widget>[
            
