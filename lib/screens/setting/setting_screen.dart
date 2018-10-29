@@ -41,9 +41,6 @@ class SettingPage extends State<Setting> {
         );
       }
     }
-
-    
-
     final oldPassward = new TextFormField(
       autofocus: false,
       obscureText: _obsureText,
