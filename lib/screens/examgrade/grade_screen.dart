@@ -45,7 +45,9 @@ class StudentList extends StatelessWidget {
           itemCount: examList.length,
           itemBuilder: (context, index) {
             final item = examList[index];
-            return ExpansionTile(
+            return Card(
+               color: Colors.white,
+              child: new ExpansionTile(
                 title: Text('Exam Name:${item.examName}',style: TextStyle(fontFamily: 'Zawgyi')),
                 backgroundColor:
                     Theme.of(context).accentColor.withOpacity(0.025),
@@ -53,7 +55,10 @@ class StudentList extends StatelessWidget {
                   new Column(
                     children: _buildExpandableChild(item),
                   ),
-                ]);
+                ]
+                ),
+            );
+           
           }),
     );
   }

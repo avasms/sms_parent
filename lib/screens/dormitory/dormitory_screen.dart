@@ -43,8 +43,9 @@ StudentList({Key key, this.dormitory}) : super(key: key);
          itemCount: dormitory.length,
          itemBuilder: (context, index) {
          final item=dormitory[index];
-     //     const ListTile(title: Text('Student List')),
-        return   ExpansionTile(
+     return Card(
+       color: Colors.white,
+       child: new  ExpansionTile(
              title: Text('Transport Name:${item.name}',style: TextStyle(fontFamily: 'Zawgyi')),
              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
               
@@ -75,11 +76,11 @@ StudentList({Key key, this.dormitory}) : super(key: key);
           
       
             ),
-             //  ListTile(title: Text('Two')),
-              // ListTile(title: Text('Free')),
-             //  ListTile(title: Text('Four'))
+           
             ]
-          );
+          ),
+     );
+          
           // const ListTile(title: Text('Bottom'))
     
         }
