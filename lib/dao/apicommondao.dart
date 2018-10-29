@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:sms_parent/models/admin.dart';
 import 'package:sms_parent/models/dormitory.dart';
 import 'package:sms_parent/models/timetable.dart';
 import 'package:sms_parent/models/ferry.dart';
@@ -103,6 +104,19 @@ Future<List<TimeTable>> getTimeTableListByClassId(String sectionId,String day) a
 // print(data);
   if(response != null){
     return data.map<TimeTable>((json) => TimeTable.fromJson(json)).toList();
+  }
+ return null;
+  
+}
+
+Future<List<AdminStaff>> getAdminManagementList() async {
+  String url = "/adminManagement_data_list";
+  
+  final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+ final data = response.data;
+  if(response != null){
+    return data.map<AdminStaff>((json) => AdminStaff.fromJson(json)).toList();
   }
  return null;
   
