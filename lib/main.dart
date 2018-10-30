@@ -19,6 +19,7 @@ import 'package:sms_parent/screens/ferry/ferry_screen.dart';
 import 'package:sms_parent/screens/student/student_screen.dart';
 import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
+import 'package:sms_parent/screens/setting/setting_screen.dart';
 
 //import 'package:sms_parent/util/commonComponent.dart';
 
@@ -146,7 +147,11 @@ class _MyAppState extends State<MyApp> {
       return new LeaveScreen(parentId: _pid,);
     }));
 //Define our Setting Page.
-
+router.define('setting', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      String _userid = params["userId"]?.first;
+      return new Setting(userId: _userid,);
+    }));
     // Defind Router
     Application.router = router;
 

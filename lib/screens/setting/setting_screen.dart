@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fluro/fluro.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-void main() {
-  runApp(MaterialApp(
-    title: 'Setting',
-    home: Setting(),
-  ));
-}
-
 class Setting extends StatefulWidget {
+  String userId;
   SettingPage createState() => new SettingPage();
+  Setting({Key key, this.userId}) : super(key: key);
 }
 
 class SettingPage extends State<Setting> {
@@ -41,6 +35,9 @@ class SettingPage extends State<Setting> {
         );
       }
     }
+
+    
+
     final oldPassward = new TextFormField(
       autofocus: false,
       obscureText: _obsureText,

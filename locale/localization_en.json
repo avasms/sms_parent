@@ -1,5 +1,5 @@
 {
-    "test": "Aung Phyo Oo",
+   
     "exam_menu": "Exam",
     "grade_menu": "Grade",
     "child_menu": "Student",
@@ -19,6 +19,8 @@
     "common_school": "School Name",
     "common_class": "Class Name",
     "common_description": "Description",
+    "common_name": "Name",
+    
     "room_no": "Room No.",
     "teacher": "Teacher Name",
 

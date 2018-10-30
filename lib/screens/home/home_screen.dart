@@ -196,7 +196,7 @@ void initState(){
              
                     ),
                      ),
-                     //Icon(Icons.view_list,size: 100.0,),  new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                   
                      new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),
@@ -347,7 +347,7 @@ void initState(){
                    break;
                    case SettingMenu.Setting:
                    setState((){
-                   //  application.onLocaleChanged(Locale("en"));
+                   Application.router.navigateTo(context, "setting?userId=$_parentId",transition: transitionType,replace: false);
                    }
                    );
                    break;

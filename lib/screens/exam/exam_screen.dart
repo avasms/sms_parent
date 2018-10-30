@@ -51,7 +51,20 @@ class ExamSubjectList extends StatelessWidget {
               color: Colors.white,
               child: new ExpansionTile(
 
-                title: Text('Exam Name:${item.name}',style: TextStyle(fontFamily: 'Zawgyi'),textAlign:TextAlign.start,),
+                title: Text.rich(
+                      TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: AppTranslations.of(context)
+                                  .text("exam_menu"),
+                              style: TextStyle(fontFamily: 'Myanmar')
+                              ),
+                          TextSpan(
+                              text: ' : ${item.name}',
+                              style: TextStyle(fontFamily: 'Zawgyi')),
+                        ],
+                      ),
+                    ),
                
                leading: Icon(Icons.text_fields),
                 backgroundColor:
