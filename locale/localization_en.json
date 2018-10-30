@@ -14,7 +14,19 @@
     "english_setting":"English",
     "myanmar_setting":"Myanmar",
     "setting_setting":"Setting",
-    "logout_setting":"Log Out"
+    "logout_setting":"Log Out",
 
-   
+    "common_school": "School Name",
+    "common_class": "Class Name",
+    "common_description": "Description",
+    "room_no": "Room No.",
+    "teacher": "Teacher Name",
+
+    "dormitory_name": "Dormitory Name",
+
+    "ferry_name": "Ferry Name",
+    "routes": "Routes",
+    "car_no": "Car No.",
+    "driver_name": "Driver"
+
 }

@@ -14,6 +14,20 @@
     "english_setting":"အင်္ဂလိပ်",
     "myanmar_setting":"Myanmar",
     "setting_setting":"Setting",
-    "logout_setting":"Log Out"
+    "logout_setting":"Log Out",
+
+    "common_school": "ကျောင်းအမည်",
+    "common_class": "အတန်း",
+    "common_description": "ဖော်ပြချက်",
+    "room_no": "Room No.",
+    "teacher": "ဆရာအမည်",
+
+    "dormitory_name": "အဆောင်အမည်",
+
+    "ferry_name": "ယာဉ်အမည်",
+    "routes": "လမ်းကြောင်းများ",
+    "car_no": "Car No.",
+    "driver_name": "ယာဉ်မောင်း"
+
     
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,8 +38,9 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
                       }
                     }
               
-              _getAdminData() async {
-  var data =new ApiCommonDao().getAdminManagementList();
+_getAdminData() async {
+  var data;
+  // =new ApiCommonDao().getAdminManagementList();
     return data;
 }
       
@@ -78,11 +80,7 @@ class StudentListState extends State<StudentList> {
 
   final _formKey = GlobalKey<FormState>();
 
-  Future<List<AdminStaff>> _getAdminData() async {
-   // Future<List<AdminStaff>> data =new ApiCommonDao().getAdminManagementList();
-    
-   return data;
-  }
+  
   @override
   Widget build(BuildContext context) {
     final loginButton = Padding(
