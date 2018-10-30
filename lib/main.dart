@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/login/login_screen.dart';
 import 'package:sms_parent/screens/home/home_screen.dart';
+import 'package:sms_parent/screens/leave/leave_screen.dart';
 import 'package:sms_parent/screens/exam/exam_screen.dart';
 import 'package:sms_parent/screens/examgrade/grade_screen.dart';
 import 'package:sms_parent/screens/timetable/timetable_screen.dart';
@@ -138,6 +139,12 @@ class _MyAppState extends State<MyApp> {
       return new TimeTable(sectionId: _sectionId,);
     }));
 
+// Define our Time Table page.
+    router.define('leave', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      String _pid = params["parentId"]?.first;
+      return new LeaveScreen(parentId: _pid,);
+    }));
 //Define our Setting Page.
 
     // Defind Router
