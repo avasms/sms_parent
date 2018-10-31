@@ -17,7 +17,7 @@ class SettingPage extends State<Setting> {
 
   @override
   Widget build(BuildContext context) {
-    _login() async {
+    _changePass() async {
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
 
@@ -77,7 +77,7 @@ class SettingPage extends State<Setting> {
       onSaved: (value) => _confirmPassward = value,
       validator: (value) {
         if (value.isEmpty) {
-          return 'Please enter Old Passward';
+          return 'Please enter Confirm Passward';
         }
       },
       decoration: InputDecoration(
@@ -96,20 +96,24 @@ class SettingPage extends State<Setting> {
           elevation: 1.0,
           child: MaterialButton(
             minWidth: 170.0,
-            height: 40.0,
+            height: 50.0,
             onPressed: () {
-              _login();
+              _changePass();
             },
             color: Colors.blueAccent,
             child: Text(
-              'Submit',
+              'Change',
               style: TextStyle(color: Colors.white),
             ),
           ),
         ));
 
     return Scaffold(
-      appBar: AppBar(title: Text("Setting")),
+      appBar: new AppBar(
+          backgroundColor: Colors.indigo.shade700,
+          title: new Text('Setting',
+            style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
+          )),
       body: new ClipRect(
         child: Card(
           color: Colors.white,

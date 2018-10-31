@@ -20,7 +20,7 @@ import 'package:sms_parent/screens/student/student_screen.dart';
 import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/screens/setting/setting_screen.dart';
-
+import 'package:sms_parent/util/dbhelper.dart';
 //import 'package:sms_parent/util/commonComponent.dart';
 
 void main() {
@@ -38,9 +38,7 @@ class _MyAppState extends State<MyApp> {
   final Connectivity _connectivity = new Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
 // Language
-
-  var isLogin = false;
-
+  Widget _defaultHome = new LoginScreen();
   @override
   void initState() {
     super.initState();
@@ -69,10 +67,19 @@ class _MyAppState extends State<MyApp> {
   }
 
   void checkLoginInit() async {
-    AuthManager.checkLogin().then((res) {
-      isLogin = res;
+    var db = new DBHelper();
+    db.getCount().then((data) {
+      Fluttertoast.showToast(
+          msg: data.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIos: 20,
+          bgcolor: '#ffffff',
+          textcolor: '#d50000');
+          if(data > 0){
+            _defaultHome = new HomeScreen();            
+          }
     });
-    //   print(isLogin);
   }
 
   void onLocaleChange(Locale locale) {
@@ -130,27 +137,35 @@ class _MyAppState extends State<MyApp> {
     router.define('exam', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _classId = params["classId"]?.first;
-      return new ExamScreen(classId: _classId,);
+      return new ExamScreen(
+        classId: _classId,
+      );
     }));
 
 // Define our Time Table page.
     router.define('timetable', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _sectionId = params["sectionId"]?.first;
-      return new TimeTable(sectionId: _sectionId,);
+      return new TimeTable(
+        sectionId: _sectionId,
+      );
     }));
 
 // Define our Time Table page.
     router.define('leave', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _pid = params["parentId"]?.first;
-      return new LeaveScreen(parentId: _pid,);
+      return new LeaveScreen(
+        parentId: _pid,
+      );
     }));
 //Define our Setting Page.
-router.define('setting', handler: new Handler(
+    router.define('setting', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _userid = params["userId"]?.first;
-      return new Setting(userId: _userid,);
+      return new Setting(
+        userId: _userid,
+      );
     }));
     // Defind Router
     Application.router = router;
@@ -160,7 +175,7 @@ router.define('setting', handler: new Handler(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Myanmar'),
       onGenerateRoute: Application.router.generator,
-      home: new LoginScreen(),
+      home: _defaultHome,
       localizationsDelegates: [
         _newLocaleDelegate,
         const AppTranslationsDelegate(),
@@ -176,4 +191,6 @@ router.define('setting', handler: new Handler(
   Future<String> getLocalStorageData() async {
     return await LocalStorage.get(Config.USER_RELATED_ID);
   }
+
+ 
 }
