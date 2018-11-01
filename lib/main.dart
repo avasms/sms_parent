@@ -22,6 +22,7 @@ import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/screens/setting/setting_screen.dart';
 import 'package:sms_parent/util/dbhelper.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 //import 'package:sms_parent/util/commonComponent.dart';
 
 void main() {
@@ -36,13 +37,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   AppTranslationsDelegate _newLocaleDelegate;
 
+  FirebaseMessaging message = new FirebaseMessaging();
+
   final Connectivity _connectivity = new Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
 // Language
   Widget _defaultHome = new LoginScreen();
   @override
   void initState() {
-    super.initState();
+    
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
 
@@ -58,7 +61,74 @@ class _MyAppState extends State<MyApp> {
             textcolor: '#d50000');
       }
     });
+
+  // Message 
+
+ // TODO: implement initState
+    
+
+    message.configure(
+      onLaunch: (Map<String, dynamic> msg) {
+      print("OnLaunch called $msg");
+    }, onResume: (Map<String, dynamic> msg) {
+      print("onResume called $msg");
+      //m=msg.toString();
+      //showNotification(msg);
+      
+    }, onMessage: (Map<String, dynamic> msg) {
+      showNotification(msg);
+      //convertMessage(msg);
+      print("onMessage called: $msg");
+    });
+    
+    message.requestNotificationPermissions(const IosNotificationSettings(
+      sound: true,
+      alert: true,
+      badge: true,
+    ));
+    message.onIosSettingsRegistered.listen((IosNotificationSettings setting) {
+      print("Ios Setting Register");
+    });
+    message.getToken().then((token) {
+      update(token);
+    });
     checkLoginInit();
+
+    super.initState();
+  }
+
+
+  update(String token) {
+    print(token);
+    //textvalue = token;
+  }
+
+Future showNotification(Map<String, dynamic> msg) {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: new Text("Notification"),
+              content: Text(msg.toString()),
+              actions: <Widget>[
+                new FlatButton(
+                  child: Text('OK'),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                ),
+                new FlatButton(
+                  child: Text('Cancle'),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ));
+  }
+  Future convertMessage(Map<String,dynamic> message){
+    print(message);
+    //m=message.toString();
+
   }
 
   @override
