@@ -6,6 +6,7 @@ import 'package:sms_parent/screens/home/home_screen.dart';
 import 'package:sms_parent/screens/leave/leave_screen.dart';
 import 'package:sms_parent/screens/exam/exam_screen.dart';
 import 'package:sms_parent/screens/examgrade/grade_screen.dart';
+import 'package:sms_parent/screens/notice/noticeboard.dart';
 import 'package:sms_parent/screens/timetable/timetable_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
@@ -166,6 +167,12 @@ class _MyAppState extends State<MyApp> {
       return new Setting(
         userId: _userid,
       );
+    }));
+
+    //Define our Notice Page.
+    router.define('notice', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new NoticeBoardScreen();
     }));
     // Defind Router
     Application.router = router;

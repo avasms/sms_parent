@@ -38,7 +38,7 @@ dependencies:
 flutter_icons:
   android: true 
   ios: true
-  image_path: "images/icon/avasms_icon.png"
+  image_path: "images/icon/avasms_icon.jpg"
   adaptive_icon_background: "#0E107B"
 
 dev_dependencies:
@@ -64,6 +64,7 @@ flutter:
     - images/hostle.jpg
     - images/noticeboard.jpg
     - images/grade_menu.jpg
+    - images/message.jpg
     
   
   fonts:

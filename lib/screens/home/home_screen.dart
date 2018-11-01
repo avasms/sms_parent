@@ -37,7 +37,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-               // Application.router.navigateTo(context, "login",transition: transitionType);
+                Application.router.navigateTo(context, "notice",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -51,6 +51,36 @@ void initState(){
                      ),
                     // Icon(Icons.directions_bus,size: 100.0,),
                     new Text(AppTranslations.of(context).text("noticeboard_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                   ],
+                 ),
+               ),
+             ],
+           ),
+         ),
+       ),
+ 
+  new Card(
+         child: Center(
+          child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: <Widget>[
+               FlatButton(
+                 onPressed: (){
+                Application.router.navigateTo(context, "notice",transition: transitionType,replace: false);
+                 },
+                 padding: EdgeInsets.all(5.0),
+                 child: Column( // Replace with a Row for horizontal icon + text
+                   children: <Widget>[
+                     CircleAvatar(
+                    radius: 30.0,
+                   child: Image(
+                   image: AssetImage('images/message.jpg'),
+             
+                    ),
+                     ),
+                    // Icon(Icons.directions_bus,size: 100.0,),
+                    new Text(AppTranslations.of(context).text("message_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+               
                    ],
                  ),
                ),

@@ -7,6 +7,7 @@ import 'package:sms_parent/models/ferry.dart';
 import 'package:sms_parent/models/student.dart';
 import 'package:sms_parent/models/examGrade.dart';
 import 'package:sms_parent/models/exam.dart';
+import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -117,6 +118,19 @@ Future<List<AdminStaff>> getAdminManagementList() async {
  final data = response.data;
   if(response != null){
     return data.map<AdminStaff>((json) => AdminStaff.fromJson(json)).toList();
+  }
+ return null;
+  
+}
+
+Future<List<Notice>> getNoticeList()async {
+  String url = "/notice_data_list";
+
+   final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+   final data = response.data;
+   print(data);
+  if(response != null){
+    return data.map<Notice>((json) => Notice.fromJson(json)).toList();
   }
  return null;
   

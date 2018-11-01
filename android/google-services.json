@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "87783263507",
+    "firebase_url": "https://avasms-fc757.firebaseio.com",
+    "project_id": "avasms-fc757",
+    "storage_bucket": "avasms-fc757.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87783263507:android:f141e786253fff15",
+        "android_client_info": {
+          "package_name": "com.infoava.avasms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87783263507-jr1l91nnafogda75p0s5rqqk0kr9qbf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtViAZA5ezw7wB8EFzD23-jbAvmBzCfAU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
