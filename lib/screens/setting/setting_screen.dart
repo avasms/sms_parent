@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
 
 class Setting extends StatefulWidget {
   String userId;
@@ -8,85 +9,108 @@ class Setting extends StatefulWidget {
 }
 
 class SettingPage extends State<Setting> {
-  String _oldPassward = '';
-  String _newPassward = '';
-  String _confirmPassward = '';
+  String _oldPassword = '';
+  String _newPassword = '';
+  String _confirmPassword = '';
   bool _obsureText = true;
   IconData _passVisible = Icons.visibility_off;
   final _formKey = new GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    _changePass() async {
-      if (_formKey.currentState.validate()) {
-        _formKey.currentState.save();
 
-        Fluttertoast.showToast(
-            msg: 'Passward is not match',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIos: 1,
-            bgcolor: '#ffffff',
-            textcolor: '#d50000');
-      } else {
-        Fluttertoast.showToast(
-          msg: 'Go',
-          toastLength: Toast.LENGTH_SHORT,
-        );
-      }
-    }
-
-    
-
-    final oldPassward = new TextFormField(
+    final oldPassword = new TextFormField(
       autofocus: false,
       obscureText: _obsureText,
-      onSaved: (value) => _oldPassward = value,
+      onSaved: (value) => _oldPassword = value,
       validator: (value) {
         if (value.isEmpty) {
-          return 'Please Enter old Passward';
+          return 'Please Enter old Password';
         }
       },
       decoration: InputDecoration(
         labelText: 'Old Passward',
         labelStyle: TextStyle(color: Colors.blue),
         contentPadding: EdgeInsets.fromLTRB(0.0, 15.0, 15.0, 15.0),
-        
       ),
     );
-    final newPassward = new TextFormField(
+    final newPassword = new TextFormField(
       autofocus: false,
       obscureText: _obsureText,
-      onSaved: (value) => _newPassward = value,
+      onSaved: (value) => _newPassword = value,
       validator: (value) {
         if (value.isEmpty) {
-          return 'Please Enter New Passward';
+          return 'Please Enter New Password';
         }
       },
+      
       decoration: InputDecoration(
-        labelText: 'New Passward',
+        labelText: 'New Password',
         labelStyle: TextStyle(color: Colors.blue),
         contentPadding: EdgeInsets.fromLTRB(0.0, 15.0, 15.0, 15.0),
-        
       ),
     );
 
-    final confirmPassward = new TextFormField(
+    final confirmPassword = new TextFormField(
       autofocus: false,
       obscureText: _obsureText,
-      onSaved: (value) => _confirmPassward = value,
+      onSaved: (value) => _confirmPassword = value,
       validator: (value) {
         if (value.isEmpty) {
-          return 'Please enter Confirm Passward';
+          return 'Please enter Confirm Password';
         }
       },
       decoration: InputDecoration(
-        labelText: 'Confirm New Passward',
+        labelText: 'Confirm New Password',
         labelStyle: TextStyle(color: Colors.blue),
         contentPadding: EdgeInsets.fromLTRB(0.0, 15.0, 15.0, 15.0),
-        
       ),
     );
+
+    
+
+    _changePass() {
+      if (_formKey.currentState.validate()) {
+        _formKey.currentState.save();
+        if (_newPassword != _confirmPassword) {
+          Fluttertoast.showToast(
+              msg: 'New Passward and Confirm Password is not match',
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIos: 3,
+              bgcolor: '#ffffff',
+              textcolor: '#d50000');
+        } else {
+          // check old password and userid match
+         
+          String _id = widget.userId.trim();
+          ApiCommonDao.checkOldPassword(_id, _oldPassword.trim(),_confirmPassword.trim()).then((res) {
+            if (res) {
+              Fluttertoast.showToast(
+                  msg: 'Password changed Successfully',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIos: 3,
+                  bgcolor: '#ffffff',
+                  textcolor: '#d50000');
+              setState(() {
+
+                _oldPassword = '';
+              _formKey.currentState.save();
+              });
+            } else {
+              Fluttertoast.showToast(
+                  msg: 'Old password is not match',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIos: 3,
+                  bgcolor: '#ffffff',
+                  textcolor: '#d50000');
+            }
+          });
+        }
+      }
+    }
 
     final submit = Padding(
         padding: EdgeInsets.symmetric(vertical: 20.0),
@@ -108,10 +132,12 @@ class SettingPage extends State<Setting> {
           ),
         ));
 
+
     return Scaffold(
       appBar: new AppBar(
           backgroundColor: Colors.indigo.shade700,
-          title: new Text('Setting',
+          title: new Text(
+            'Setting',
             style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
           )),
       body: new ClipRect(
@@ -126,9 +152,9 @@ class SettingPage extends State<Setting> {
                   shrinkWrap: true,
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   children: <Widget>[
-                    oldPassward,
-                    newPassward,
-                    confirmPassward,
+                    oldPassword,
+                    newPassword,
+                    confirmPassword,
                     submit,
                   ],
                 ),

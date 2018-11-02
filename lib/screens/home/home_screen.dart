@@ -18,13 +18,17 @@ class _HomeScreenState extends State<HomeScreen>{
 
 TransitionType transitionType = TransitionType.native;
 String _parentId;
+String _userId;
+
 @override
 void initState(){
  super.initState();
  getCode().then((res){
  _parentId = res;
  });
- 
+ getUserCode().then((res){
+ _userId = res;
+ });
  }
  
  List<Card> _buildGridCards() {
@@ -377,7 +381,7 @@ void initState(){
                    break;
                    case SettingMenu.Setting:
                    setState((){
-                   Application.router.navigateTo(context, "setting?userId=$_parentId",transition: transitionType,replace: false);
+                   Application.router.navigateTo(context, "setting?userId=$_userId",transition: transitionType,replace: false);
                    }
                    );
                    break;
@@ -408,7 +412,12 @@ void initState(){
 getCode() async{
     return await LocalStorage.get(Config.USER_RELATED_ID);
    }
+getUserCode() async{
+    return await LocalStorage.get(Config.USER_ID);
+   }
+   
 }
+
 
 enum SettingMenu {
   English,

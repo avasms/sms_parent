@@ -36,7 +36,7 @@ return response;
 }
 
 // Url FormData formData = new FormData.from({"name": "wendux","age": 12})
-static postWithParam(String url,FormData formData,String method) async{
+static postWithParam(String url,var formData,String method) async{
  String requestUrl = Config.BASE_URL+Config.MOBILE_API_URL+url;
  Options option = new Options();
  String token = await LocalStorage.get(Config.TOKEN_KEY);
