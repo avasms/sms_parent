@@ -5,7 +5,8 @@
     "project_id": "avasmsparent",
     "storage_bucket": "avasmsparent.appspot.com"
   },
- 
+  "client": [
+    {
       "client_info": {
         "mobilesdk_app_id": "1:953109064163:android:49499c865b149187",
         "android_client_info": {
@@ -35,6 +36,7 @@
           "status": 2
         }
       }
-  ,
+    }
+  ],
   "configuration_version": "1"
 }
