@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "953109064163",
+    "firebase_url": "https://avasmsparent.firebaseio.com",
+    "project_id": "avasmsparent",
+    "storage_bucket": "avasmsparent.appspot.com"
+  },
+ 
+      "client_info": {
+        "mobilesdk_app_id": "1:953109064163:android:49499c865b149187",
+        "android_client_info": {
+          "package_name": "mm.com.infoava.avasms.parent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953109064163-a8kmh40863hjlhkr7uefv2jn509rfgui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJVJWUo14UQ-AzYYWhkxOYy_3OnqVPrYs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+  ,
+  "configuration_version": "1"
+}
