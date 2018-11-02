@@ -1,19 +1,12 @@
 import 'dart:async';
-
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path/path.dart';
-import 'package:sms_parent/dao/authdao.dart';
 import 'package:sms_parent/models/admin.dart';
 import 'package:sms_parent/models/student.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
-import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
-import 'package:sms_parent/screens/dormitory/dormitory_screen.dart';
-import 'package:sms_parent/util/application.dart';
-import 'package:flutter/cupertino.dart';
+
 
 class CreateLeaveScreen extends StatefulWidget {
   final parentId;
@@ -45,8 +38,9 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
                       }
                     }
               
-              _getAdminData() async {
-  var data =new ApiCommonDao().getAdminManagementList();
+_getAdminData() async {
+  var data;
+  // =new ApiCommonDao().getAdminManagementList();
     return data;
 }
       
@@ -86,11 +80,7 @@ class StudentListState extends State<StudentList> {
 
   final _formKey = GlobalKey<FormState>();
 
-  //Future<List<AdminStaff>> _getAdminData() async {
- //   Future<List<AdminStaff>> data =new ApiCommonDao().getAdminManagementList();
-    
- //   return data;
-  //}
+  
   @override
   Widget build(BuildContext context) {
     final loginButton = Padding(

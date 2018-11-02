@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/login/login_screen.dart';
 import 'package:sms_parent/screens/home/home_screen.dart';
+import 'package:sms_parent/screens/leave/leave_screen.dart';
 import 'package:sms_parent/screens/exam/exam_screen.dart';
 import 'package:sms_parent/screens/examgrade/grade_screen.dart';
+import 'package:sms_parent/screens/notice/noticeboard.dart';
 import 'package:sms_parent/screens/timetable/timetable_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
@@ -18,7 +20,9 @@ import 'package:sms_parent/screens/ferry/ferry_screen.dart';
 import 'package:sms_parent/screens/student/student_screen.dart';
 import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
-
+import 'package:sms_parent/screens/setting/setting_screen.dart';
+import 'package:sms_parent/util/dbhelper.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 //import 'package:sms_parent/util/commonComponent.dart';
 
 void main() {
@@ -33,15 +37,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   AppTranslationsDelegate _newLocaleDelegate;
 
+  FirebaseMessaging message = new FirebaseMessaging();
+
   final Connectivity _connectivity = new Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
 // Language
-
-  var isLogin = false;
-
+  Widget _defaultHome = new LoginScreen();
   @override
   void initState() {
-    super.initState();
+    
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
 
@@ -57,7 +61,74 @@ class _MyAppState extends State<MyApp> {
             textcolor: '#d50000');
       }
     });
+
+  // Message 
+
+ // TODO: implement initState
+    
+
+    message.configure(
+      onLaunch: (Map<String, dynamic> msg) {
+      print("OnLaunch called $msg");
+    }, onResume: (Map<String, dynamic> msg) {
+      print("onResume called $msg");
+      //m=msg.toString();
+      //showNotification(msg);
+      
+    }, onMessage: (Map<String, dynamic> msg) {
+      showNotification(msg);
+      //convertMessage(msg);
+      print("onMessage called: $msg");
+    });
+    
+    message.requestNotificationPermissions(const IosNotificationSettings(
+      sound: true,
+      alert: true,
+      badge: true,
+    ));
+    message.onIosSettingsRegistered.listen((IosNotificationSettings setting) {
+      print("Ios Setting Register");
+    });
+    message.getToken().then((token) {
+      update(token);
+    });
     checkLoginInit();
+
+    super.initState();
+  }
+
+
+  update(String token) {
+    print(token);
+    //textvalue = token;
+  }
+
+Future showNotification(Map<String, dynamic> msg) {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: new Text("Notification"),
+              content: Text(msg.toString()),
+              actions: <Widget>[
+                new FlatButton(
+                  child: Text('OK'),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                ),
+                new FlatButton(
+                  child: Text('Cancle'),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ));
+  }
+  Future convertMessage(Map<String,dynamic> message){
+    print(message);
+    //m=message.toString();
+
   }
 
   @override
@@ -67,10 +138,19 @@ class _MyAppState extends State<MyApp> {
   }
 
   void checkLoginInit() async {
-    AuthManager.checkLogin().then((res) {
-      isLogin = res;
+    var db = new DBHelper();
+    db.getCount().then((data) {
+      Fluttertoast.showToast(
+          msg: data.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIos: 20,
+          bgcolor: '#ffffff',
+          textcolor: '#d50000');
+          if(data > 0){
+            _defaultHome = new HomeScreen();            
+          }
     });
-    //   print(isLogin);
   }
 
   void onLocaleChange(Locale locale) {
@@ -128,18 +208,42 @@ class _MyAppState extends State<MyApp> {
     router.define('exam', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _classId = params["classId"]?.first;
-      return new ExamScreen(classId: _classId,);
+      return new ExamScreen(
+        classId: _classId,
+      );
     }));
 
 // Define our Time Table page.
     router.define('timetable', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _sectionId = params["sectionId"]?.first;
-      return new TimeTable(sectionId: _sectionId,);
+      return new TimeTable(
+        sectionId: _sectionId,
+      );
     }));
 
+// Define our Time Table page.
+    router.define('leave', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      String _pid = params["parentId"]?.first;
+      return new LeaveScreen(
+        parentId: _pid,
+      );
+    }));
 //Define our Setting Page.
+    router.define('setting', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      String _userid = params["userId"]?.first;
+      return new Setting(
+        userId: _userid,
+      );
+    }));
 
+    //Define our Notice Page.
+    router.define('notice', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new NoticeBoardScreen();
+    }));
     // Defind Router
     Application.router = router;
 
@@ -148,7 +252,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Myanmar'),
       onGenerateRoute: Application.router.generator,
-      home: new LoginScreen(),
+      home: _defaultHome,
       localizationsDelegates: [
         _newLocaleDelegate,
         const AppTranslationsDelegate(),
@@ -164,4 +268,6 @@ class _MyAppState extends State<MyApp> {
   Future<String> getLocalStorageData() async {
     return await LocalStorage.get(Config.USER_RELATED_ID);
   }
+
+ 
 }

@@ -48,7 +48,21 @@ class StudentList extends StatelessWidget {
             return Card(
                color: Colors.white,
               child: new ExpansionTile(
-                title: Text('Exam Name:${item.examName}',style: TextStyle(fontFamily: 'Zawgyi')),
+                title: Text.rich(
+                      TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: AppTranslations.of(context)
+                                  .text("exam_menu"),
+                              style: TextStyle(fontFamily: 'Myanmar')
+                              ),
+                          TextSpan(
+                              text: ' : ${item.examName}',
+                              style: TextStyle(fontFamily: 'Zawgyi')),
+                        ],
+                      ),
+                    ),
+               
                 backgroundColor:
                     Theme.of(context).accentColor.withOpacity(0.025),
                 children: <Widget>[

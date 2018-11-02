@@ -17,10 +17,9 @@ class LeaveScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.indigo.shade700,
-            title: new Text(
-              AppTranslations.of(context).text("leave"),
-              style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
-            ),
+            title: 
+              new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+            ,
             bottom: TabBar(
               labelColor: Colors.white,
               isScrollable: true,
@@ -37,7 +36,7 @@ class LeaveScreen extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              new CreateLeaveScreen(parentId: parentId),
+             // new CreateLeaveScreen(parentId: parentId),
               new ViewLeaveScreen(parentId: parentId),
                            
             ],

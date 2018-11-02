@@ -18,13 +18,17 @@ class _HomeScreenState extends State<HomeScreen>{
 
 TransitionType transitionType = TransitionType.native;
 String _parentId;
+String _userId;
+
 @override
 void initState(){
  super.initState();
  getCode().then((res){
  _parentId = res;
  });
- 
+ getUserCode().then((res){
+ _userId = res;
+ });
  }
  
  List<Card> _buildGridCards() {
@@ -37,7 +41,7 @@ void initState(){
              children: <Widget>[
                FlatButton(
                  onPressed: (){
-               // Application.router.navigateTo(context, "login",transition: transitionType);
+                Application.router.navigateTo(context, "notice",transition: transitionType,replace: false);
                  },
                  padding: EdgeInsets.all(5.0),
                  child: Column( // Replace with a Row for horizontal icon + text
@@ -51,6 +55,36 @@ void initState(){
                      ),
                     // Icon(Icons.directions_bus,size: 100.0,),
                     new Text(AppTranslations.of(context).text("noticeboard_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                   ],
+                 ),
+               ),
+             ],
+           ),
+         ),
+       ),
+ 
+  new Card(
+         child: Center(
+          child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: <Widget>[
+               FlatButton(
+                 onPressed: (){
+                Application.router.navigateTo(context, "notice",transition: transitionType,replace: false);
+                 },
+                 padding: EdgeInsets.all(5.0),
+                 child: Column( // Replace with a Row for horizontal icon + text
+                   children: <Widget>[
+                     CircleAvatar(
+                    radius: 30.0,
+                   child: Image(
+                   image: AssetImage('images/message.jpg'),
+             
+                    ),
+                     ),
+                    // Icon(Icons.directions_bus,size: 100.0,),
+                    new Text(AppTranslations.of(context).text("message_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+               
                    ],
                  ),
                ),
@@ -196,7 +230,7 @@ void initState(){
              
                     ),
                      ),
-                     //Icon(Icons.view_list,size: 100.0,),  new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
+                   
                      new Text(AppTranslations.of(context).text("leave_menu"),style: TextStyle(fontFamily: 'Myanmar'))
                    ],
                  ),
@@ -347,7 +381,7 @@ void initState(){
                    break;
                    case SettingMenu.Setting:
                    setState((){
-                   //  application.onLocaleChanged(Locale("en"));
+                   Application.router.navigateTo(context, "setting?userId=$_userId",transition: transitionType,replace: false);
                    }
                    );
                    break;
@@ -378,7 +412,12 @@ void initState(){
 getCode() async{
     return await LocalStorage.get(Config.USER_RELATED_ID);
    }
+getUserCode() async{
+    return await LocalStorage.get(Config.USER_ID);
+   }
+   
 }
+
 
 enum SettingMenu {
   English,

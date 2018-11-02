@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:sms_parent/util/application.dart';
 import 'package:sms_parent/dao/authdao.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/util/commonComponent.dart';
+import 'package:sms_parent/util/dbhelper.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,6 +16,52 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+   final Connectivity _connectivity = new Connectivity();
+  StreamSubscription<ConnectivityResult> _connectivitySubscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.none) {
+        Fluttertoast.showToast(
+            msg: "Plese Open Mobile Data or Wifi",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIos: 20,
+            bgcolor: '#ffffff',
+            textcolor: '#d50000');
+      }
+    });
+    checkLoginInit();
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
+
+  void checkLoginInit() async {
+    var db = new DBHelper();
+    db.getCount().then((data){
+      if(data > 0){
+       Application.router.navigateTo(context, "Home",transition: transitionType,replace: true);
+      }
+Fluttertoast.showToast(
+            msg: data.toString(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIos: 20,
+            bgcolor: '#ffffff',
+            textcolor: '#d50000');
+    }
+    );
+  }
+
   //BuildContext _contx;
   // bool _isLoading = false;
   String _username, _password;

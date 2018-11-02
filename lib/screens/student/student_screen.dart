@@ -105,39 +105,43 @@ class StudentList extends StatelessWidget {
                           size: 35.0,
                         ),
                         title: Text(
-                          'Student Name ',
+                          AppTranslations.of(context).text("common_name")+'\n',
                           maxLines: 1,
                           style: new TextStyle(
+                              fontFamily: 'Myanmar',
                               color: Colors.blue[700],
-                              fontSize: 18.0,
-                              wordSpacing: 2.0),
+                              fontSize: 17.0,
+                              ),
                         ),
                         subtitle: new RichText(
                           text: new TextSpan(
-                            //text: 'Driver Name: U Maung Maung\n ' ,
+                          
                             style: DefaultTextStyle.of(context).style,
 
                             children: <TextSpan>[
                               new TextSpan(
                                 text: '${item.name}\n',
                                 style: new TextStyle(
+                                    fontFamily: 'Zawgyi',
                                     color: Colors.black,
-                                    fontSize: 16.0,
-                                    wordSpacing: 2.0),
+                                    fontSize: 14.0,
+                                    ),
                               ),
                               new TextSpan(
-                                text: 'Class Name  \n',
+                                text:  AppTranslations.of(context).text("common_class"),
                                 style: new TextStyle(
+                                  fontFamily: 'Myanmar',
                                     color: Colors.blue[700],
-                                    fontSize: 18.0,
-                                    wordSpacing: 2.0),
+                                    fontSize: 17.0,
+                                    ),
                               ),
                               new TextSpan(
-                                text: '${item.className}\n',
+                                text: '\n${item.className}',
                                 style: new TextStyle(
+                                    fontFamily: 'Zawgyi',
                                     color: Colors.black,
-                                    fontSize: 16.0,
-                                    wordSpacing: 2.0),
+                                    fontSize: 14.0,
+                                    ),
                               ),
                               // new TextSpan(text: 'Year     -${item.runningYear}\n',
                               //  style: new TextStyle(color: Colors.black,fontSize: 16.0,wordSpacing:2.0),),

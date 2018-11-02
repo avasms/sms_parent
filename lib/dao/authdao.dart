@@ -5,25 +5,18 @@ import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/models/user.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sms_parent/util/dbhelper.dart';
 
 
 class AuthManager{
+  
   static clearAuthorization() {    
     LocalStorage.remove(Config.TOKEN_KEY);
   }
-  static checkLogin() async{
-       bool res = false;
-       var token = await LocalStorage.get(Config.TOKEN_KEY);
-      
-       if(token !=null)
-       {
-         res = true;
-       }
-     // print(token);
-     
-  return res; 
-  }
+  
   static login(String username,String password) async {
+   
+
    // String url = "/student_data_list/5";
     //var rs = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
    // print(rs.data);
@@ -43,9 +36,13 @@ class AuthManager{
   //var user = User.fromJson(userMap);
   //print('Howdy, ${user.tokenId}');
  // print(response.data['tokenId'].toString());
+  var db = new DBHelper();
   await LocalStorage.save(Config.TOKEN_KEY, response.data['tokenId'].toString());
   await LocalStorage.save(Config.USER_ID, response.data['id'].toString());
   await LocalStorage.save(Config.USER_RELATED_ID, response.data['userRelatedId'].toString());
+  var user = new User(null, null, null, response.data['tokenId'].toString(),response.data['id'].toString(),response.data['userRelatedId'].toString());
+  db.saveUserInfo(user);
+
   return response;
 
 }

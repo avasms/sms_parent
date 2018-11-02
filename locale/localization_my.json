@@ -1,10 +1,10 @@
 {
-    "test": "အောင်ဖြိုးဦး",
+   
     "exam_menu": "စာမေးပွဲ",
     "grade_menu": "အဆင့်",
     "child_menu": "ကျောင်းသား/သူ",
     "noticeboard_menu": "‌ကြေငြာစာ",
-    "message_menu": "Message",
+    "message_menu": "ပန်ကြားစာ",
     "timetable_menu": "အချိန်ဇယား",
     "leave_menu": "ခွင့်တိုင်ရန်",
     "ferry_menu": "ကြိုပို့ယာဉ်",
@@ -14,6 +14,22 @@
     "english_setting":"အင်္ဂလိပ်",
     "myanmar_setting":"Myanmar",
     "setting_setting":"Setting",
-    "logout_setting":"Log Out"
+    "logout_setting":"Log Out",
+
+    "common_school": "ကျောင်းအမည်",
+    "common_class": "အတန်း",
+    "common_description": "ဖော်ပြချက်",
+    "common_name": "အမည်",
+
+    "room_no": "Room No.",
+    "teacher": "ဆရာအမည်",
+
+    "dormitory_name": "အဆောင်အမည်",
+
+    "ferry_name": "ယာဉ်အမည်",
+    "routes": "လမ်းကြောင်းများ",
+    "car_no": "Car No.",
+    "driver_name": "ယာဉ်မောင်း"
+
     
 }
