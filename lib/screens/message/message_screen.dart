@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sms_parent/phyo/messaging/sendmessage.dart';
-import 'package:sms_parent/phyo/messaging/sendmessage.dart' as first;
-import 'package:sms_parent/phyo/messaging/receive.dart' as second;
-import 'package:sms_parent/phyo/messaging/sent.dart'as third;
-class MainApp extends StatefulWidget{
+import 'package:sms_parent/screens/message/sendmessage.dart' as first;
+import 'package:sms_parent/screens/message/receive.dart' as second;
+import 'package:sms_parent/screens/message/sent.dart'as third;
+class MessageScreen extends StatefulWidget{
   _TabBar createState()=>new _TabBar();
 }
-class _TabBar extends State<MainApp> with SingleTickerProviderStateMixin{
+class _TabBar extends State<MessageScreen> with SingleTickerProviderStateMixin{
 TabController controller;
 @override
   void initState() {

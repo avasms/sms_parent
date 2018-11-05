@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sms_parent/phyo/messaging/viewdata.dart';
+import 'package:sms_parent/screens/message/viewdata.dart';
 
 class MessageView extends StatefulWidget{
   final ReceiveData receiveData;

@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:sms_parent/phyo/messaging/detail.dart';
-import 'package:sms_parent/phyo/messaging/viewdata.dart';
+import 'package:sms_parent/screens/message/detail.dart';
+import 'package:sms_parent/screens/message/viewdata.dart';
 class Sent extends StatefulWidget {
   SentView createState() => new SentView();
 }
@@ -30,7 +32,7 @@ Map<int, AnimationController> controllerMaps = new Map();
     });
   }
 
-  void _DetailHero (ReceiveData receiveData){
+  Future _DetailHero (ReceiveData receiveData) async {
 AnimationController _controller =controllerMaps[receiveData.id];
 CurvedAnimation _curvedAnimation=animationMaps[receiveData.id];
    Navigator.push(
@@ -99,9 +101,8 @@ _controller.reverse();
                       CircleAvatar(
                         backgroundColor: Colors.grey,
                         radius: 25.0,
-                        child: new IconButton(
-                          icon: new Icon(Icons.person),
-                        ),
+                        child: new Icon(Icons.person),
+                        
                       )
                     ],
                   ),

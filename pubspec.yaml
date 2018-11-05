@@ -30,7 +30,6 @@ dependencies:
   flutter_spinkit: ^2.1.0
   cached_network_image: ^0.4.2
   flutter_cupertino_date_picker: ^0.0.6
-  firebase_messaging: ^2.0.3
   sqflite: any
   path_provider: ^0.4.1
   flutter_launcher_icons: ^0.6.1

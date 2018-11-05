@@ -12,6 +12,9 @@ class SettingPage extends State<Setting> {
   String _oldPassword = '';
   String _newPassword = '';
   String _confirmPassword = '';
+  TextEditingController _oldpassctrl=new TextEditingController();
+  TextEditingController _passctrl=new TextEditingController();
+  TextEditingController _confirmpassctrl=new TextEditingController();
   bool _obsureText = true;
   IconData _passVisible = Icons.visibility_off;
   final _formKey = new GlobalKey<FormState>();
@@ -28,6 +31,7 @@ class SettingPage extends State<Setting> {
           return 'Please Enter old Password';
         }
       },
+      controller: _oldpassctrl,
       decoration: InputDecoration(
         labelText: 'Old Passward',
         labelStyle: TextStyle(color: Colors.blue),
@@ -43,7 +47,7 @@ class SettingPage extends State<Setting> {
           return 'Please Enter New Password';
         }
       },
-      
+      controller: _passctrl,
       decoration: InputDecoration(
         labelText: 'New Password',
         labelStyle: TextStyle(color: Colors.blue),
@@ -60,6 +64,7 @@ class SettingPage extends State<Setting> {
           return 'Please enter Confirm Password';
         }
       },
+      controller: _confirmpassctrl,
       decoration: InputDecoration(
         labelText: 'Confirm New Password',
         labelStyle: TextStyle(color: Colors.blue),
@@ -94,9 +99,9 @@ class SettingPage extends State<Setting> {
                   bgcolor: '#ffffff',
                   textcolor: '#d50000');
               setState(() {
-
-                _oldPassword = '';
-              _formKey.currentState.save();
+                _oldpassctrl.clear();
+                _passctrl.clear();
+                _confirmpassctrl.clear();
               });
             } else {
               Fluttertoast.showToast(
