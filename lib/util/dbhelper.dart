@@ -58,4 +58,9 @@ Future<int> getCount() async {
    var res = Sqflite.firstIntValue(await dbClient.rawQuery('SELECT COUNT(*) FROM ParentInfo'));
     return res;
   }
+  Future<void> deleteData() async {
+    var dbClient = await db;
+   // return  await Sqflite.firstIntValue(await dbClient.rawQuery('SELECT COUNT(*) FROM ParentInfo'));
+   await dbClient.rawDelete('DELETE FROM ParentInfo');
+  }
 }

@@ -6,6 +6,7 @@ import 'package:sms_parent/util/application.dart';
 import 'package:fluro/fluro.dart';
 import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
+import 'package:sms_parent/util/dbhelper.dart';
 //import 'package:flutter/services.dart';
 //import 'package:sms_parent/screens/login/login_screen.dart';
 
@@ -387,34 +388,40 @@ void initState(){
                    break;
                    case SettingMenu.Logout:
                    setState((){
-                   LocalStorage.remove(Config.TOKEN_KEY);
-                   Application.router.navigateTo(context, "login",transition: transitionType,replace: true);
-                   }
-                   );
-                   break;
-               }
-             }
-           ),
-     
-           ],
-         ),
- 
-      body: new GridView.count(
-           crossAxisCount: 2,
-           padding: EdgeInsets.all(10.0),
-           children: _buildGridCards(),
-         ),
-         //backgroundColor: Colors.grey,
-         );
-    
-  }
- 
-getCode() async{
-    return await LocalStorage.get(Config.USER_RELATED_ID);
-   }
-getUserCode() async{
-    return await LocalStorage.get(Config.USER_ID);
-   }
+                   deleteDBdata();                   
+                                      LocalStorage.remove(Config.TOKEN_KEY);
+                                      Application.router.navigateTo(context, "login",transition: transitionType,replace: true);
+                                      }
+                                      );
+                                      break;
+                                  }
+                                }
+                              ),
+                        
+                              ],
+                            ),
+                    
+                         body: new GridView.count(
+                              crossAxisCount: 2,
+                              padding: EdgeInsets.all(10.0),
+                              children: _buildGridCards(),
+                            ),
+                            //backgroundColor: Colors.grey,
+                            );
+                       
+                     }
+                    
+                   getCode() async{
+                       return await LocalStorage.get(Config.USER_RELATED_ID);
+                      }
+                   getUserCode() async{
+                       return await LocalStorage.get(Config.USER_ID);
+                      }
+                   
+                     void deleteDBdata() async{
+                       var db = new DBHelper();
+                       await db.deleteData();
+                     }
    
 }
 
