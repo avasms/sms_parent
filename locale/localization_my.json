@@ -29,7 +29,11 @@
     "ferry_name": "ယာဉ်အမည်",
     "routes": "လမ်းကြောင်းများ",
     "car_no": "Car No.",
-    "driver_name": "ယာဉ်မောင်း"
+    "driver_name": "ယာဉ်မောင်း",
+
+    "send_menu": "စာပို့မည်",
+    "received_menu": "ရရှိသောစာများ",
+    "sent_menu": "ပို့ပြီးစာများ"
 
     
 }

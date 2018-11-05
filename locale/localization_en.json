@@ -29,6 +29,10 @@
     "ferry_name": "Ferry Name",
     "routes": "Routes",
     "car_no": "Car No.",
-    "driver_name": "Driver"
+    "driver_name": "Driver",
+
+    "send_menu": "Send Msg",
+    "received_menu": "Received Msg",
+    "sent_menu": "Sent Msg"
 
 }

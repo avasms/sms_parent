@@ -33,13 +33,12 @@ Widget build(BuildContext context){
             ),
       bottom: new TabBar(
         indicatorColor: Colors.pink,
+        labelColor: Colors.white,
         controller: controller,
-         tabs: <Widget>[
-           new Tab(text:'Send'),
-           new Tab(text:'Receive'),
-           new Tab(text:'Sent'),
-           //new Tab(icon: new Icon(Icons.send),text:'Send',),
-           //new Tab(icon: new Icon(Icons.view_list),text: 'View',),
+         tabs: [
+           new Tab(text: AppTranslations.of(context).text("received_menu")),
+           new Tab(text: AppTranslations.of(context).text("send_menu"),),
+           new Tab(text: AppTranslations.of(context).text("sent_menu")),
          ],
       ),
     ),
@@ -47,8 +46,8 @@ Widget build(BuildContext context){
     body:TabBarView(
       controller: controller,
       children: <Widget>[
-        new first.Send(),
         new second.Receive(),
+         new first.Send(),
         new third.Sent(),
         
       ],
