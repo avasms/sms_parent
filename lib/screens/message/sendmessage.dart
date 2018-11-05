@@ -49,7 +49,7 @@ class SendMessage extends State<Send> {
   @override
   Widget build(BuildContext context) {
     final title = new TextFormField(
-      autofocus: true,
+      autofocus: false,
       controller: _clear1,
       onSaved: (value) => _title = value,
       validator: (value) {
@@ -58,6 +58,7 @@ class SendMessage extends State<Send> {
       decoration: InputDecoration(
         labelText: 'Title',
         isDense: true,
+        
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),
@@ -70,7 +71,7 @@ class SendMessage extends State<Send> {
     );
 
     final description = TextFormField(
-      autofocus: true,
+      autofocus: false,
       keyboardType: TextInputType.multiline,
       maxLines: 10,
       textInputAction: TextInputAction.newline,

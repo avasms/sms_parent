@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/message/sendmessage.dart' as first;
 import 'package:sms_parent/screens/message/receive.dart' as second;
 import 'package:sms_parent/screens/message/sent.dart'as third;
+import 'package:sms_parent/util/app_translation.dart';
+
 class MessageScreen extends StatefulWidget{
   _TabBar createState()=>new _TabBar();
 }
@@ -21,12 +23,14 @@ TabController controller;
     }
 @override
 Widget build(BuildContext context){
-return MaterialApp(
-  home: Scaffold(
+
+  return Scaffold(
     appBar: AppBar(
-      title: Text('Tab Bar'),
-      
-      backgroundColor:Colors.blue ,
+            backgroundColor: Colors.indigo.shade700,
+            title: new Text(
+              AppTranslations.of(context).text("message_menu"),
+              style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
+            ),
       bottom: new TabBar(
         indicatorColor: Colors.pink,
         controller: controller,
@@ -49,7 +53,7 @@ return MaterialApp(
         
       ],
     ) ,
-  ),
+  
 );
 }
 }
