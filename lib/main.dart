@@ -26,23 +26,36 @@ import 'package:sms_parent/util/dbhelper.dart';
 
 //import 'package:sms_parent/util/commonComponent.dart';
 
-void main() {
-  runApp(new MyApp());
+void main()async {
+  var db = new DBHelper();
+  var result = await db.getCount();
+  bool _isLogin = false;
+  if(result > 0 ){
+_isLogin = true;
+  }
+  runApp(
+    new MyApp(loginStatus: _isLogin)
+    );
 }
 
 class MyApp extends StatefulWidget {
+  final loginStatus;
+
+  const MyApp({Key key, this.loginStatus}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
+
+
 }
 
 class _MyAppState extends State<MyApp> {
+
   AppTranslationsDelegate _newLocaleDelegate;
-
-
   final Connectivity _connectivity = new Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
 // Language
-  Widget _defaultHome = new LoginScreen();
+  
   @override
   void initState() {
     
@@ -88,9 +101,7 @@ class _MyAppState extends State<MyApp> {
           timeInSecForIos: 20,
           bgcolor: '#ffffff',
           textcolor: '#d50000');
-          if(data > 0){
-            _defaultHome = new HomeScreen();            
-          }
+         
     });
   }
 
@@ -201,7 +212,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Myanmar'),
       onGenerateRoute: Application.router.generator,
-      home: _defaultHome,
+      home: widget.loginStatus?new HomeScreen(): new LoginScreen(),
       localizationsDelegates: [
         _newLocaleDelegate,
         const AppTranslationsDelegate(),

@@ -56,9 +56,6 @@ Future<int> getCount() async {
     var dbClient = await db;
    // return  await Sqflite.firstIntValue(await dbClient.rawQuery('SELECT COUNT(*) FROM ParentInfo'));
    var res = Sqflite.firstIntValue(await dbClient.rawQuery('SELECT COUNT(*) FROM ParentInfo'));
-   const oneSecond = Duration(seconds: 3);
-    return await new Future<int>.delayed(
-      oneSecond,() => res
-    );
+    return res;
   }
 }

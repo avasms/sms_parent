@@ -28,10 +28,7 @@ class SendMessage extends State<Send> {
     // TODO: implement initState
     super.initState();
     _selectValue = data.first;
-    //_clear1.text="";
-    //_clear2.text="";
-    //_clear1=new TextEditingController();
-    //_clear2=new TextEditingController();
+   
   }
 
   void sendMessage() {
