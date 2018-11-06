@@ -1,82 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sms_parent/screens/leave/detailleave.dart';
-import 'package:sms_parent/screens/leave/leavedata.dart';
-class ViewLeaveScreen extends StatefulWidget {
-  VeiwLeave createState() => new VeiwLeave();
-}
-
-class VeiwLeave extends State<ViewLeaveScreen> with TickerProviderStateMixin{
-
-  final sendMessage = new Container(
-    child: ListView.builder(
-        itemCount: receives.length,
-        padding: const EdgeInsets.all(15.0),
-        itemBuilder: (context, position) {
-          final item = receives[position];
-          LeaveData data=receives[position];
-          double c_width = MediaQuery.of(context).size.width * 0.8;
-          return Column(
-            children: <Widget>[
-              Divider(height: 5.0),
-              ListTile(
-                  title: Text(
-                    '${item.senderName}',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontFamily: 'Serif',
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  subtitle: new Container(
-                    width: c_width,
-                    height: 25.0,
-                    child: new Chip(
-                      backgroundColor: Colors.white24,
-                      label: new Text(
-                        '${item.description}',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: 'Serif',
-                        
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                  
-                  leading: Column(
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        radius: 25.0,
-                        child: new IconButton(
-                          icon: new Icon(Icons.person),
-                        ),
-                      )
-                    ],
-                  ),
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context)=> new MessageView(receiveData:data,)
-                        ));
-                  }
-                  ),
-            ],
-          );
-        }),
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return sendMessage;
-  }
-}
-
 
 //import 'cupertino_navigation_demo.dart' show coolColorNames;
 
-/*const double _kPickerSheetHeight = 216.0;
+const double _kPickerSheetHeight = 216.0;
 const double _kPickerItemHeight = 32.0;
 
 class ViewLeaveScreen extends StatefulWidget {
@@ -233,4 +160,4 @@ class _CupertinoPickerDemoState extends State<ViewLeaveScreen> {
       ),
     );
   }
-}*/
+}
