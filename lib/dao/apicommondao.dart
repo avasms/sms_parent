@@ -8,6 +8,7 @@ import 'package:sms_parent/models/student.dart';
 import 'package:sms_parent/models/examGrade.dart';
 import 'package:sms_parent/models/exam.dart';
 import 'package:sms_parent/models/notice.dart';
+import 'package:sms_parent/models/message.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 
@@ -132,6 +133,27 @@ class ApiCommonDao {
    }
     return false;
   }
+Future<List<Message>> getReceivedMessageData(String userId) async {
+    String url = "/received_messages_api?userId=$userId";
 
-  void changePassword(String id, String trim) {}
+    final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+    final data = response.data;
+    if (response != null) {
+      return data.map<Message>((json) => Message.fromJson(json)).toList();
+    }
+    return null;
+  }
+
+Future<List<Message>> getSentMessageData(userId) async {
+   String url = "/sent_messages_api?userId=$userId";
+
+    final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+    final data = response.data;
+    if (response != null) {
+      return data.map<Message>((json) => Message.fromJson(json)).toList();
+    }
+    return null;
+}
 }

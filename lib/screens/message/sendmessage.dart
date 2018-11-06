@@ -142,8 +142,7 @@ class SendMessage extends State<Send> {
                       onPressed: () {
                         
                         sendMessage();
-                        //_title=null;
-                        //_description=null;
+                        
                       },
                       color: Colors.blueAccent,
                       child: Text(

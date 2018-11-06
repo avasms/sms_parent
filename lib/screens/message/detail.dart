@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sms_parent/screens/message/viewdata.dart';
+import 'package:sms_parent/models/message.dart';
+import 'package:flutter_html_view/flutter_html_view.dart';
 
 class MessageView extends StatefulWidget{
-  final ReceiveData receiveData;
+  final Message receiveData;
   final VoidCallback onAction;
   final CurvedAnimation animation;
 
@@ -15,12 +16,13 @@ StateViewPage createState() => new StateViewPage();
 
     @override
     Widget build(BuildContext context){
-      ReceiveData receiveData = widget.receiveData;
-      String title=receiveData.recipient;
+      Message receiveData = widget.receiveData;
+      String title=receiveData.senderName;
     return Scaffold(
       appBar: AppBar(
         title: Text('$title'),
       ),
+    
       body: Stack(
         children: <Widget>[
           Column(
@@ -30,6 +32,28 @@ StateViewPage createState() => new StateViewPage();
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.0, vertical: 10.0),
+                        child: Text(
+                          "Date",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontFamily: "Serif",fontWeight: FontWeight.w600,fontSize: 18.0),
+                          overflow: TextOverflow.ellipsis,
+                          
+                          //style: Theme.of(context).textTheme.body2
+                          
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.only(
+                            left: 14.0, right: 14.0, bottom: 14.0),
+                        child: Text(receiveData.sendDate,
+                        style: TextStyle(fontFamily: "Serif",fontSize: 16.0),
+                          ),
+                      ),
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(
@@ -71,9 +95,10 @@ StateViewPage createState() => new StateViewPage();
                         width: double.infinity,
                         padding: EdgeInsets.only(
                             left: 14.0, right: 14.0, bottom: 14.0),
-                        child: Text(receiveData.message,
-                        style: TextStyle(fontFamily: "Serif",fontSize: 16.0),
-                          ),
+                        child: new HtmlView(
+                          data: receiveData.messageText,
+                          
+                        )
                       ),
                       Divider(
                         height: 10.0,

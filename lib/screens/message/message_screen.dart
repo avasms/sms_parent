@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/message/sendmessage.dart' as first;
-import 'package:sms_parent/screens/message/receive.dart' as second;
-import 'package:sms_parent/screens/message/sent.dart'as third;
+import 'package:sms_parent/screens/message/receive_message.dart' as second;
+import 'package:sms_parent/screens/message/sent_message.dart'as third;
 import 'package:sms_parent/util/app_translation.dart';
 
 class MessageScreen extends StatefulWidget{
+  final userId;
+
+  const MessageScreen({Key key, this.userId}) : super(key: key);
   _TabBar createState()=>new _TabBar();
 }
 class _TabBar extends State<MessageScreen> with SingleTickerProviderStateMixin{
@@ -23,7 +26,8 @@ TabController controller;
     }
 @override
 Widget build(BuildContext context){
-
+ String _userId = widget.userId;
+ print(_userId);
   return Scaffold(
     appBar: AppBar(
             backgroundColor: Colors.indigo.shade700,
@@ -36,9 +40,9 @@ Widget build(BuildContext context){
         labelColor: Colors.white,
         controller: controller,
          tabs: [
-           new Tab(text: AppTranslations.of(context).text("received_menu")),
-           new Tab(text: AppTranslations.of(context).text("send_menu"),),
-           new Tab(text: AppTranslations.of(context).text("sent_menu")),
+           new Tab(child: new Text(AppTranslations.of(context).text("received_menu"),style: TextStyle(fontFamily: 'Myanmar', color: Colors.white)),),
+            new Tab(child: new Text(AppTranslations.of(context).text("send_menu"),style: TextStyle(fontFamily: 'Myanmar', color: Colors.white)),),
+             new Tab(child: new Text(AppTranslations.of(context).text("sent_menu"),style: TextStyle(fontFamily: 'Myanmar', color: Colors.white)),),
          ],
       ),
     ),
@@ -46,10 +50,10 @@ Widget build(BuildContext context){
     body:TabBarView(
       controller: controller,
       children: <Widget>[
-        new second.Receive(),
-         new first.Send(),
-        new third.Sent(),
         
+        new second.Receive(userId:_userId),
+        new first.Send(),
+        new third.Sent(userId:_userId)
       ],
     ) ,
   

@@ -200,7 +200,8 @@ class _MyAppState extends State<MyApp> {
      //Define our Notice Page.
     router.define('message', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-      return new MessageScreen();
+      String _userid = params["userId"]?.first;
+      return new MessageScreen(userId:_userid);
     }));
 
 
@@ -210,7 +211,7 @@ class _MyAppState extends State<MyApp> {
     return new MaterialApp(
       title: 'AVASMS',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Myanmar'),
+      theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Zawgyi'),
       onGenerateRoute: Application.router.generator,
       home: widget.loginStatus?new HomeScreen(): new LoginScreen(),
       localizationsDelegates: [
