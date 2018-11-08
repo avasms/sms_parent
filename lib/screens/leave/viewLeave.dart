@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/leave/detailleave.dart';
 import 'package:sms_parent/screens/leave/leavedata.dart';
 class ViewLeaveScreen extends StatefulWidget {
+
   VeiwLeave createState() => new VeiwLeave();
 }
 
@@ -49,9 +50,8 @@ class VeiwLeave extends State<ViewLeaveScreen> with TickerProviderStateMixin{
                       CircleAvatar(
                         backgroundColor: Colors.grey,
                         radius: 25.0,
-                        child: new IconButton(
-                          icon: new Icon(Icons.person),
-                        ),
+                        child: Icon(Icons.person),
+                        
                       )
                     ],
                   ),

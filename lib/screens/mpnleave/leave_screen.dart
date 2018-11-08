@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_parent/util/app_translation.dart';
-import 'package:sms_parent/screens/leave/create_leave.dart';
 import 'package:sms_parent/screens/leave/viewLeave.dart';
 
 
@@ -37,7 +36,7 @@ class LeaveScreen extends StatelessWidget {
           body: TabBarView(
             children: [
              // new CreateLeaveScreen(parentId: parentId),
-              new ViewLeaveScreen(parentId: parentId),
+              new ViewLeaveScreen(),
                            
             ],
           ),

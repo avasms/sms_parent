@@ -18,6 +18,9 @@ StateViewPage createState() => new StateViewPage();
     Widget build(BuildContext context){
       Message receiveData = widget.receiveData;
       String title=receiveData.senderName;
+      if(title == null){
+        title = receiveData.receiverName;
+      }
     return Scaffold(
       appBar: AppBar(
         title: Text('$title'),

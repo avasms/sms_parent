@@ -6,6 +6,9 @@ import 'package:sms_parent/screens/leave/viewLeave.dart';
 
 
 class LeaveScreen extends StatefulWidget{
+  final parentId;
+
+  const LeaveScreen({Key key, this.parentId}) : super(key: key);
   _LeaveScreenPage createState()=>new _LeaveScreenPage();
 }
 class _LeaveScreenPage extends State<LeaveScreen> with SingleTickerProviderStateMixin{

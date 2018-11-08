@@ -1,56 +1,46 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:sms_parent/models/admin.dart';
+import 'package:flutter/material.dart';
 
 class Send extends StatefulWidget {
-  final adminList;
+  final List<AdminStaff> adminList;
 
   const Send({Key key, this.adminList}) : super(key: key);
-  SendMessage createState() => new SendMessage();
+
+  ViewPage createState() => new ViewPage();
+
 }
 
-class AddData {
-    final String title;
-    final String description;
-    AddData({
-      this.title,
-      this.description,
-    });
-    
-  }
+class ViewPage extends State<Send> {
 
-class SendMessage extends State<Send> {
-  List<AddData> aa = [];
-  TextEditingController _clear1=new TextEditingController();
+  List<DropdownMenuItem<int>> dropItemList = [];
+   TextEditingController _clear1=new TextEditingController();
   TextEditingController _clear2=new TextEditingController();
   var _formkey = new GlobalKey<FormState>();
   String _title, _description;
   int _selectValue;
   
+      @override
+      Widget build(BuildContext context) {
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  
-    this._selectValue = widget.adminList[0].id;
-     
-     }
    
-     void sendMessage() {
-       if (_formkey.currentState.validate()) {
-         _formkey.currentState.save();
-         _clear1.clear();
-         _clear2.clear();
-         
-         //aa.add(new AddData("$_title","$_description"));
-         print('$_title\n $_selectValue');
-         print('${aa.length}');
-       }
-     }
+    final _dropDownList = 
+    new DropdownButtonHideUnderline(
+      child:  new DropdownButton(
+        value: _selectValue,
+        items: widget.adminList.map((data) => new DropdownMenuItem<int>(
+          child: new Text(data.name),
+          value: data.id
+
+        )).toList(),
+        onChanged: (int v){
+          _selectValue = v;
+        },
+        ),
+    );
    
-     @override
-     Widget build(BuildContext context) {
-       final title = new TextFormField(
+    
+    final _titleForm = new TextFormField(
          autofocus: false,
          controller: _clear1,
          onSaved: (value) => _title = value,
@@ -72,7 +62,7 @@ class SendMessage extends State<Send> {
          ),
        );
    
-       final description = TextFormField(
+       final _descriptionForm = TextFormField(
          autofocus: false,
          keyboardType: TextInputType.multiline,
          maxLines: 10,
@@ -95,47 +85,27 @@ class SendMessage extends State<Send> {
            contentPadding: EdgeInsets.all(15.0),
          ),
        );
-   
-       return new Center(
-         child: new Container(
-           child: new Card(
-             color: Colors.white70,
-             child: new Form(
-               key: _formkey,
-               child: new ListView(
-                 children: <Widget>[
-                   new Padding(
-                     padding: EdgeInsets.all(8.0),
-                   child:new Container(
-                     color: Colors.white,
-                     width:300.0,
-                     height: 50.0,
-                    
-                     padding: EdgeInsets.all(5.0),
-                     child: //new DropdownButtonHideUnderline(
-                       //child: ),
-                       //DropdownButton<int>(
-                        //   value: _selectValue,
-                        // /  isDense: true,
-                         //  items: widget.adminList
-                          //     .map((AdminStaff item) => new DropdownMenuItem<int >(
-                          //         value: item.id, child: new Text(item.name)))
-                           //    .toList(),
-                          // onChanged: (int s) {
-                          //   setState(() {
-                         //      _selectValue = s;
-                         //    });
-                        //   }),
-                     //),
+
+        return new Center(
+             child: new Container(
+               child: new Card(
+                 color: Colors.white70,
+                 child: new Form(
+                   key: _formkey,
+                   child: new ListView(
+                     children: <Widget>[
+                        new Padding(
+                         padding: EdgeInsets.all(8.0),
+                         child: _dropDownList,
                    ),
+                      
+                       new Padding(
+                         padding: EdgeInsets.all(8.0),
+                         child: _titleForm,
                    ),
                    new Padding(
                      padding: EdgeInsets.all(8.0),
-                     child: title,
-                   ),
-                   new Padding(
-                     padding: EdgeInsets.all(8.0),
-                     child: description,
+                     child: _descriptionForm,
                    ),
                    new Padding(
                      padding: EdgeInsets.all(8.0),
@@ -146,8 +116,8 @@ class SendMessage extends State<Send> {
                          shape: new RoundedRectangleBorder(
                              borderRadius: new BorderRadius.circular(10.0)),
                          onPressed: () {
-                           
-                           sendMessage();
+                            print(widget.adminList[0].name);
+                          // sendMessage();
                            
                          },
                          color: Colors.blueAccent,
@@ -166,7 +136,6 @@ class SendMessage extends State<Send> {
            ),
          ),
        );
-     }
-   
-     
+  }
 }
+

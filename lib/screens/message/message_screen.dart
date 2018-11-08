@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:sms_parent/screens/message/sendmessage.dart' as first;
-import 'package:sms_parent/screens/message/receive_message.dart' as second;
+import 'package:sms_parent/screens/message/send_message.dart' as second;
+import 'package:sms_parent/screens/message/receive_message.dart' as first;
 import 'package:sms_parent/screens/message/sent_message.dart'as third;
 import 'package:sms_parent/util/app_translation.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:sms_parent/models/admin.dart';
 
 class MessageScreen extends StatefulWidget{
   final userId;
@@ -12,10 +16,20 @@ class MessageScreen extends StatefulWidget{
 }
 class _TabBar extends State<MessageScreen> with SingleTickerProviderStateMixin{
 TabController controller;
+List<AdminStaff> data;
+Future<void> getAdminList() async{
+       await ApiCommonDao().getAdminManagementList().then((res){
+          data = res;
+           print(data[0].name);
+       });
+      
+     }
 @override
-  void initState() {
+  void initState(){
     // TODO: implement initState
+    this.getAdminList();
     super.initState();
+    
     controller=new TabController(vsync: this,length: 3);
   }
   @override
@@ -51,12 +65,13 @@ Widget build(BuildContext context){
       controller: controller,
       children: <Widget>[
         
-        new second.Receive(userId:_userId),
-        new first.Send(),
+        new first.Receive(userId:_userId),
+        new second.Send(adminList: data),
         new third.Sent(userId:_userId)
       ],
     ) ,
   
 );
 }
+
 }

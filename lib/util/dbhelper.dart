@@ -25,7 +25,7 @@ class DBHelper {
   void _onCreate(Database db, int version) async {
     // When creating the db, create the table
     await db.execute(
-        "CREATE TABLE ParentInfo(id INTEGER PRIMARY KEY, userId TEXT, parentId TEXT, token TEXT, displayName TEXT, firebaseToken TEXT )");
+        "CREATE TABLE ParentInfo(id INTEGER PRIMARY KEY, userId TEXT, parentId TEXT, tokenId TEXT, displayName TEXT, firebaseToken TEXT )");
     print("Created tables");
   }
 
@@ -40,7 +40,7 @@ class DBHelper {
     print(user);
     var dbClient = await db;
     await dbClient.transaction((txn) async {
-      String query = 'INSERT INTO ParentInfo(userId,parentId,token) VALUES (\"'+
+      String query = 'INSERT INTO ParentInfo(userId,parentId,tokenId) VALUES (\"'+
           user.userId
           +'\",\"'+
           user.parentId
@@ -51,6 +51,17 @@ class DBHelper {
       return await txn.rawInsert(query);
     });
   }
+
+Future<User> getUser() async {
+   var dbClient = await db;
+  var result = await dbClient.rawQuery('SELECT * FROM ParentInfo');
+ 
+  if (result.length > 0) {
+    return new User.fromJson(result.first);
+  }
+ 
+  return null;
+}
 
 Future<int> getCount() async {
     var dbClient = await db;

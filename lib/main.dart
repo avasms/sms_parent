@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:sms_parent/models/user.dart';
 import 'package:sms_parent/screens/login/login_screen.dart';
 import 'package:sms_parent/screens/home/home_screen.dart';
 import 'package:sms_parent/screens/leave/leave_screen.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
 import 'package:sms_parent/util/application.dart';
 import 'package:fluro/fluro.dart';
-import 'package:sms_parent/dao/authdao.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/screens/dormitory/dormitory_screen.dart';
@@ -28,9 +28,10 @@ import 'package:sms_parent/util/dbhelper.dart';
 
 void main()async {
   var db = new DBHelper();
-  var result = await db.getCount();
+  User result = await db.getUser();
   bool _isLogin = false;
-  if(result > 0 ){
+  if(result != null){
+    
 _isLogin = true;
   }
   runApp(
@@ -77,10 +78,6 @@ class _MyAppState extends State<MyApp> {
 
   // Message 
 
- 
-  
-    checkLoginInit();
-
     super.initState();
   }
 
@@ -89,20 +86,6 @@ class _MyAppState extends State<MyApp> {
   void dispose() {
     _connectivitySubscription.cancel();
     super.dispose();
-  }
-
-  void checkLoginInit() async {
-    var db = new DBHelper();
-    db.getCount().then((data) {
-      Fluttertoast.showToast(
-          msg: data.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.TOP,
-          timeInSecForIos: 20,
-          bgcolor: '#ffffff',
-          textcolor: '#d50000');
-         
-    });
   }
 
   void onLocaleChange(Locale locale) {

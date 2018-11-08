@@ -47,6 +47,7 @@ class ReceivedMsgList extends StatelessWidget {
     // TODO: implement build
     return new Container(
         child: ListView.builder(
+          cacheExtent: 200.0,
             itemCount: examList.length,
             padding: const EdgeInsets.all(15.0),
             itemBuilder: (context, index) {

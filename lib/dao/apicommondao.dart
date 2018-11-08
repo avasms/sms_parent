@@ -97,10 +97,10 @@ class ApiCommonDao {
   }
 
   Future<List<AdminStaff>> getAdminManagementList() async {
-    String url = "/adminManagement_data_list";
+    String url = "/admin_management_list";
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-
+    print(response);
     final data = response.data;
     if (response != null) {
       return data.map<AdminStaff>((json) => AdminStaff.fromJson(json)).toList();
