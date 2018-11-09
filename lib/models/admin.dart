@@ -1,6 +1,6 @@
 class AdminStaff{
   int id;
-  int userId;
+  String userId;
   String name;
   String schoolName;
   String photoPath;
@@ -20,7 +20,7 @@ class AdminStaff{
     return AdminStaff(
       id: json['id'] as int,
       name: json['name'] as String,
-      userId: json['userId'] as int,
+      userId: json['userId'] as String,
       schoolName: json['schoolName'] as String,
       photoPath: json['photoPath'] as String,
 

@@ -37,8 +37,9 @@ _isLogin = true;
   runApp(
     new MyApp(loginStatus: _isLogin)
     );
+    
 }
-
+ 
 class MyApp extends StatefulWidget {
   final loginStatus;
 
@@ -51,7 +52,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
+  
   AppTranslationsDelegate _newLocaleDelegate;
   final Connectivity _connectivity = new Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;

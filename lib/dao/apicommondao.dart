@@ -100,7 +100,7 @@ class ApiCommonDao {
     String url = "/admin_management_list";
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    print(response);
+    //print(response);
     final data = response.data;
     if (response != null) {
       return data.map<AdminStaff>((json) => AdminStaff.fromJson(json)).toList();
@@ -156,4 +156,18 @@ Future<List<Message>> getSentMessageData(userId) async {
     }
     return null;
 }
+
+  static sendMessageToSchool(String userId, String receiverId, String title, String messageText) async{
+     var result;
+    String url = "/send_message_to_school";
+    var data = {"senderId": userId, "receiverId": receiverId , "title": title, "messageText": messageText};
+  var res = await HttpAPIManager.postWithParam(url, data, "post");
+      
+      result = res.data['senderId'];
+  
+   if(result != null){
+     return true;
+   }
+    return false;
+  }
 }
