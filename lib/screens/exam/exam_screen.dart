@@ -88,20 +88,23 @@ class ExamSubjectList extends StatelessWidget {
     List<Widget> columnContent = [];
 
     for (ExamDetail sub in item.examSubList)
-      columnContent.add(new Column(
+      columnContent.add(new Padding(
+             padding: EdgeInsets.only(left:10.0,right: 10.0,top: 5.0,bottom: 5.0),
+             child: new Column(
      crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
            new Divider(color: Colors.red,height: 4.0,),
+           
           new Row(children: <Widget>[
             new Expanded(
               child: new Text(sub.name!=null?sub.name:'',textAlign: TextAlign.start,
-              style: TextStyle(fontFamily:'Zawgyi' ),),
+              style: TextStyle(fontFamily:'Zawgyi',fontSize: 15.0 ),),
             ),
              new Expanded(
-              child: new Text(sub.examDateFrom!=null?sub.examDateFrom:'',textAlign: TextAlign.end,),
+              child: new Text(sub.examDateFrom!=null?sub.examDateFrom:'',textAlign: TextAlign.end,style:TextStyle(fontSize: 15.0)),
             ),
              new Expanded(
-              child: new Text(sub.startTime!=null&&sub.endTime!=null?sub.startTime+'\n'+sub.endTime:'',textAlign: TextAlign.end,),
+              child: new Text(sub.startTime!=null&&sub.endTime!=null?sub.startTime+'\n'+sub.endTime:'',textAlign: TextAlign.end,style:TextStyle(fontSize: 15.0)),
             )
 
           ]
@@ -110,7 +113,9 @@ class ExamSubjectList extends StatelessWidget {
       
         ],
        
-      )
+      ),
+           ),
+        
       
       );
 

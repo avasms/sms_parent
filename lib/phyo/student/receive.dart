@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newapp/student/data_student.dart';
-import 'package:newapp/student/student_screen.dart';
+import 'package:sms_parent/phyo/student/data_student.dart';
+import 'package:sms_parent/phyo/student/student_screen.dart';
 
 class Receive extends StatefulWidget {
   ViewPage createState() => new ViewPage();

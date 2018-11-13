@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newapp/student/data_student.dart';
+import 'package:sms_parent/phyo/student/data_student.dart';
 
 class InfoScreen extends StatefulWidget {
   final Student student;

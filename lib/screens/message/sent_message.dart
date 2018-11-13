@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/message/detail.dart';
 import 'package:sms_parent/models/message.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:flutter_html_view/flutter_html_view.dart';
 
 class Sent extends StatefulWidget {
   final userId;
@@ -65,19 +66,16 @@ class ReceivedMsgList extends StatelessWidget {
                       ),
                       subtitle: new Container(
                         width: c_width,
-                        height: 25.0,
+                        height: 40.0,
                         child: new Chip(
                           backgroundColor: Colors.white24,
-                          label: new Text(
-                            '${item.messageText}',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontFamily: 'Serif',
+                          label: new HtmlView(
+                            data:'${item.messageText}',
                             
-                            ),
-                            overflow: TextOverflow.ellipsis,
                           ),
+                          
                         ),
+                        
                       ),
                      
                       leading: Column(

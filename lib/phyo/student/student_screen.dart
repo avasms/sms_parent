@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:newapp/student/data_student.dart';
+import 'package:sms_parent/phyo/student/data_student.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:newapp/student/info/infoscreen.dart';
-import 'package:newapp/student/attendant/attendant_screen.dart';
-import 'package:newapp/student/payment/payment_screen.dart';
+import 'package:sms_parent/phyo/student/info/infoscreen.dart';
+import 'package:sms_parent/phyo/student/attendant/attendant_screen.dart';
+import 'package:sms_parent/phyo/student/payment/payment_screen.dart';
 
 class StudentScreen extends StatefulWidget {
   final Student data;

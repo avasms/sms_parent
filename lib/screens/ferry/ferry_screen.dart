@@ -63,9 +63,11 @@ class FerryList extends StatelessWidget {
                     height: 15.0,
                   ),
                   ListTile(
-                    leading: Icon(
+                    leading:new Padding(padding:EdgeInsets.only(bottom: 70.0),
+                    child: Icon(
                       Icons.directions_bus,
                       size: 50.0,
+                    ),
                     ),
                     title: Text.rich(
                       TextSpan(
@@ -73,10 +75,10 @@ class FerryList extends StatelessWidget {
                           TextSpan(
                               text: AppTranslations.of(context)
                                   .text("common_school"),
-                              style: TextStyle(fontFamily: 'Myanmar')),
+                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
                           TextSpan(
                               text: ' : ${item.schoolName}',
-                              style: TextStyle(fontFamily: 'Zawgyi')),
+                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
                         ],
                       ),
                     ),
@@ -87,23 +89,23 @@ class FerryList extends StatelessWidget {
                         children: <TextSpan>[
                           TextSpan(
                               text: AppTranslations.of(context).text("routes"),
-                              style: TextStyle(fontFamily: 'Myanmar')),
+                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
                           TextSpan(
                               text: ' : ${item.routeFare}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi')),
+                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
                           TextSpan(
                               text: AppTranslations.of(context).text("car_no"),
-                              style: TextStyle(fontFamily: 'Myanmar')),
+                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
                           TextSpan(
                               text: ' : ${item.vehicleNo}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi')),
+                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
                           TextSpan(
                               text: AppTranslations.of(context)
                                   .text("driver_name"),
-                              style: TextStyle(fontFamily: 'Myanmar')),
+                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
                           TextSpan(
                               text: ' : ${item.driverName}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi')),
+                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
                         ],
                       ),
                     ),
