@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-//import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/screens/leave/create_leave.dart';
 import 'package:sms_parent/screens/leave/viewLeave.dart';
+import 'package:sms_parent/util/app_translation.dart';
 
 
 class LeaveScreen extends StatefulWidget{
@@ -27,18 +27,21 @@ TabController controller;
     }
 @override
 Widget build(BuildContext context){
-return MaterialApp(
-  home: Scaffold(
+
+  return Scaffold(
     appBar: AppBar(
-      title: Text('Tab Bar'),
-      
-      backgroundColor:Colors.blue ,
+            backgroundColor: Colors.indigo.shade700,
+            title: new Text(
+              AppTranslations.of(context).text("leave_menu"),
+              style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
+            ),
+     
       bottom: new TabBar(
         indicatorColor: Colors.pink,
         controller: controller,
          tabs: <Widget>[
-           new Tab(text:'Create Leave'),
-           new Tab(text:'View Leave'),
+           new Tab(child: new Text(AppTranslations.of(context).text("create_leave_menu"),style: TextStyle(fontFamily: 'Myanmar', color: Colors.white,fontSize: 13.0)),),
+            new Tab(child: new Text(AppTranslations.of(context).text("view_leave_menu"),style: TextStyle(fontFamily: 'Myanmar', color: Colors.white,fontSize: 13.0)),),
          ],
       ),
     ),
@@ -50,7 +53,6 @@ return MaterialApp(
         new ViewLeaveScreen(),        
       ],
     ) ,
-  ),
 );
 }
 }

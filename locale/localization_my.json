@@ -33,7 +33,10 @@
 
     "send_menu": "စာပို့မည်",
     "received_menu": "ရရှိသောစာများ",
-    "sent_menu": "ပို့ပြီးစာများ"
+    "sent_menu": "ပို့ပြီးစာများ",
+
+    "create_leave_menu": "ခွင့်တိုင်မည်",
+    "view_leave_menu": "ခွင့်စာရင်း"
 
     
 }

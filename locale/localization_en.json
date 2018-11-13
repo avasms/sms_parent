@@ -33,6 +33,9 @@
 
     "send_menu": "Send Msg",
     "received_menu": "Received Msg",
-    "sent_menu": "Sent Msg"
+    "sent_menu": "Sent Msg",
+
+    "create_leave_menu": "Create Leave",
+    "view_leave_menu": "View Leave"
 
 }
