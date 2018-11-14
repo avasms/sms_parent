@@ -121,20 +121,26 @@ class ApiCommonDao {
     return null;
   }
 
-  static checkOldPassword(String userId, String oldPassword , String newPassword) async {
+  static checkOldPassword(
+      String userId, String oldPassword, String newPassword) async {
     var result;
     String url = "/check_user_by_oldpassword";
-    var data = {"id": userId, "oldPassword": oldPassword , "password": newPassword};
-  var res = await HttpAPIManager.postWithParam(url, data, "post");
-       print(res.data['id']);
-      result = res.data['id'];
-  
-   if(result != null){
-     return true;
-   }
+    var data = {
+      "id": userId,
+      "oldPassword": oldPassword,
+      "password": newPassword
+    };
+    var res = await HttpAPIManager.postWithParam(url, data, "post");
+    print(res.data['id']);
+    result = res.data['id'];
+
+    if (result != null) {
+      return true;
+    }
     return false;
   }
-Future<List<Message>> getReceivedMessageData(String userId) async {
+
+  Future<List<Message>> getReceivedMessageData(String userId) async {
     String url = "/received_messages_api?userId=$userId";
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
@@ -146,8 +152,8 @@ Future<List<Message>> getReceivedMessageData(String userId) async {
     return null;
   }
 
-Future<List<Message>> getSentMessageData(userId) async {
-   String url = "/sent_messages_api?userId=$userId";
+  Future<List<Message>> getSentMessageData(userId) async {
+    String url = "/sent_messages_api?userId=$userId";
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
@@ -156,27 +162,34 @@ Future<List<Message>> getSentMessageData(userId) async {
       return data.map<Message>((json) => Message.fromJson(json)).toList();
     }
     return null;
-}
+  }
 
-  static sendMessageToSchool(String userId, String receiverId, String title, String messageText) async{
-     var result;
+  static sendMessageToSchool(String userId, String receiverId, String title,
+      String messageText) async {
+    var result;
     String url = "/send_message_to_school";
-    var data = {"senderId": userId, "receiverId": receiverId , "title": title, "messageText": messageText};
-  var res = await HttpAPIManager.postWithParam(url, data, "post");
-      
-      result = res.data['senderId'];
-  
-   if(result != null){
-     return true;
-   }
+    var data = {
+      "senderId": userId,
+      "receiverId": receiverId,
+      "title": title,
+      "messageText": messageText
+    };
+    var res = await HttpAPIManager.postWithParam(url, data, "post");
+
+    result = res.data['senderId'];
+
+    if (result != null) {
+      return true;
+    }
     return false;
   }
-  static showschoolInformation() async{
-    String url="/school_information";
-    final res= await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    final data=res.data; 
-    if (res !=null){
-      return data.map<School>((json)=>School.fromJson(json)).toList();
+
+  static getSchoolInformation() async {
+    String url = "/school_information";
+    final res = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+    final data = res.data;
+    if (res != null) {
+      return data.map<School>((json) => School.fromJson(json)).toList();
     }
     return false;
   }

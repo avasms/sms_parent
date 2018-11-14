@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:sms_parent/models/admin.dart';
+import 'package:sms_parent/models/school.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 import 'dart:async';
 
@@ -12,8 +11,8 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreen extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<AdminStaff>>(
-      future: new ApiCommonDao().showschoolInformation(),
+    return FutureBuilder<List<School>>(
+      future: new ApiCommonDao().getSchoolInformation(),
       builder: (context, snapshot) {
         if (snapshot.hasError) print(snapshot.error);
         return snapshot.hasData
