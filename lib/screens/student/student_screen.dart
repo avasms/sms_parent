@@ -11,46 +11,62 @@ import 'package:cached_network_image/cached_network_image.dart';
 class StudentListData extends StatelessWidget {
   final String parentId;
   final String screenType;
-  const StudentListData({Key key, this.parentId, this.screenType})
+  final String userId;
+  const StudentListData({Key key, this.parentId, this.screenType,this.userId})
       : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: new AppBar(
-          backgroundColor: Colors.indigo.shade700,
-          title: new Text(
-            AppTranslations.of(context).text("child_menu"),
-            style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
-          )),
-      body: FutureBuilder<List<Student>>(
-        future: new ApiCommonDao().getStudentList(this.parentId),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) print(snapshot.error);
 
-          return snapshot.hasData
-              ? StudentList(
-                  student: snapshot.data,
-                  screenType: screenType,
-                )
-              : Center(child: CircularProgressIndicator());
-        },
-      ),
-    );
+
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+       appBar: new AppBar(
+           backgroundColor: Colors.indigo.shade700,
+           title: new Text(
+             AppTranslations.of(context).text("child_menu"),
+             style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
+           )),
+       body: FutureBuilder<List<Student>>(
+         future: new ApiCommonDao().getStudentList(this.parentId),
+         builder: (context, snapshot) {
+           if (snapshot.hasError) print(snapshot.error);
+ 
+           return snapshot.hasData
+               ? StudentList(
+                   student: snapshot.data,
+                   screenType: screenType,
+                   parentId: this.parentId,
+                   userId: this.userId,
+                 )
+               : Center(child: CircularProgressIndicator());
+         },
+       ),
+     );
+   }
+ 
+}
+
+class StudentList extends StatefulWidget {
+  final List<Student> student;
+  final String screenType;
+  final String parentId,userId;
+
+  StudentList({Key key, this.student, this.screenType, this.parentId,this.userId}) : super(key: key);
+
+  @override
+  StudentListState createState() {
+    return new StudentListState();
   }
 }
 
-class StudentList extends StatelessWidget {
-  final List<Student> student;
-  final String screenType;
+class StudentListState extends State<StudentList> {
   TransitionType transitionType = TransitionType.native;
-  StudentList({Key key, this.student, this.screenType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
-        itemCount: student.length,
+        itemCount: widget.student.length,
         itemBuilder: (BuildContext ctxt, int index) {
-          final item = student[index];
+          final item = widget.student[index];
 
           return new SafeArea(
             top: false,
@@ -64,7 +80,7 @@ class StudentList extends StatelessWidget {
                     children: <Widget>[
                       ListTile(
                         onTap: () {
-                          switch (screenType) {
+                          switch (widget.screenType) {
                             case Config.STUDENT_SCREEN:
                               //Application.router.navigateTo(context, "ferry",transition: transitionType,replace: false);
                               break;
@@ -88,6 +104,11 @@ class StudentList extends StatelessWidget {
                                       item.sectionId.toString(),
                                   transition: transitionType,
                                   replace: false);
+                              break;
+                              case Config.LEAVE_SCREEN:
+                              Application.router.navigateTo(context,
+                                  "leave?studentId=" + item.id.toString()+"&userId="+widget.userId+"&studentName="+item.name.toString(),
+                                  transition: transitionType, replace: false);
                               break;
                           }
                         },

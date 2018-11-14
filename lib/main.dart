@@ -128,7 +128,8 @@ class _MyAppState extends State<MyApp> {
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _parentId = params["parentId"]?.first;
       String _screenType = params["screenType"]?.first;
-      return new StudentListData(parentId: _parentId, screenType: _screenType);
+      String _userId = params["userId"]?.first;
+      return new StudentListData(parentId: _parentId, screenType: _screenType,userId: _userId);
     }));
 
     // Define our Grade page.
@@ -161,9 +162,11 @@ class _MyAppState extends State<MyApp> {
 // Define our Time Table page.
     router.define('leave', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-      String _pid = params["parentId"]?.first;
+      String _sid = params["studentId"]?.first;
+      String _puid = params["userId"]?.first;
+       String _sname = params["studentName"]?.first;
       return new LeaveScreen(
-        parentId: _pid,
+        userId: _puid,studentId: _sid,studentName: _sname
       );
     }));
 //Define our Setting Page.

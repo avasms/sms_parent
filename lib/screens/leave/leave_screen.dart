@@ -6,9 +6,8 @@ import 'package:sms_parent/util/app_translation.dart';
 
 
 class LeaveScreen extends StatefulWidget{
-  final parentId;
-
-  const LeaveScreen({Key key, this.parentId}) : super(key: key);
+  final userId,studentId,studentName;
+  const LeaveScreen({Key key, this.userId, String this.studentId, String this.studentName}) : super(key: key);
   _LeaveScreenPage createState()=>new _LeaveScreenPage();
 }
 class _LeaveScreenPage extends State<LeaveScreen> with SingleTickerProviderStateMixin{
@@ -18,6 +17,7 @@ TabController controller;
     // TODO: implement initState
     super.initState();
     controller=new TabController(vsync: this,length: 3);
+    print(widget.studentName);
   }
   @override
     void dispose() {
@@ -49,7 +49,7 @@ Widget build(BuildContext context){
     body:TabBarView(
       controller: controller,
       children: <Widget>[
-        new CreateLeaveScreen(),
+        new CreateLeaveScreen(studentId:widget.studentId,studentName:widget.studentName,userId:widget.userId),
         new ViewLeaveScreen(),        
       ],
     ) ,

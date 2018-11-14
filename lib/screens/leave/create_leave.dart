@@ -3,30 +3,54 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
-//import 'package:sms_parent/models/admin.dart';
-//import 'package:sms_parent/models/student.dart';
-//import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:sms_parent/models/admin.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
 
 class CreateLeaveScreen extends StatefulWidget {
-  final parentId;
-  const CreateLeaveScreen({Key key, this.parentId}) : super(key: key);
+  final userId, studentId, studentName;
+  const CreateLeaveScreen(
+      {Key key, this.userId, this.studentId, this.studentName})
+      : super(key: key);
   @override
   _LeaveScreenState createState() => new _LeaveScreenState();
 }
 
 class _LeaveScreenState extends State<CreateLeaveScreen> {
-  List<String> student =
-      ["Choose sender name", "Mg", "Aye", "Su", "Hla", "Sapel"].toList();
-  List<String> staff = [
-    "Choose receiver name",
-    "U Mg Hla",
-    "Daw Aye Nyein",
-    "Daw Su Hlaing",
-    "Daw Hla",
-    " Daw Sapel"
-  ].toList();
-  String _selectStudent = "";
-  String _selectStaff = "";
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<AdminStaff>>(
+      future: new ApiCommonDao().getAdminManagementList(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) print(snapshot.error);
+        return snapshot.hasData
+            ? LeaveForm(
+                adList: snapshot.data,
+                studentId: widget.studentId,
+                studentName: widget.studentName,
+                userId: widget.userId)
+            : Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+}
+
+class LeaveForm extends StatefulWidget {
+  final List<AdminStaff> adList;
+  final userId, studentId, studentName;
+  LeaveForm(
+      {Key key, this.adList, this.studentId, this.studentName, this.userId})
+      : super(key: key);
+
+  @override
+  LeaveFormState createState() {
+    return new LeaveFormState();
+  }
+}
+
+class LeaveFormState extends State<LeaveForm> {
+ 
+  AdminStaff _selectAdmin = new AdminStaff();
+
   var _formkey = new GlobalKey<FormState>();
   TextEditingController _clear1 = new TextEditingController();
   TextEditingController _clear2 = new TextEditingController();
@@ -34,7 +58,7 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
 
   String _fromdatetime = '';
   String _todatetime = '';
-
+  var nowDate = new DateTime.now();
   int fromyear = 2018;
 
   int frommonth = 10;
@@ -47,13 +71,13 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
 
   int todate = 3;
 
-  @override
+  List<AdminStaff> dataList;
+
   void initState() {
-    // TODO: implement initState
     super.initState();
-    //_selectStaff=staff.first;
-    _selectStaff = staff.first;
-    _selectStudent = student.first;
+    dataList = widget.adList;
+    _selectAdmin = widget.adList.first;
+  print(nowDate);
   }
 
   @override
@@ -66,55 +90,46 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
               width: 1.0, color: Colors.grey, style: BorderStyle.solid)),
       width: 320.0,
       height: 50.0,
-      //padding: EdgeInsets.only(top: 5.0,bottom: 5.0,left: 5.0,right: 5.0),
+      padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
       child: new DropdownButtonHideUnderline(
-        child: new DropdownButton<String>(
-            value: _selectStaff.trim(),
-            isDense: true,
-            items: staff
-                .map((String item) => new DropdownMenuItem<String>(
-                    value: item, child: new Text(item)))
-                .toList(),
-            onChanged: (String s) {
-              setState(() {
-                _selectStaff = s;
-              });
-            }),
+        child: new DropdownButton<AdminStaff>(
+          value: _selectAdmin,
+          items: dataList.map((AdminStaff adminStaff) {
+            return new DropdownMenuItem<AdminStaff>(
+              value: adminStaff,
+              child: new Text(adminStaff.name),
+            );
+          }).toList(),
+          onChanged: (AdminStaff adminStaff) {
+            setState(() {
+              _selectAdmin = adminStaff;
+              
+            });
+          },
+        ),
       ),
     );
     final sender = new Container(
-      //padding: EdgeInsets.only(top: 5.0,bottom: 5.0,left: 5.0,right: 5.0),
-      decoration: new BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(4.0),
-          border: Border.all(
-              width: 1.0, color: Colors.grey, style: BorderStyle.solid)),
-      //color: Colors.grey,
-      width: 320.0,
-      height: 50.0,
-      child: new DropdownButtonHideUnderline(
-        child: new DropdownButton<String>(
-            value: _selectStudent.trim(),
-            isDense: true,
-            items: student
-                .map((String item) => new DropdownMenuItem<String>(
-                    value: item, child: new Text(item)))
-                .toList(),
-            onChanged: (String s) {
-              setState(() {
-                _selectStudent = s;
-              });
-            }),
-      ),
-    );
+        padding: EdgeInsets.only(top: 14.0, bottom: 5.0, left: 5.0, right: 5.0),
+        decoration: new BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(4.0),
+            border: Border.all(
+                width: 1.0, color: Colors.grey, style: BorderStyle.solid)),
+        //color: Colors.grey,
+        width: 320.0,
+        height: 50.0,
+        child: new Text(
+          widget.studentName,
+        ));
     final dateForm = new Container(
       //padding: EdgeInsets.only(left: 15.0),
       child: Row(
         children: <Widget>[
           new Container(
             width: 162.0,
-            height: 40.0,
+            height: 60.0,
             decoration: new BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
@@ -122,7 +137,7 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
                 shape: BoxShape.rectangle),
             child: new FlatButton(
                 child: new Text(
-                  'From Date\n $_fromdatetime',
+                  'From Date\n$_fromdatetime',
                 ),
                 onPressed: () {
                   final bool showTitleActions = true;
@@ -155,7 +170,7 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
           ),
           new Container(
             width: 162.0,
-            height: 40.0,
+            height: 60.0,
             decoration: new BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
@@ -163,7 +178,7 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
                 shape: BoxShape.rectangle),
             child: new FlatButton(
                 child: new Text(
-                  'To Date\n $_todatetime',
+                  'To Date\n$_todatetime',
                 ),
                 onPressed: () {
                   final bool showTitleActions = true;
@@ -246,16 +261,6 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
       ),
     );
 
-    void sendMessage() {
-      if (_formkey.currentState.validate()) {
-        _formkey.currentState.save();
-        _clear1.clear();
-        _clear2.clear();
-        print(
-            '$_title\n$_description\n$_selectStaff\n$_selectStudent\n$_fromdatetime\n$_todatetime');
-      }
-    }
-
     return new Center(
       child: new Container(
         child: new Card(
@@ -264,6 +269,13 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
             key: _formkey,
             child: new ListView(
               children: <Widget>[
+                new Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: new Text(
+                    "To",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
                 new Padding(padding: EdgeInsets.all(8.0), child: receiver),
                 new Padding(padding: EdgeInsets.all(8.0), child: sender),
                 new Padding(padding: EdgeInsets.all(8.0), child: dateForm),
@@ -272,7 +284,7 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
                   child: title,
                 ),
                 new SizedBox(
-                  height: 15.0,
+                  height: 30.0,
                   width: 0.0,
                 ),
                 new Padding(
@@ -288,7 +300,10 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),
                       onPressed: () {
-                        sendMessage();
+                        if(_formkey.currentState.validate()){
+                          _formkey.currentState.save();
+
+                        }
                       },
                       color: Colors.blueAccent,
                       child: Text(
