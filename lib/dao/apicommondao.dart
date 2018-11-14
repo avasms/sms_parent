@@ -84,8 +84,8 @@ class ApiCommonDao {
   Future<List<TimeTable>> getTimeTableListByClassId(
       String sectionId, String day) async {
     String url = "/studentTimeTable?day=$day&sid=$sectionId";
-    // print('APO');
-    //print(url);
+    print(sectionId);
+    print(url);
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
