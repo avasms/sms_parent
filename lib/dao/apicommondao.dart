@@ -184,13 +184,15 @@ class ApiCommonDao {
     return false;
   }
 
-  static getSchoolInformation() async {
-    String url = "/school_information";
+  Future<School> getSchoolInformation() async {
+    String url = "/retrieve_about_school";
     final res = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
     final data = res.data;
+     print(data);
     if (res != null) {
-      return data.map<School>((json) => School.fromJson(json)).toList();
+     return School.fromJson(data);
+    //  return data.map<School>((json) => School.fromJson(json)).toList();
     }
-    return false;
+    return null;
   }
 }

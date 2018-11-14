@@ -66,6 +66,7 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
               width: 1.0, color: Colors.grey, style: BorderStyle.solid)),
       width: 320.0,
       height: 50.0,
+      padding: EdgeInsets.all(5.0),
       //padding: EdgeInsets.only(top: 5.0,bottom: 5.0,left: 5.0,right: 5.0),
       child: new DropdownButtonHideUnderline(
         child: new DropdownButton<String>(
@@ -93,6 +94,7 @@ class _LeaveScreenState extends State<CreateLeaveScreen> {
       //color: Colors.grey,
       width: 320.0,
       height: 50.0,
+      padding: EdgeInsets.all(5.0),
       child: new DropdownButtonHideUnderline(
         child: new DropdownButton<String>(
             value: _selectStudent.trim(),

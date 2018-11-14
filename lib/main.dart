@@ -191,7 +191,7 @@ class _MyAppState extends State<MyApp> {
     }));
 
     //Define our AboutSchool Page.
-    router.define('about',handler: new Handler(
+    router.define('aboutSchool',handler: new Handler(
       handlerFunc: (BuildContext context,Map<String,dynamic>params){
         return new AboutScreen();
       }

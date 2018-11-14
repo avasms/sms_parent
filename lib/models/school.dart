@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 class School {
   int id;
-  String  schoolName;
+  String schoolName;
   String address;
   String phone;
   String photoPath;
@@ -20,12 +19,12 @@ class School {
   factory School.fromJson(Map<String,dynamic>json){
     return School(
       id: json['id'] as int,
-      schoolName: json['schoolName'] as String,
-      address: json['schoolLogo'] as String,
-      phone: json['about'] as String,
-      photoPath: json['id'] as String,
-      runningYear: json['schoolName'] as String,
-      email: json['schoolLogo'] as String,
+      schoolName: json['name'] as String,
+      address: json['address'] as String,
+      phone: json['phone'] as String,
+      photoPath: json['photoPath'] as String,
+      runningYear: json['runningYear'] as String,
+      email: json['email'] as String,
     );
 
   }
