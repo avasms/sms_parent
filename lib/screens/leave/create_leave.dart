@@ -123,6 +123,7 @@ class LeaveFormState extends State<LeaveForm> {
         child: new Text(
           widget.studentName,
         ));
+
     final dateForm = new Container(
       //padding: EdgeInsets.only(left: 15.0),
       child: Row(

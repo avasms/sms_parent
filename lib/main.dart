@@ -23,6 +23,8 @@ import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/screens/setting/setting_screen.dart';
 import 'package:sms_parent/util/dbhelper.dart';
+import 'package:sms_parent/screens/aboutschool/about_screen.dart';
+
 
 //import 'package:sms_parent/util/commonComponent.dart';
 
@@ -190,6 +192,13 @@ class _MyAppState extends State<MyApp> {
       String _userid = params["userId"]?.first;
       return new MessageScreen(userId:_userid);
     }));
+
+    //Define our AboutSchool Page.
+    router.define('aboutSchool',handler: new Handler(
+      handlerFunc: (BuildContext context,Map<String,dynamic>params){
+        return new AboutScreen();
+      }
+    ));
 
 
     // Defind Router
