@@ -9,6 +9,7 @@ import 'package:sms_parent/models/examGrade.dart';
 import 'package:sms_parent/models/exam.dart';
 import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/models/message.dart';
+import 'package:sms_parent/models/school.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 
@@ -168,6 +169,15 @@ Future<List<Message>> getSentMessageData(userId) async {
    if(result != null){
      return true;
    }
+    return false;
+  }
+  static showschoolInformation() async{
+    String url="/school_information";
+    final res= await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+    final data=res.data; 
+    if (res !=null){
+      return data.map<School>((json)=>School.fromJson(json)).toList();
+    }
     return false;
   }
 }
