@@ -44,6 +44,8 @@ class StudentList extends StatelessWidget {
           final item = dormitory[index];
           return Card(
             color: Colors.white,
+            elevation: 5.0,
+            margin: EdgeInsets.all(8.0),
             child: new ExpansionTile(
                 title: Text.rich(
                   TextSpan(
@@ -70,9 +72,97 @@ class StudentList extends StatelessWidget {
                       padding:EdgeInsets.only(bottom: 70.0),
                       child: Icon(
                       Icons.home,
-                      size: 50.0,
+                      size: 35.0,
                     ),),
-                    title: Text.rich(
+                    title: new Container(
+                      child: new Column(children: <Widget>[
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                AppTranslations.of(context)
+                                    .text("common_school"),
+                                style: TextStyle(
+                                    fontFamily: 'Myanmar', fontSize: 16.0),
+                              ),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(': ${item.schoolName}',
+                                  style: TextStyle(
+                                      fontFamily: 'Zawgyi', fontSize: 16.0)),
+                            ),
+                          ],
+                        ),
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                AppTranslations.of(context).text("common_description"),
+                                style: TextStyle(
+                                    fontFamily: 'Myanmar', fontSize: 16.0),
+                              ),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(': ${item.description}',
+                                  style: TextStyle(
+                                      fontFamily: 'Zawgyi', fontSize: 16.0)),
+                            ),
+                          ],
+                        ),
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                  AppTranslations.of(context).text("room_no"),
+                                  style: TextStyle(
+                                      fontFamily: 'Myanmar', fontSize: 16.0),
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(': ${item.roomNo}',
+                                  style: TextStyle(
+                                      fontFamily: 'Zawgyi', fontSize: 16.0)),
+                            ),
+                          ],
+                        ),
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                AppTranslations.of(context).text("teacher"),
+                                style: TextStyle(
+                                    fontFamily: 'Myanmar', fontSize: 16.0),
+                              ),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(
+                                ': ${item.teacherName}',
+                                style: TextStyle(
+                                    fontFamily: 'Zawgyi', fontSize: 16.0),
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ]),
+                    ),
+                    /*title: Text.rich(
                       TextSpan(
                         children: <TextSpan>[
                           TextSpan(
@@ -112,7 +202,7 @@ class StudentList extends StatelessWidget {
                               style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
                         ],
                       ),
-                    ),
+                    ),*/
                   ),
                 ]),
           );

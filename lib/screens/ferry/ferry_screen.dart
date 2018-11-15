@@ -43,6 +43,8 @@ class FerryList extends StatelessWidget {
           final item = transport[index];
           return Card(
             color: Colors.white,
+            elevation: 5.0,
+            margin: EdgeInsets.all(8.0),
             child: new ExpansionTile(
                 title: Text.rich(
                   TextSpan(
@@ -51,7 +53,7 @@ class FerryList extends StatelessWidget {
                           text: AppTranslations.of(context).text("ferry_name"),
                           style: TextStyle(fontFamily: 'Myanmar')),
                       TextSpan(
-                          text: ' : ${item.name}',
+                          text: ': ${item.name}',
                           style: TextStyle(fontFamily: 'Zawgyi')),
                     ],
                   ),
@@ -63,13 +65,102 @@ class FerryList extends StatelessWidget {
                     height: 15.0,
                   ),
                   ListTile(
-                    leading:new Padding(padding:EdgeInsets.only(bottom: 70.0),
-                    child: Icon(
-                      Icons.directions_bus,
-                      size: 50.0,
+                    leading: new Padding(
+                      padding: EdgeInsets.only(bottom: 70.0),
+                      child: Icon(
+                        Icons.directions_bus,
+                        size: 35.0,
+                      ),
                     ),
+                    title: new Container(
+                      child: new Column(children: <Widget>[
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                AppTranslations.of(context)
+                                    .text("common_school"),
+                                style: TextStyle(
+                                    fontFamily: 'Myanmar', fontSize: 16.0),
+                              ),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(': ${item.schoolName}',
+                                  style: TextStyle(
+                                      fontFamily: 'Zawgyi', fontSize: 16.0)),
+                            ),
+                          ],
+                        ),
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                AppTranslations.of(context).text("routes"),
+                                style: TextStyle(
+                                    fontFamily: 'Myanmar', fontSize: 16.0),
+                              ),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(': ${item.routeFare}',
+                                  style: TextStyle(
+                                      fontFamily: 'Zawgyi', fontSize: 16.0)),
+                            ),
+                          ],
+                        ),
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                  AppTranslations.of(context).text("car_no"),
+                                  style: TextStyle(
+                                      fontFamily: 'Myanmar', fontSize: 16.0),
+                                  overflow: TextOverflow.ellipsis),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(': ${item.vehicleNo}',
+                                  style: TextStyle(
+                                      fontFamily: 'Zawgyi', fontSize: 16.0)),
+                            ),
+                          ],
+                        ),
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                AppTranslations.of(context).text("driver_name"),
+                                style: TextStyle(
+                                    fontFamily: 'Myanmar', fontSize: 16.0),
+                              ),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(
+                                ': ${item.driverName}',
+                                style: TextStyle(
+                                    fontFamily: 'Zawgyi', fontSize: 16.0),
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ]),
                     ),
-                    title: Text.rich(
+                    /*title: Text.rich(
                       TextSpan(
                         children: <TextSpan>[
                           TextSpan(
@@ -81,8 +172,8 @@ class FerryList extends StatelessWidget {
                               style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
                         ],
                       ),
-                    ),
-                    subtitle: new RichText(
+                    ),*/
+                    /*subtitle: new RichText(
                       text: new TextSpan(
                         //text: 'Driver Name: U Maung Maung\n ' ,
                         style: DefaultTextStyle.of(context).style,
@@ -108,7 +199,7 @@ class FerryList extends StatelessWidget {
                               style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
                         ],
                       ),
-                    ),
+                    ),*/
                   ),
                 ]),
           );
