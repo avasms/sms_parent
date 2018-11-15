@@ -4,10 +4,9 @@ import 'package:flutter_html_view/flutter_html_view.dart';
 
 class MessageView extends StatefulWidget{
   final Message receiveData;
-  final VoidCallback onAction;
-  final CurvedAnimation animation;
+  
 
-  MessageView({this.receiveData, this.onAction, this.animation});
+  MessageView({this.receiveData,});
 StateViewPage createState() => new StateViewPage();
 //final ReceiveData mess;
 //ReceiveData({this.mess});
@@ -42,7 +41,6 @@ StateViewPage createState() => new StateViewPage();
                           "Date",
                           textAlign: TextAlign.left,
                           style: TextStyle(fontFamily: "Serif",fontWeight: FontWeight.w600,fontSize: 18.0),
-                          overflow: TextOverflow.ellipsis,
                           
                           //style: Theme.of(context).textTheme.body2
                           
@@ -57,7 +55,6 @@ StateViewPage createState() => new StateViewPage();
                       ),
                       Divider(
                         height: 10.0,
-                        indent: 35.0,
                       ),
                       Container(
                         width: double.infinity,
@@ -74,12 +71,11 @@ StateViewPage createState() => new StateViewPage();
                         width: double.infinity,
                         padding: EdgeInsets.only(left:35.0),
                         child: Text(receiveData.title,
-                        style: TextStyle(fontFamily: "Serif",fontSize: 16.0),
-                          overflow: TextOverflow.ellipsis,)
+                        style: TextStyle(fontFamily: "Zawgyi",fontSize: 16.0),
+                          )
                       ),
                       Divider(
                         height: 10.0,
-                        //indent: 35.0,
                       ),
                       Container(
                         width: double.infinity,
@@ -88,7 +84,6 @@ StateViewPage createState() => new StateViewPage();
                             textAlign: TextAlign.left,
                             style: TextStyle(fontFamily: "Serif",fontWeight: FontWeight.w600,fontSize: 18.0),
                           overflow: TextOverflow.ellipsis,
-                            //style: Theme.of(context).textTheme.body2
                             ),
                       ),
                       Container(
@@ -101,7 +96,6 @@ StateViewPage createState() => new StateViewPage();
                       ),
                       Divider(
                         height: 10.0,
-                        //indent: 35.0,
                       ),
                       
                     ],

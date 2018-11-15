@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:flutter_html_view/flutter_html_view.dart';
 
 class NoticeBoardScreen extends StatefulWidget {
   NoticeBoard createState() => new NoticeBoard();
@@ -83,9 +84,14 @@ class NoticeList extends StatelessWidget {
                                           new CircularProgressIndicator(),
                                       errorWidget: new Icon(Icons.error),
                                     ),
-                                    new Padding(
+                                    new SizedBox(height: 20.0,),
+                                    new Container(
                                         padding: EdgeInsets.all(10.0),
-                                        child: new Text('${item.description}')),
+                                        child: new HtmlView(
+                                          data: '${item.description}',
+                                        ),
+                                       // child: new Text('${item.description}'),
+                                    ),
                                   ],
                                 ),
                               ),

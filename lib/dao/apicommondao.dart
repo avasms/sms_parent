@@ -10,6 +10,7 @@ import 'package:sms_parent/models/exam.dart';
 import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/models/message.dart';
 import 'package:sms_parent/models/school.dart';
+import 'package:sms_parent/models/leave.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 
@@ -40,9 +41,7 @@ class ApiCommonDao {
 
   Future<List<Student>> getStudentList(String parentId) async {
     String url = "/student_data_list/$parentId";
-    // print('APO');
-    // print(parentId);
-//  print(url);
+    
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
     final data = response.data;
@@ -217,6 +216,19 @@ class ApiCommonDao {
       return true;
     }
     return false;
+  }
+
+  Future<List<Leave>> viewLeaveData(userId,studentId) async {
+    String url = "/retrieve_student_leave?userId=$userId&studentId=$studentId";
+    
+
+    final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+
+    final data = response.data;
+    if (response != null) {
+      return data.map<Leave>((json) => Leave.fromJson(json)).toList();
+    }
+    return null;
   }
 
 }
