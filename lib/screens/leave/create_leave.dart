@@ -1,5 +1,5 @@
 import 'dart:async';
-//import 'package:fluro/fluro.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
@@ -48,7 +48,6 @@ class LeaveForm extends StatefulWidget {
 }
 
 class LeaveFormState extends State<LeaveForm> {
- 
   AdminStaff _selectAdmin = new AdminStaff();
 
   var _formkey = new GlobalKey<FormState>();
@@ -71,13 +70,16 @@ class LeaveFormState extends State<LeaveForm> {
 
   int todate = 3;
 
+  String _userId; 
   List<AdminStaff> dataList;
-
+  String _stuId;
   void initState() {
     super.initState();
     dataList = widget.adList;
+    _userId = widget.userId;
     _selectAdmin = widget.adList.first;
-  print(nowDate);
+    _stuId = widget.studentId;
+    print(nowDate);
   }
 
   @override
@@ -103,7 +105,6 @@ class LeaveFormState extends State<LeaveForm> {
           onChanged: (AdminStaff adminStaff) {
             setState(() {
               _selectAdmin = adminStaff;
-              
             });
           },
         ),
@@ -301,9 +302,30 @@ class LeaveFormState extends State<LeaveForm> {
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),
                       onPressed: () {
-                        if(_formkey.currentState.validate()){
-                          _formkey.currentState.save();
-
+                        if (_fromdatetime == '' || _fromdatetime == '') {
+                          if (_fromdatetime == '') {
+                            Fluttertoast.showToast(
+                                msg: "Plese insert From Date",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.TOP,
+                                timeInSecForIos: 20,
+                                bgcolor: '#ffffff',
+                                textcolor: '#d50000');
+                          } else {
+                            Fluttertoast.showToast(
+                                msg: "Plese insert To Date",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.TOP,
+                                timeInSecForIos: 20,
+                                bgcolor: '#ffffff',
+                                textcolor: '#d50000');
+                          }
+                        } else {
+                          if (_formkey.currentState.validate()) {
+                            _formkey.currentState.save();
+                            new ApiCommonDao().sendLeaveFormToSchool(_userId, _selectAdmin.id.toString(), _stuId,
+      _fromdatetime,_todatetime,_title,_description);
+                          }
                         }
                       },
                       color: Colors.blueAccent,

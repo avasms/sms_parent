@@ -195,4 +195,28 @@ class ApiCommonDao {
     }
     return null;
   }
+
+  static sendLeaveFormToSchool(String fromUserId, String toUserId, String studentId,
+      String fromDate,String toDate,String name,String description ) async {
+    var result;
+    String url = "/sendLeaveForm_to_school";
+    var data = {
+      "fromUserId": fromUserId,
+      "toUserId": toUserId,
+      "studentId": studentId,
+      "fromDate": fromDate,
+      "toDate": toDate,
+      "name": name,
+      "description": description
+    };
+    var res = await HttpAPIManager.postWithParam(url, data, "post");
+
+    result = res.data['senderId'];
+
+    if (result != null) {
+      return true;
+    }
+    return false;
+  }
+
 }
