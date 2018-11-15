@@ -323,7 +323,7 @@ class LeaveFormState extends State<LeaveForm> {
                         } else {
                           if (_formkey.currentState.validate()) {
                             _formkey.currentState.save();
-                            new ApiCommonDao().sendLeaveFormToSchool(_userId, _selectAdmin.id.toString(), _stuId,
+                            ApiCommonDao.sendLeaveFormToSchool(_userId, _selectAdmin.id.toString(), _stuId,
       _fromdatetime,_todatetime,_title,_description);
                           }
                         }
