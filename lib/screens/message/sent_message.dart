@@ -49,8 +49,12 @@ class ReceivedMsgList extends StatelessWidget {
             itemCount: examList.length,
             padding: const EdgeInsets.all(15.0),
             itemBuilder: (context, index) {
-              final item = examList[index];
-             
+              Message item = examList[index];
+              var string=item.messageText;
+              if(string.length>40){
+              string=string.substring(0,40)+'...';
+              }
+
               double c_width = MediaQuery.of(context).size.width * 0.8;
               return Column(
                 children: <Widget>[
@@ -67,11 +71,12 @@ class ReceivedMsgList extends StatelessWidget {
                       subtitle: new Container(
                         width: c_width,
                         height: 40.0,
-                        child: new Chip(
-                          backgroundColor: Colors.white24,
-                          label: new HtmlView(
-                            data:'${item.messageText}',
-                            
+                        child: new Container(
+                          child: new HtmlView(
+                            data:'$string',
+              
+
+                            //c_width:,
                           ),
                           
                         ),
