@@ -70,7 +70,7 @@ class LeaveFormState extends State<LeaveForm> {
 
   int todate = 3;
 
-  String _userId; 
+  String _userId;
   List<AdminStaff> dataList;
   String _stuId;
   void initState() {
@@ -302,20 +302,20 @@ class LeaveFormState extends State<LeaveForm> {
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0)),
                       onPressed: () {
-                        if (_fromdatetime == '' || _fromdatetime == '') {
+                        if (_fromdatetime == '' || _todatetime == '') {
                           if (_fromdatetime == '') {
                             Fluttertoast.showToast(
-                                msg: "Plese insert From Date",
+                                msg: "Please insert From Date",
                                 toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.TOP,
+                                gravity: ToastGravity.CENTER,
                                 timeInSecForIos: 20,
                                 bgcolor: '#ffffff',
                                 textcolor: '#d50000');
                           } else {
                             Fluttertoast.showToast(
-                                msg: "Plese insert To Date",
+                                msg: "Please insert To Date",
                                 toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.TOP,
+                                gravity: ToastGravity.CENTER,
                                 timeInSecForIos: 20,
                                 bgcolor: '#ffffff',
                                 textcolor: '#d50000');
@@ -323,8 +323,29 @@ class LeaveFormState extends State<LeaveForm> {
                         } else {
                           if (_formkey.currentState.validate()) {
                             _formkey.currentState.save();
-                            ApiCommonDao.sendLeaveFormToSchool(_userId, _selectAdmin.id.toString(), _stuId,
-      _fromdatetime,_todatetime,_title,_description);
+                            ApiCommonDao.sendLeaveFormToSchool(
+                                _userId,
+                                _selectAdmin.id.toString(),
+                                _stuId,
+                                _fromdatetime,
+                                _todatetime,
+                                _title,
+                                _description);
+
+                            Fluttertoast.showToast(
+                                msg: "Leave Form Successfully Sent",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIos: 20,
+                                bgcolor: '#ffffff',
+                                textcolor: '#d50000');
+
+                            setState(() {
+                              _clear1.clear();
+                              _clear2.clear();
+                              _fromdatetime = '';
+                              _todatetime = '';
+                            });
                           }
                         }
                       },

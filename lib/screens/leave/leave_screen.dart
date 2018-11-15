@@ -50,7 +50,7 @@ Widget build(BuildContext context){
       controller: controller,
       children: <Widget>[
         new CreateLeaveScreen(studentId:widget.studentId,studentName:widget.studentName,userId:widget.userId),
-        new ViewLeaveScreen(),        
+        new ViewLeaveScreen(userId:widget.userId),        
       ],
     ) ,
 );
