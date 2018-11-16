@@ -51,6 +51,7 @@ class ReceivedMsgList extends StatelessWidget {
             itemBuilder: (context, index) {
               Message item = examList[index];
               var string=item.messageText;
+              print('$string');
               if(string.length>40){
               string=string.substring(0,40)+'...';
               }
@@ -70,17 +71,12 @@ class ReceivedMsgList extends StatelessWidget {
                       ),
                       subtitle: new Container(
                         width: c_width,
-                        height: 40.0,
+                        //height: 40.0,
                         child: new Container(
-                          child: new HtmlView(
-                            data:'$string',
-              
-
-                            //c_width:,
-                          ),
-                          
+                          child: new Text(
+                            string,
+                          ), 
                         ),
-                        
                       ),
                      
                       leading: Column(

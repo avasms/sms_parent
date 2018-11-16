@@ -70,11 +70,8 @@ class MessageFormState extends State<MessageForm> {
         if (value.isEmpty) return 'Please Enter Title';
       },
       decoration: InputDecoration(
-        labelText: 'Title',
         isDense: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4.0),
-        ),
+        hintText: 'Subject',
         labelStyle: TextStyle(
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w400,
@@ -86,19 +83,15 @@ class MessageFormState extends State<MessageForm> {
     final _descriptionForm = TextFormField(
       autofocus: false,
       keyboardType: TextInputType.multiline,
-      maxLines: 10,
-      textInputAction: TextInputAction.newline,
+      maxLines: 7,
       onSaved: (value) => _description = value,
       controller: _clear2,
       validator: (value) {
         if (value.isEmpty) return 'Please Enter Description';
       },
       decoration: InputDecoration(
-        labelText: 'Description',
+        hintText: 'Message',
         isDense: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4.0),
-        ),
         labelStyle: TextStyle(
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w400,
@@ -108,16 +101,20 @@ class MessageFormState extends State<MessageForm> {
     );
 
     return new Center(
-      child: new Container(
-        child: new Card(
-          color: Colors.white70,
-          child: new Form(
-            key: _formKey,
-            child: new ListView(
-              children: <Widget>[
-                new Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: new DropdownButtonHideUnderline(
+      child: new Card(
+        color: Colors.white,
+        child: new Form(
+          key: _formKey,
+          child: new ListView(
+            children: <Widget>[
+              new Padding(
+                padding: EdgeInsets.all(5.0),
+                child: new ListTile(
+                  leading: new Text(
+                    'To',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  title: new DropdownButtonHideUnderline(
                     child: new DropdownButton<AdminStaff>(
                       hint: Text('Please Select Admin'),
                       value: _selectValue,
@@ -137,37 +134,43 @@ class MessageFormState extends State<MessageForm> {
                     ),
                   ),
                 ),
-                new Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: _titleForm,
-                ),
-                new Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: _descriptionForm,
-                ),
-                new Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 48.0,
-                    width: 300.0,
-                    child: RaisedButton(
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10.0)),
-                      onPressed: () {
-                        _sendMessage();
-                      },
-                      color: Colors.blueAccent,
-                      child: Text(
-                        'Send',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              new Divider(
+                height: 1.0,
+              ),
+              new Padding(
+                padding: EdgeInsets.all(8.0),
+                child: _titleForm,
+              ),
+              new Divider(
+                height: 1.0,
+              ),
+              new Padding(
+                padding: EdgeInsets.all(8.0),
+                child: _descriptionForm,
+              ),
+              new Divider(
+                height: 1.0,
+              ),
+              new Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: new Material(
+                      borderRadius: BorderRadius.circular(30.0),
+                      shadowColor: Colors.blueAccent.shade100,
+                      elevation: 5.0,
+                      child:new Container(
+                        height: 45.0,
+                      child: new RaisedButton(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                        color: Colors.blue,
+                        child: new Text('Send',
+                            style: new TextStyle(
+                                fontSize: 20.0, color: Colors.white)),
+                        onPressed: () {
+                          _sendMessage();
+                        },
+                      )))),
+            ],
           ),
         ),
       ),
@@ -182,13 +185,12 @@ class MessageFormState extends State<MessageForm> {
           .then((res) {
         if (res) {
           Fluttertoast.showToast(
-              msg: 'Message sent Successfully',
+              msg: "Message sent Successfully,$_description",
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
-              timeInSecForIos: 3,
-              bgcolor: '#ffffff',
-              textcolor: '#d50000');
-
+              timeInSecForIos: 1,
+              bgcolor: "#ffffff",
+              textcolor: '#ffffff');
           setState(() {
             _clear1.clear();
             _clear2.clear();
