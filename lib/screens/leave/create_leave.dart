@@ -58,17 +58,17 @@ class LeaveFormState extends State<LeaveForm> {
   String _fromdatetime = '';
   String _todatetime = '';
   var nowDate = new DateTime.now();
-  int fromyear = 2018;
+  int fromyear;
 
-  int frommonth = 10;
+  int frommonth;
 
-  int fromdate = 3;
+  int fromdate;
 
-  int toyear = 2018;
+  int toyear ;
 
-  int tomonth = 10;
+  int tomonth ;
 
-  int todate = 3;
+  int todate;
 
   String _userId;
   List<AdminStaff> dataList;
@@ -79,7 +79,13 @@ class LeaveFormState extends State<LeaveForm> {
     _userId = widget.userId;
     _selectAdmin = widget.adList.first;
     _stuId = widget.studentId;
-    print(nowDate);
+    fromyear = nowDate.year;
+    frommonth = nowDate.month;
+    fromdate=nowDate.day;
+    toyear=nowDate.year;
+    tomonth=nowDate.month;
+    todate=nowDate.day;
+
   }
 
   @override
@@ -135,7 +141,7 @@ class LeaveFormState extends State<LeaveForm> {
                     context,
                     showTitleActions: showTitleActions,
                     minYear: 2018,
-                    maxYear: 2020,
+                    maxYear: 2200,
                     initialYear: fromyear,
                     initialMonth: frommonth,
                     initialDate: fromdate,
