@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/studentdetail/info/infoscreen.dart';
 import 'package:sms_parent/screens/studentdetail/attendant/attendant_screen.dart';
 import 'package:sms_parent/screens/studentdetail/payment/payment_screen.dart';
+import 'package:sms_parent/models/student.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:sms_parent/util/config.dart';
 
 class StudentDetailScreen extends StatefulWidget {
   final studentId;
   final studentName;
 
-  const StudentDetailScreen({Key key, this.studentId, this.studentName}) : super(key: key);
+  const StudentDetailScreen({Key key, this.studentId, this.studentName,}) : super(key: key);
   
   _AboutScreen createState() => new _AboutScreen();
 }
@@ -29,7 +32,7 @@ class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderS
       }
   @override
   Widget build(BuildContext context) {
-      
+    //Student stud=widget.studentId;  
     return new Scaffold(
       appBar:AppBar(
         title: Text('Detail'),
@@ -40,7 +43,11 @@ class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderS
             alignment: const Alignment(0.0, 1.1),
             children: <Widget>[
               CircleAvatar(
-          backgroundImage: AssetImage('images/birds.jpg'),
+                child: new CachedNetworkImage(
+                            imageUrl: Config.BASE_URL +widget.studentName,
+                            placeholder: new CircularProgressIndicator(),
+                            errorWidget: new Icon(Icons.error),
+                          ),
           radius: 80.0,
         ),
         
