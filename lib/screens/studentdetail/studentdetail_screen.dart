@@ -3,6 +3,8 @@ import 'package:sms_parent/screens/studentdetail/info/infoscreen.dart';
 import 'package:sms_parent/screens/studentdetail/attendant/attendant_screen.dart';
 import 'package:sms_parent/screens/studentdetail/payment/payment_screen.dart';
 import 'package:sms_parent/models/student.dart';
+import 'package:sms_parent/models/studentInfo.dart';
+import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:sms_parent/util/config.dart';
 
@@ -12,10 +14,34 @@ class StudentDetailScreen extends StatefulWidget {
 
   const StudentDetailScreen({Key key, this.studentId, this.studentName,}) : super(key: key);
   
-  _AboutScreen createState() => new _AboutScreen();
+  //_AboutScreen createState() => new _AboutScreen();
+  _AboutStudent createState()=>new _AboutStudent();
 }
 
-class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderStateMixin{
+class _AboutStudent extends State<StudentDetailScreen> {
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: FutureBuilder<StudentInfo>(
+        future: new ApiCommonDao().viewStudentInfo(widget.studentId),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
+
+          return snapshot.hasData
+              ? AboutScreen(stud: snapshot.data)
+              : Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
+  }
+}
+
+class AboutScreen extends StatefulWidget{
+  final stud;
+  AboutScreen({this.stud});
+  _AboutScreen createState()=>new _AboutScreen();
+}
+class _AboutScreen extends State<AboutScreen> with SingleTickerProviderStateMixin{
   TabController _controller;
     @override
     void initState() {
@@ -32,7 +58,8 @@ class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderS
       }
   @override
   Widget build(BuildContext context) {
-    //Student stud=widget.studentId;  
+    //Student stud=widget.studentId; 
+    StudentInfo student=widget.stud; 
     return new Scaffold(
       appBar:AppBar(
         title: Text('Detail'),
@@ -44,7 +71,7 @@ class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderS
             children: <Widget>[
               CircleAvatar(
                 child: new CachedNetworkImage(
-                            imageUrl: Config.BASE_URL +widget.studentName,
+                            imageUrl: Config.BASE_URL +student.photoPath,
                             placeholder: new CircularProgressIndicator(),
                             errorWidget: new Icon(Icons.error),
                           ),
@@ -60,7 +87,7 @@ class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderS
           
           ),
           child: Text(
-            widget.studentName,
+            student.name,
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
@@ -94,9 +121,9 @@ class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderS
             child: new TabBarView(
               controller: _controller,
               children: <Widget>[
-                new InfoScreen(studentId: widget.studentId),
-                new AttendantScreen(studentId: widget.studentId),
-                new PaymentScreen(studentId: widget.studentId),
+                new InfoScreen(student: student),
+                //new AttendantScreen(studentId: widget.studentId),
+                //new PaymentScreen(studentId: widget.studentId),
               ],
             ),
           ),

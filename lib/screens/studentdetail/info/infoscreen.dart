@@ -4,36 +4,15 @@ import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:sms_parent/models/studentInfo.dart';
 
 class InfoScreen extends StatefulWidget {
-  final studentId;
-  InfoScreen({this.studentId});
+  final student;
+  InfoScreen({this.student});
   _Info createState() => new _Info();
 }
 
 class _Info extends State<InfoScreen> {
-  
-  @override
-  Widget build(BuildContext context) {
-   return Scaffold(
-     body: FutureBuilder<StudentInfo>(
-        future: new ApiCommonDao().viewStudentInfo(widget.studentId),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) print(snapshot.error);
-
-          return snapshot.hasData
-              ? ViewInfo(stud: snapshot.data)
-              : Center(child: CircularProgressIndicator());
-        },
-      ),
-   );
-    
-  }
-}
-class ViewInfo extends StatelessWidget{
-  StudentInfo stud;
-  ViewInfo({this.stud});
   @override
   Widget build(BuildContext context){
-    //StudentInfo info=Widget.stud;
+    StudentInfo stud=widget.student;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -161,61 +140,7 @@ class ViewInfo extends StatelessWidget{
                         )
                       ],),
                       new Divider(height: 1.0,),
-                      /*Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 10.0),
-                        child: Text(
-                          "Class Name",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontFamily: "Serif",
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18.0),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.only(
-                              left: 15.0, right: 15.0, bottom: 15.0),
-                          child: Text(
-                            stud.className,
-                            style:
-                                TextStyle(fontFamily: "Serif", fontSize: 16.0),
-                            overflow: TextOverflow.ellipsis,
-                          )),
-                      Divider(
-                        height: 10.0,
-                        indent: 35.0,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 10.0),
-                        child: Text(
-                          "Roll_No",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontFamily: "Serif",
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18.0),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.only(
-                            left: 14.0, right: 14.0, bottom: 14.0),
-                        child: Text(
-                          stud.rollNo,
-                          style: TextStyle(fontFamily: "Serif", fontSize: 16.0),
-                        ),
-                      ),
-                      Divider(
-                        height: 10.0,
-                        indent: 35.0,
-                      ),*/
+                      
                     ],
                   ),
                 ),
@@ -226,4 +151,4 @@ class ViewInfo extends StatelessWidget{
       ),
     );
   }
-}
+  }
