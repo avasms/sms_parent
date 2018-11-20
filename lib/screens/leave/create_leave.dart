@@ -58,17 +58,17 @@ class LeaveFormState extends State<LeaveForm> {
   String _fromdatetime = '';
   String _todatetime = '';
   var nowDate = new DateTime.now();
-  int fromyear = 2018;
+  int fromyear;
 
-  int frommonth = 10;
+  int frommonth;
 
-  int fromdate = 3;
+  int fromdate;
 
-  int toyear = 2018;
+  int toyear ;
 
-  int tomonth = 10;
+  int tomonth ;
 
-  int todate = 3;
+  int todate;
 
   String _userId;
   List<AdminStaff> dataList;
@@ -79,19 +79,20 @@ class LeaveFormState extends State<LeaveForm> {
     _userId = widget.userId;
     _selectAdmin = widget.adList.first;
     _stuId = widget.studentId;
-    print(nowDate);
+    fromyear = nowDate.year;
+    frommonth = nowDate.month;
+    fromdate=nowDate.day;
+    toyear=nowDate.year;
+    tomonth=nowDate.month;
+    todate=nowDate.day;
+
   }
 
   @override
   Widget build(BuildContext context) {
     final receiver = new Container(
-      decoration: new BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: Colors.white,
-          border: Border.all(
-              width: 1.0, color: Colors.grey, style: BorderStyle.solid)),
       width: 320.0,
-      height: 50.0,
+      height: 40.0,
       padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
       child: new DropdownButtonHideUnderline(
         child: new DropdownButton<AdminStaff>(
@@ -99,7 +100,7 @@ class LeaveFormState extends State<LeaveForm> {
           items: dataList.map((AdminStaff adminStaff) {
             return new DropdownMenuItem<AdminStaff>(
               value: adminStaff,
-              child: new Text(adminStaff.name),
+              child: new Text(adminStaff.name,style: TextStyle(color: Colors.indigoAccent),),
             );
           }).toList(),
           onChanged: (AdminStaff adminStaff) {
@@ -112,17 +113,10 @@ class LeaveFormState extends State<LeaveForm> {
     );
     final sender = new Container(
         padding: EdgeInsets.only(top: 14.0, bottom: 5.0, left: 5.0, right: 5.0),
-        decoration: new BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(4.0),
-            border: Border.all(
-                width: 1.0, color: Colors.grey, style: BorderStyle.solid)),
-        //color: Colors.grey,
         width: 320.0,
         height: 50.0,
         child: new Text(
-          widget.studentName,
+          widget.studentName,style: TextStyle(color: Colors.indigoAccent),
         ));
 
     final dateForm = new Container(
@@ -131,15 +125,15 @@ class LeaveFormState extends State<LeaveForm> {
         children: <Widget>[
           new Container(
             width: 162.0,
-            height: 60.0,
+            height: 50.0,
             decoration: new BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                border: Border.all(width: 1.0, color: Colors.grey),
+                border: Border.all(width: 1.0, color: Colors.indigoAccent),
                 shape: BoxShape.rectangle),
             child: new FlatButton(
                 child: new Text(
-                  'From Date\n$_fromdatetime',
+                  'From Date\n$_fromdatetime',style: TextStyle(color: Colors.indigoAccent),
                 ),
                 onPressed: () {
                   final bool showTitleActions = true;
@@ -147,7 +141,7 @@ class LeaveFormState extends State<LeaveForm> {
                     context,
                     showTitleActions: showTitleActions,
                     minYear: 2018,
-                    maxYear: 2020,
+                    maxYear: 2200,
                     initialYear: fromyear,
                     initialMonth: frommonth,
                     initialDate: fromdate,
@@ -172,15 +166,15 @@ class LeaveFormState extends State<LeaveForm> {
           ),
           new Container(
             width: 162.0,
-            height: 60.0,
+            height: 50.0,
             decoration: new BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4.0),
-                border: Border.all(width: 1.0, color: Colors.grey),
+                border: Border.all(width: 1.0, color: Colors.indigoAccent),
                 shape: BoxShape.rectangle),
             child: new FlatButton(
                 child: new Text(
-                  'To Date\n$_todatetime',
+                  'To Date\n$_todatetime',style: TextStyle(color: Colors.indigoAccent),
                 ),
                 onPressed: () {
                   final bool showTitleActions = true;
@@ -213,7 +207,7 @@ class LeaveFormState extends State<LeaveForm> {
 
     final title = new Container(
       width: 325.0,
-      height: 40.0,
+      //height: 40.0,
       child: new TextFormField(
         autofocus: false,
         controller: _clear1,
@@ -222,11 +216,9 @@ class LeaveFormState extends State<LeaveForm> {
           if (value.isEmpty) return 'Please Enter Title';
         },
         decoration: InputDecoration(
-          labelText: 'Title',
+          //labelText: 'Title',
+          hintText: 'Title',
           isDense: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4.0),
-          ),
           labelStyle: TextStyle(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w400,
@@ -241,19 +233,16 @@ class LeaveFormState extends State<LeaveForm> {
       child: TextFormField(
         autofocus: false,
         keyboardType: TextInputType.multiline,
-        maxLines: 8,
-        textInputAction: TextInputAction.newline,
+        maxLines: 4,
         onSaved: (value) => _description = value,
         controller: _clear2,
         validator: (value) {
           if (value.isEmpty) return 'Please Enter Description';
         },
         decoration: InputDecoration(
-          labelText: 'Description',
+          //labelText: 'Description',
+          hintText: 'Message',
           isDense: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(3.0),
-          ),
           labelStyle: TextStyle(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w400,
@@ -266,33 +255,39 @@ class LeaveFormState extends State<LeaveForm> {
     return new Center(
       child: new Container(
         child: new Card(
-          color: Colors.white70,
+          color: Colors.white,
           child: new Form(
             key: _formkey,
             child: new ListView(
               children: <Widget>[
                 new Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: new Text(
-                    "To",
-                    style: TextStyle(fontSize: 20.0),
+                  child: new ListTile(
+                    leading: new Text('To',style: TextStyle(fontSize: 16.0,color: Colors.indigoAccent),),
+                    title: receiver,
                   ),
                 ),
-                new Padding(padding: EdgeInsets.all(8.0), child: receiver),
-                new Padding(padding: EdgeInsets.all(8.0), child: sender),
+                new Divider(height: 1.0,),
+                new Padding(padding: EdgeInsets.all(8.0),
+                 child: new ListTile(
+                   leading: new Text('From',style: TextStyle(fontSize: 16.0,color: Colors.indigoAccent),),
+                   title: sender,
+                 )),
+                 new Divider(height: 1.0,),
                 new Padding(padding: EdgeInsets.all(8.0), child: dateForm),
+                new Divider(height: 1.0,),
                 new Padding(
                   padding: EdgeInsets.all(8.0),
                   child: title,
                 ),
-                new SizedBox(
-                  height: 30.0,
-                  width: 0.0,
+                new Divider(
+                  height: 1.0,
                 ),
                 new Padding(
                   padding: EdgeInsets.all(8.0),
                   child: description,
                 ),
+                new Divider(height: 1.0,),
                 new Padding(
                   padding: EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -300,7 +295,7 @@ class LeaveFormState extends State<LeaveForm> {
                     width: 300.0,
                     child: RaisedButton(
                       shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(10.0)),
+                          borderRadius: new BorderRadius.circular(20.0)),
                       onPressed: () {
                         if (_fromdatetime == '' || _todatetime == '') {
                           if (_fromdatetime == '') {
@@ -353,7 +348,7 @@ class LeaveFormState extends State<LeaveForm> {
                       child: Text(
                         'Send',
                         style: TextStyle(
-                          fontSize: 18.0,
+                          fontSize: 18.0,color: Colors.white
                         ),
                       ),
                     ),

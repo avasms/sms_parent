@@ -56,9 +56,8 @@ class ViewLeaveDataScreen extends StatelessWidget {
                     subtitle: new Container(
                       width: c_width,
                       height: 25.0,
-                      child: new Chip(
-                        backgroundColor: Colors.white24,
-                        label: new Text(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child:new Text(
                           '${item.description}',
                           style: TextStyle(
                             fontSize: 16.0,
@@ -66,7 +65,6 @@ class ViewLeaveDataScreen extends StatelessWidget {
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
-                      ),
                     ),
                     leading: Column(
                       children: <Widget>[
