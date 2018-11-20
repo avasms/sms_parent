@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sms_parent/phyo/student/data_student.dart';
+import 'package:sms_parent/screens/studentdetail/data_student.dart';
 
 class AttendantScreen extends StatefulWidget {
-  final Student student;
-  AttendantScreen({this.student});
+  final studentId;
+  AttendantScreen({this.studentId});
   _AttendantScreen createState() => new _AttendantScreen();
 }
 

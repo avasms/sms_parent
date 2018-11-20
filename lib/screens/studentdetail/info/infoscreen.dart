@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sms_parent/phyo/student/data_student.dart';
 
 class InfoScreen extends StatefulWidget {
-  final Student student;
-  InfoScreen({this.student});
+  final studentId;
+  InfoScreen({this.studentId});
   _Info createState() => new _Info();
 }
 
 class _Info extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
-    Student receiveData = widget.student;
-    String title = receiveData.schoolName;
+   
     return Scaffold(
       body: Stack(
         children: <Widget>[

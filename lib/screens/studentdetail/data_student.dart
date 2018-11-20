@@ -3,7 +3,7 @@ class Student{
   int id;
   String name;
   List<String> subName;
- String runningYear;
+  String runningYear;
   String studentNo;
   String admissionNo;
   String schoolName;

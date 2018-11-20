@@ -24,6 +24,7 @@ import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/screens/setting/setting_screen.dart';
 import 'package:sms_parent/util/dbhelper.dart';
 import 'package:sms_parent/screens/aboutschool/about_screen.dart';
+import 'package:sms_parent/screens/studentdetail/studentdetail_screen.dart';
 
 
 //import 'package:sms_parent/util/commonComponent.dart';
@@ -200,6 +201,14 @@ class _MyAppState extends State<MyApp> {
       }
     ));
 
+    //Define our Student Detail Page.
+    router.define('studentDetail',handler: new Handler(
+      handlerFunc: (BuildContext context,Map<String,dynamic>params){
+      String _sid = params["studentId"]?.first;
+       String _sname = params["studentName"]?.first;
+        return new StudentDetailScreen(studentId: _sid,studentName: _sname,);
+      }
+    ));
 
     // Defind Router
     Application.router = router;

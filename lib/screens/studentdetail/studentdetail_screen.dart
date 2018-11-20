@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:sms_parent/phyo/student/data_student.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:sms_parent/phyo/student/info/infoscreen.dart';
-import 'package:sms_parent/phyo/student/attendant/attendant_screen.dart';
-import 'package:sms_parent/phyo/student/payment/payment_screen.dart';
+import 'package:sms_parent/screens/studentdetail/info/infoscreen.dart';
+import 'package:sms_parent/screens/studentdetail/attendant/attendant_screen.dart';
+import 'package:sms_parent/screens/studentdetail/payment/payment_screen.dart';
 
-class StudentScreen extends StatefulWidget {
-  final Student data;
-  StudentScreen({this.data,});
+class StudentDetailScreen extends StatefulWidget {
+  final studentId;
+  final studentName;
+
+  const StudentDetailScreen({Key key, this.studentId, this.studentName}) : super(key: key);
+  
   _AboutScreen createState() => new _AboutScreen();
 }
 
-class _AboutScreen extends State<StudentScreen> with SingleTickerProviderStateMixin{
+class _AboutScreen extends State<StudentDetailScreen> with SingleTickerProviderStateMixin{
   TabController _controller;
     @override
     void initState() {
@@ -28,7 +29,7 @@ class _AboutScreen extends State<StudentScreen> with SingleTickerProviderStateMi
       }
   @override
   Widget build(BuildContext context) {
-      Student screenstudent=widget.data;
+      
     return new Scaffold(
       appBar:AppBar(
         title: Text('Detail'),
@@ -52,11 +53,11 @@ class _AboutScreen extends State<StudentScreen> with SingleTickerProviderStateMi
           
           ),
           child: Text(
-            '${screenstudent.name}',
+            widget.studentName,
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
-              fontFamily:'Serif' ,
+              fontFamily:'Zawgyi' ,
               color: Colors.black,
             ),
           ),
@@ -86,9 +87,9 @@ class _AboutScreen extends State<StudentScreen> with SingleTickerProviderStateMi
             child: new TabBarView(
               controller: _controller,
               children: <Widget>[
-                new InfoScreen(student: screenstudent),
-                new AttendantScreen(student: screenstudent),
-                new PaymentScreen(),
+                new InfoScreen(studentId: widget.studentId),
+                new AttendantScreen(studentId: widget.studentId),
+                new PaymentScreen(studentId: widget.studentId),
               ],
             ),
           ),
