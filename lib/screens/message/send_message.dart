@@ -185,12 +185,10 @@ class MessageFormState extends State<MessageForm> {
           .then((res) {
         if (res) {
           Fluttertoast.showToast(
-              msg: "Message sent Successfully,$_description",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIos: 1,
-              bgcolor: "#ffffff",
-              textcolor: '#ffffff');
+          msg: 'Send Message Complete',
+          toastLength: Toast.LENGTH_LONG,
+          //bgcolor: "#e74c3c",
+          textcolor: '#ffffff');
           setState(() {
             _clear1.clear();
             _clear2.clear();

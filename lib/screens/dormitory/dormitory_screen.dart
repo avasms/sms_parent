@@ -4,6 +4,7 @@ import 'package:sms_parent/models/dormitory.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:sms_parent/util/app_translation.dart';
 
+
 class DormitoryListData extends StatelessWidget {
   final List<Dormitory> stu;
 

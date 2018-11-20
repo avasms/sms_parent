@@ -26,7 +26,7 @@ class _AttendantScreen extends State<AttendantScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Student attStudent=widget.student;
+    Student studId=widget.studentId;
     return new Container(
       padding: EdgeInsets.all(8.0),
       child: new Column(

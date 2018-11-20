@@ -7,7 +7,8 @@ import 'package:sms_parent/dao/apicommondao.dart';
 class ViewLeaveScreen extends StatefulWidget {
   final userId;
   final studentId;
-  ViewLeaveScreen({Key key, this.userId,this.studentId}) : super(key: key);
+  final studentName;
+  ViewLeaveScreen({Key key, this.userId,this.studentId,this.studentName}) : super(key: key);
 
   VeiwLeave createState() => new VeiwLeave();
 }
@@ -21,7 +22,7 @@ class VeiwLeave extends State<ViewLeaveScreen> {
         if (snapshot.hasError) print(snapshot.error);
 
         return snapshot.hasData
-            ? ViewLeaveDataScreen(viewData: snapshot.data)
+            ? ViewLeaveDataScreen(viewData: snapshot.data,studentName:widget.studentName)
             : Center(child: CircularProgressIndicator());
       },
     );
@@ -30,7 +31,8 @@ class VeiwLeave extends State<ViewLeaveScreen> {
 
 class ViewLeaveDataScreen extends StatelessWidget {
   List<Leave> viewData;
-  ViewLeaveDataScreen({this.viewData});
+  String studentName;
+  ViewLeaveDataScreen({this.viewData,this.studentName});
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -40,6 +42,7 @@ class ViewLeaveDataScreen extends StatelessWidget {
           itemBuilder: (context, position) {
             final item = viewData[position];
             Leave data = viewData[position];
+            
             double c_width = MediaQuery.of(context).size.width * 0.8;
             return Column(
               children: <Widget>[
@@ -49,19 +52,19 @@ class ViewLeaveDataScreen extends StatelessWidget {
                       '${item.adminName}',
                       style: TextStyle(
                         fontSize: 18.0,
-                        fontFamily: 'Serif',
+                        fontFamily: 'Zawgyi',
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                     subtitle: new Container(
                       width: c_width,
-                      height: 25.0,
+                      //height: 25.0,
                       padding: EdgeInsets.only(left: 10.0),
                       child:new Text(
                           '${item.description}',
                           style: TextStyle(
                             fontSize: 16.0,
-                            fontFamily: 'Serif',
+                            fontFamily: 'Zawgyi',
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -77,7 +80,7 @@ class ViewLeaveDataScreen extends StatelessWidget {
                     ),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => new MessageView(data: item)));
+                          builder: (context) => new MessageView(data: item,studentName:studentName)));
                     }),
               ],
             );
