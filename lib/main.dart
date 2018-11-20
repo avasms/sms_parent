@@ -23,8 +23,8 @@ import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/screens/setting/setting_screen.dart';
 import 'package:sms_parent/util/dbhelper.dart';
-import 'package:sms_parent/screens/aboutschool/about_screen.dart';
 import 'package:sms_parent/screens/studentdetail/studentdetail_screen.dart';
+import 'package:sms_parent/screens/aboutschool/about_screen.dart';
 
 
 //import 'package:sms_parent/util/commonComponent.dart';

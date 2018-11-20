@@ -28,7 +28,7 @@ class _AboutStudent extends State<StudentDetailScreen> {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ? AboutScreen(stud: snapshot.data)
+              ? About(stud: snapshot.data)
               : Center(child: CircularProgressIndicator());
         },
       ),
@@ -36,12 +36,12 @@ class _AboutStudent extends State<StudentDetailScreen> {
   }
 }
 
-class AboutScreen extends StatefulWidget{
+class About extends StatefulWidget{
   final stud;
-  AboutScreen({this.stud});
+  About({this.stud});
   _AboutScreen createState()=>new _AboutScreen();
 }
-class _AboutScreen extends State<AboutScreen> with SingleTickerProviderStateMixin{
+class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
   TabController _controller;
     @override
     void initState() {
