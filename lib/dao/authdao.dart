@@ -6,6 +6,7 @@ import 'package:sms_parent/models/user.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/util/dbhelper.dart';
+import 'package:onesignal/onesignal.dart';
 
 
 class AuthManager{
@@ -14,8 +15,11 @@ class AuthManager{
     LocalStorage.remove(Config.TOKEN_KEY);
   }
   
-  static login(String username,String password,String oneSignalId) async {
-   
+  static login(String username,String password) async {
+   var status = await OneSignal.shared.getPermissionSubscriptionState();
+    print(status.subscriptionStatus.userId);
+  String _oneSignalId = status.subscriptionStatus.userId;
+  print('Hello APO$_oneSignalId');
 
    // String url = "/student_data_list/5";
     //var rs = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
@@ -25,7 +29,7 @@ class AuthManager{
    var data = {
    "userName": username,
    "password": password,
-   "oneSignalId": oneSignalId,
+   "oneSignalId": _oneSignalId,
     };
    // print(data);
    var response = await HttpAPIManager.postLogin(loginURL, data, Config.REQUEST_POST);

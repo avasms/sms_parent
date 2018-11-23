@@ -48,14 +48,14 @@ void main() async {
 //
 var status = await OneSignal.shared.getPermissionSubscriptionState();
     print(status.subscriptionStatus.userId);
-  String _oneSignalId = status.subscriptionStatus.userId;
-  runApp(new MyApp(loginStatus: _isLogin,oneSignalId: _oneSignalId));
+
+  runApp(new MyApp(loginStatus: _isLogin));
 }
 
 class MyApp extends StatefulWidget {
   final loginStatus;
-  final oneSignalId;
-  const MyApp({Key key, this.loginStatus, this.oneSignalId}) : super(key: key);
+ 
+  const MyApp({Key key, this.loginStatus}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -241,7 +241,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Zawgyi'),
       onGenerateRoute: Application.router.generator,
-      home: widget.loginStatus ? new HomeScreen() : new LoginScreen(oneSignalId: widget.oneSignalId),
+      home: widget.loginStatus ? new HomeScreen() : new LoginScreen(),
       localizationsDelegates: [
         _newLocaleDelegate,
         const AppTranslationsDelegate(),
