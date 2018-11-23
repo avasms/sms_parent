@@ -1,70 +1,66 @@
-import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:sms_parent/util/application.dart';
 import 'package:sms_parent/dao/authdao.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sms_parent/util/commonComponent.dart';
-import 'package:sms_parent/util/dbhelper.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 class LoginScreen extends StatefulWidget {
+  final oneSignalId;
+
+  const LoginScreen({Key key, this.oneSignalId}) : super(key: key);
   @override
   _LoginScreenState createState() => new _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
 
-   final Connectivity _connectivity = new Connectivity();
-  StreamSubscription<ConnectivityResult> _connectivitySubscription;
-
+   
   @override
   void initState() {
     super.initState();
-
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        Fluttertoast.showToast(
-            msg: "Plese Open Mobile Data or Wifi",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.TOP,
-            timeInSecForIos: 20,
-            bgcolor: '#ffffff',
-            textcolor: '#d50000');
-      }
-    });
-    checkLoginInit();
+   _checkInternet();
+    
   }
 
+void _checkInternet() async {
+    var connectivityResult = await (new Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+    
+     showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+           
+            title: new Text("Check Internet"),
+            content: new Text("Please Open Mobile Data or Wifi"),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("OK"),
+                onPressed: () => exit(0),
+              ),
+            ],
+          );
+        },
+     );
+    }
+  }
+  
   @override
   void dispose() {
-    _connectivitySubscription.cancel();
+  
     super.dispose();
-  }
-
-  void checkLoginInit() async {
-    var db = new DBHelper();
-    db.getCount().then((data){
-      if(data > 0){
-       Application.router.navigateTo(context, "Home",transition: transitionType,replace: true);
-      }
-Fluttertoast.showToast(
-            msg: data.toString(),
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.TOP,
-            timeInSecForIos: 20,
-            bgcolor: '#ffffff',
-            textcolor: '#d50000');
-    }
-    );
   }
 
   //BuildContext _contx;
   // bool _isLoading = false;
   String _username, _password;
+  
   bool _obscureText = true;
   final _formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -76,7 +72,7 @@ Fluttertoast.showToast(
     if (_formKey.currentState.validate()) {
     _formKey.currentState.save();
    //CommonComponents.showLoadingDialog(context);
-    AuthManager.login(_username.trim(), _password.trim()).then((result){
+    AuthManager.login(_username.trim(), _password.trim(), widget.oneSignalId).then((result){
       if(result == null){
       Fluttertoast.showToast(
         msg: "Username or Password is invalid!",

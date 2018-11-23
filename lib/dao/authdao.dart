@@ -14,7 +14,7 @@ class AuthManager{
     LocalStorage.remove(Config.TOKEN_KEY);
   }
   
-  static login(String username,String password) async {
+  static login(String username,String password,String oneSignalId) async {
    
 
    // String url = "/student_data_list/5";
@@ -24,7 +24,8 @@ class AuthManager{
 
    var data = {
    "userName": username,
-   "password": password
+   "password": password,
+   "oneSignalId": oneSignalId,
     };
    // print(data);
    var response = await HttpAPIManager.postLogin(loginURL, data, Config.REQUEST_POST);
