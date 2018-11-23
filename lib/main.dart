@@ -14,8 +14,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sms_parent/util/app_translations_delegate.dart';
 import 'package:sms_parent/util/application.dart';
 import 'package:fluro/fluro.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/screens/dormitory/dormitory_screen.dart';
 import 'package:sms_parent/screens/ferry/ferry_screen.dart';
 import 'package:sms_parent/screens/student/student_screen.dart';
@@ -25,70 +23,94 @@ import 'package:sms_parent/screens/setting/setting_screen.dart';
 import 'package:sms_parent/util/dbhelper.dart';
 import 'package:sms_parent/screens/studentdetail/studentdetail_screen.dart';
 import 'package:sms_parent/screens/aboutschool/about_screen.dart';
+import 'package:onesignal/onesignal.dart';
 
-
-//import 'package:sms_parent/util/commonComponent.dart';
-
-void main()async {
+void main() async {
   var db = new DBHelper();
   User result = await db.getUser();
   bool _isLogin = false;
-  if(result != null){
-    
-_isLogin = true;
+  if (result != null) {
+    await LocalStorage.save(Config.TOKEN_KEY, result.tokenId);
+    await LocalStorage.save(Config.USER_ID, result.userId);
+    await LocalStorage.save(Config.USER_RELATED_ID, result.parentId);
+    _isLogin = true;
   }
-  runApp(
-    new MyApp(loginStatus: _isLogin)
-    );
-    
+  var settings = {
+    OSiOSSettings.autoPrompt: false,
+    OSiOSSettings.promptBeforeOpeningPushUrl: true
+  };
+//will delay initialization of the SDK
+//make sure to call before init()
+  await OneSignal.shared
+      .init("cecb6df8-3335-4db1-a26b-ed4b7f1c9ae3", iOSSettings: settings);
+// the SDK will now initialize
+  await OneSignal.shared.consentGranted(true);
+//
+var status = await OneSignal.shared.getPermissionSubscriptionState();
+    print(status.subscriptionStatus.userId);
+  String _oneSignalId = status.subscriptionStatus.userId;
+  runApp(new MyApp(loginStatus: _isLogin,oneSignalId: _oneSignalId));
 }
- 
+
 class MyApp extends StatefulWidget {
   final loginStatus;
-
-  const MyApp({Key key, this.loginStatus}) : super(key: key);
+  final oneSignalId;
+  const MyApp({Key key, this.loginStatus, this.oneSignalId}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
-
-
 }
 
 class _MyAppState extends State<MyApp> {
-  
   AppTranslationsDelegate _newLocaleDelegate;
-  final Connectivity _connectivity = new Connectivity();
-  StreamSubscription<ConnectivityResult> _connectivitySubscription;
-// Language
-  
+
   @override
   void initState() {
-    
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
-
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        Fluttertoast.showToast(
-            msg: "Plese Open Mobile Data or Wifi",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.TOP,
-            timeInSecForIos: 20,
-            bgcolor: '#ffffff',
-            textcolor: '#d50000');
-      }
-    });
-
-  // Message 
-
+    // Message
     super.initState();
+
+    _initMessageNotiState();
   }
 
+  Future<void> _initMessageNotiState() async {
+    if (!mounted) return;
+    OneSignal.shared
+        .setInFocusDisplayType(OSNotificationDisplayType.notification);
+    OneSignal.shared.setNotificationReceivedHandler((notification) {
+      this.setState(() {
+        print(
+            "Received notification: \n${notification.jsonRepresentation().replaceAll("\\n", "\n")}");
+      });
+    });
+
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      this.setState(() {
+        print(
+            "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")}");
+      });
+    });
+
+    OneSignal.shared
+        .setSubscriptionObserver((OSSubscriptionStateChanges changes) {
+      print("SUBSCRIPTION STATE CHANGED: ${changes.jsonRepresentation()}");
+    });
+
+    OneSignal.shared.setPermissionObserver((OSPermissionStateChanges changes) {
+      print("PERMISSION STATE CHANGED: ${changes.jsonRepresentation()}");
+    });
+
+    OneSignal.shared.setEmailSubscriptionObserver(
+        (OSEmailSubscriptionStateChanges changes) {
+      print("EMAIL SUBSCRIPTION STATE CHANGED ${changes.jsonRepresentation()}");
+    });
+    
+  }
 
   @override
   void dispose() {
-    _connectivitySubscription.cancel();
     super.dispose();
   }
 
@@ -132,7 +154,8 @@ class _MyAppState extends State<MyApp> {
       String _parentId = params["parentId"]?.first;
       String _screenType = params["screenType"]?.first;
       String _userId = params["userId"]?.first;
-      return new StudentListData(parentId: _parentId, screenType: _screenType,userId: _userId);
+      return new StudentListData(
+          parentId: _parentId, screenType: _screenType, userId: _userId);
     }));
 
     // Define our Grade page.
@@ -144,7 +167,7 @@ class _MyAppState extends State<MyApp> {
       );
     }));
 
-// Define our Exam page.
+    // Define our Exam page.
     router.define('exam', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _classId = params["classId"]?.first;
@@ -153,7 +176,7 @@ class _MyAppState extends State<MyApp> {
       );
     }));
 
-// Define our Time Table page.
+    // Define our Time Table page.
     router.define('timetable', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _sectionId = params["sectionId"]?.first;
@@ -162,17 +185,16 @@ class _MyAppState extends State<MyApp> {
       );
     }));
 
-// Define our Time Table page.
+    // Define our Time Table page.
     router.define('leave', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _sid = params["studentId"]?.first;
       String _puid = params["userId"]?.first;
-       String _sname = params["studentName"]?.first;
+      String _sname = params["studentName"]?.first;
       return new LeaveScreen(
-        userId: _puid,studentId: _sid,studentName: _sname
-      );
+          userId: _puid, studentId: _sid, studentName: _sname);
     }));
-//Define our Setting Page.
+    //Define our Setting Page.
     router.define('setting', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _userid = params["userId"]?.first;
@@ -187,28 +209,29 @@ class _MyAppState extends State<MyApp> {
       return new NoticeBoardScreen();
     }));
 
-     //Define our Notice Page.
+    //Define our Notice Page.
     router.define('message', handler: new Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _userid = params["userId"]?.first;
-      return new MessageScreen(userId:_userid);
+      return new MessageScreen(userId: _userid);
     }));
 
     //Define our AboutSchool Page.
-    router.define('aboutSchool',handler: new Handler(
-      handlerFunc: (BuildContext context,Map<String,dynamic>params){
-        return new AboutScreen();
-      }
-    ));
+    router.define('aboutSchool', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new AboutScreen();
+    }));
 
     //Define our Student Detail Page.
-    router.define('studentDetail',handler: new Handler(
-      handlerFunc: (BuildContext context,Map<String,dynamic>params){
+    router.define('studentDetail', handler: new Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       String _sid = params["studentId"]?.first;
-       String _sname = params["studentName"]?.first;
-        return new StudentDetailScreen(studentId: _sid,studentName: _sname,);
-      }
-    ));
+      String _sname = params["studentName"]?.first;
+      return new StudentDetailScreen(
+        studentId: _sid,
+        studentName: _sname,
+      );
+    }));
 
     // Defind Router
     Application.router = router;
@@ -218,7 +241,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple, fontFamily: 'Zawgyi'),
       onGenerateRoute: Application.router.generator,
-      home: widget.loginStatus?new HomeScreen(): new LoginScreen(),
+      home: widget.loginStatus ? new HomeScreen() : new LoginScreen(oneSignalId: widget.oneSignalId),
       localizationsDelegates: [
         _newLocaleDelegate,
         const AppTranslationsDelegate(),
@@ -234,6 +257,4 @@ class _MyAppState extends State<MyApp> {
   Future<String> getLocalStorageData() async {
     return await LocalStorage.get(Config.USER_RELATED_ID);
   }
-
- 
 }

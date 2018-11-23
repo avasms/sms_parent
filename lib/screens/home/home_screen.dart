@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sms_parent/util/app_translation.dart';
@@ -7,9 +7,7 @@ import 'package:fluro/fluro.dart';
 import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/util/dbhelper.dart';
-
-//import 'package:flutter/services.dart';
-//import 'package:sms_parent/screens/login/login_screen.dart';
+import 'package:connectivity/connectivity.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -30,6 +28,32 @@ class _HomeScreenState extends State<HomeScreen> {
     getUserCode().then((res) {
       _userId = res;
     });
+    _checkInternet();
+  }
+
+  void _checkInternet() async {
+    var connectivityResult = await (new Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+     
+     showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+           
+            title: new Text("Check Internet"),
+            content: new Text("Please Open Mobile Data or Wifi"),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("OK"),
+                onPressed: () => exit(0),
+              ),
+            ],
+          );
+        },
+     );
+    }
   }
 
   List<Card> _buildGridCards() {
