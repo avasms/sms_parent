@@ -13,6 +13,7 @@ import 'package:sms_parent/models/school.dart';
 import 'package:sms_parent/models/leave.dart';
 import 'package:sms_parent/models/studentInfo.dart';
 import 'package:sms_parent/models/studentPayment.dart';
+import 'package:sms_parent/models/studentAttendance.dart';
 import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 
@@ -249,12 +250,20 @@ class ApiCommonDao {
 
   Future<List<StudentPayment>> viewStudentPayment(studentId) async {
     String url = "/retrieve_student_payment?studentId=$studentId";
-
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-
     final data = response.data;
     if (response != null) {
       return data.map<StudentPayment>((json) => StudentPayment.fromJson(json)).toList();
+    }
+    return null;
+  }
+
+  Future<List<StudentAttendance>> viewStudentAttendance(studentId,month) async{
+    String url="/retrieve_student_attendance?studentId=$studentId&month=$month";
+    final response= await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+    final data= response.data;
+    if(response !=null){
+      return data.map<StudentAttendance> ((json)=>StudentAttendance.fromJson(json)).toList();
     }
     return null;
   }

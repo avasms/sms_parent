@@ -89,8 +89,8 @@ StateViewPage createState() => new StateViewPage();
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.only(left:25.0),
-                        child: new Text(
-                           '${receiveData.messageText}',
+                        child: new HtmlView(
+                           data:'${receiveData.messageText}',
                           
                         )
                       ),

@@ -29,6 +29,7 @@ void main() async {
   var db = new DBHelper();
   User result = await db.getUser();
   bool _isLogin = false;
+  print('$result');
   if (result != null) {
     await LocalStorage.save(Config.TOKEN_KEY, result.tokenId);
     await LocalStorage.save(Config.USER_ID, result.userId);

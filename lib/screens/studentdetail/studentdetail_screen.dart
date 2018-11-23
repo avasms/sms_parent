@@ -77,11 +77,7 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
             alignment: const Alignment(0.0, 1.1),
             children: <Widget>[
               CircleAvatar(
-                child: new CachedNetworkImage(
-                            imageUrl: Config.BASE_URL +student.photoPath,
-                            placeholder: new CircularProgressIndicator(),
-                            errorWidget: new Icon(Icons.error),
-                          ),
+                backgroundImage: new NetworkImage(Config.BASE_URL +student.photoPath,),
           radius: 80.0,
         ),
         
@@ -128,7 +124,7 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
               children: <Widget>[
                 new InfoScreen(student: student),
                 new AttendantScreen(studentId: studId),
-                new PaymentScreen(studentId: studId),
+                new PaymentScreen(studentId: studId,),
               ],
             ),
           ),

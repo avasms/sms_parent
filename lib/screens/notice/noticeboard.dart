@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:sms_parent/util/config.dart';
 import 'package:flutter_html_view/flutter_html_view.dart';
 
 class NoticeBoardScreen extends StatefulWidget {
@@ -78,10 +79,8 @@ class NoticeList extends StatelessWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: <Widget>[
                                     new CachedNetworkImage(
-                                      imageUrl:
-                                          "https://wallpaperbrowse.com/media/images/3848765-wallpaper-images-download.jpg",
-                                      placeholder:
-                                          new CircularProgressIndicator(),
+                                      imageUrl: Config.BASE_URL + item.filePath,
+                                      placeholder:new CircularProgressIndicator(),
                                       errorWidget: new Icon(Icons.error),
                                     ),
                                     new SizedBox(height: 20.0,),

@@ -39,13 +39,13 @@
     "view_leave_menu": "ခွင့်စာရင်း",
 
     "pay_name": "ငွေပေးချေမှုပုံစံ",
-    "school_name": "ေက်ာင္း",
-    "class": "အတန္း",
-    "payment_date": "ေန့စြဲ",
-    "left_balance": "အရင္က်န္ရွိေငြ",
-    "amount": "ေငြပမာဏ",
-    "pay_amount": "ေပးေငြ",
-    "left_amount": "က်န္ေငြ"
+    "student_name": " ကျောင်းသား",
+    "class": "အတန်း",
+    "payment_date": "နေ့စွဲ",
+    "left_balance": "အရင်ကျန်ရှိငွေ",
+    "amount":   "ငွေပမာဏ",
+    "pay_amount": "ပေးငွေ",
+    "left_amount": "ကျန်ငွေ"
 
     
 }

@@ -35,6 +35,7 @@ class Payment_screen extends StatelessWidget{
   Payment_screen({Key key, this.payment}) : super(key: key);
   @override
   Widget build(BuildContext context){
+    
      return ListView.builder(
         itemCount: payment.length,
         itemBuilder: (context, index) {
@@ -52,7 +53,7 @@ class Payment_screen extends StatelessWidget{
                               .text("pay_name"),
                           style: TextStyle(fontFamily: 'Myanmar')),
                       TextSpan(
-                          text: ' : ${item.id}',
+                          text: ' : ${item.payName}',
                           style: TextStyle(fontFamily: 'Zawgyi')),
                     ],
                   ),
@@ -141,7 +142,7 @@ class Payment_screen extends StatelessWidget{
                             new Container(
                               width: 100.0,
                               child: new Text(
-                                AppTranslations.of(context).text("left_balance"),
+                                AppTranslations.of(context).text("balance"),
                                 style: TextStyle(
                                     fontFamily: 'Myanmar', fontSize: 16.0),
                               ),
@@ -149,30 +150,7 @@ class Payment_screen extends StatelessWidget{
                             new Container(
                               width: 150.0,
                               child: new Text(
-                                ': ${item.lastBalance}',
-                                style: TextStyle(
-                                    fontFamily: 'Zawgyi', fontSize: 16.0),
-                                //overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
-                        new Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            new Container(
-                              width: 100.0,
-                              child: new Text(
-                                AppTranslations.of(context).text("amount"),
-                                style: TextStyle(
-                                    fontFamily: 'Myanmar', fontSize: 16.0),
-                              ),
-                            ),
-                            new Container(
-                              width: 150.0,
-                              child: new Text(
-                                ': ${item.amount}',
+                                ': ${item.balance}',
                                 style: TextStyle(
                                     fontFamily: 'Zawgyi', fontSize: 16.0),
                                 //overflow: TextOverflow.ellipsis,
@@ -196,6 +174,29 @@ class Payment_screen extends StatelessWidget{
                               width: 150.0,
                               child: new Text(
                                 ': ${item.payAmount}',
+                                style: TextStyle(
+                                    fontFamily: 'Zawgyi', fontSize: 16.0),
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        new Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new Container(
+                              width: 100.0,
+                              child: new Text(
+                                AppTranslations.of(context).text("left_amount"),
+                                style: TextStyle(
+                                    fontFamily: 'Myanmar', fontSize: 16.0),
+                              ),
+                            ),
+                            new Container(
+                              width: 150.0,
+                              child: new Text(
+                                ': ${item.lastBalance}',
                                 style: TextStyle(
                                     fontFamily: 'Zawgyi', fontSize: 16.0),
                                 //overflow: TextOverflow.ellipsis,
