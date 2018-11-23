@@ -36,6 +36,18 @@
     "sent_menu": "Sent Msg",
 
     "create_leave_menu": "Create Leave",
-    "view_leave_menu": "View Leave"
+    "view_leave_menu": "View Leave",
+
+    "pay_name": "Pay Name",
+    "student_name": "Student Name",
+    "class": "Class",
+    "date": "Date",
+    "left_balance": "Left Balance",
+    "payment_date": "Payment Date",
+    "amount": "Amount",
+    "pay_amount": "Pay Amount",
+    "left_amount": "Left Amount"
+    
+
 
 }

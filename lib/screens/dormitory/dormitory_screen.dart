@@ -163,52 +163,11 @@ class StudentList extends StatelessWidget {
                         ),
                       ]),
                     ),
-                    /*title: Text.rich(
-                      TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: AppTranslations.of(context)
-                                  .text("common_school"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.schoolName}',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                        ],
-                      ),
-                    ),
-                    subtitle: new RichText(
-                      text: new TextSpan(
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: AppTranslations.of(context)
-                                  .text("common_description"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.description}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                          TextSpan(
-                              text: AppTranslations.of(context)
-                                  .text("room_no"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.roomNo}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                          TextSpan(
-                              text: AppTranslations.of(context)
-                                  .text("teacher"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.teacherName}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                        ],
-                      ),
-                    ),*/
+                    
                   ),
                 ]),
           );
 
-          // const ListTile(title: Text('Bottom'))
         });
   }
 }
