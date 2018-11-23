@@ -36,7 +36,16 @@
     "sent_menu": "ပို့ပြီးစာများ",
 
     "create_leave_menu": "ခွင့်တိုင်မည်",
-    "view_leave_menu": "ခွင့်စာရင်း"
+    "view_leave_menu": "ခွင့်စာရင်း",
+
+    "pay_name": "ငွေပေးချေမှုပုံစံ",
+    "school_name": "ေက်ာင္း",
+    "class": "အတန္း",
+    "payment_date": "ေန့စြဲ",
+    "left_balance": "အရင္က်န္ရွိေငြ",
+    "amount": "ေငြပမာဏ",
+    "pay_amount": "ေပးေငြ",
+    "left_amount": "က်န္ေငြ"
 
     
 }

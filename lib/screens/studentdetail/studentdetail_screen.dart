@@ -58,13 +58,20 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
       }
   @override
   Widget build(BuildContext context) {
-    //Student stud=widget.studentId; 
+    
     StudentInfo student=widget.stud; 
+    final studId=student.id;
     return new Scaffold(
       appBar:AppBar(
         title: Text('Detail'),
       ),
-      body:new ListView(
+      body:new Stack(
+        children: <Widget>[
+          new Column(
+            children: <Widget>[
+              new Expanded(
+                child: SingleChildScrollView(
+                  child: new Column(
         children: <Widget>[
           new Stack(
             alignment: const Alignment(0.0, 1.1),
@@ -103,11 +110,9 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
               tabs: [
                 new Tab(
                   icon: const Icon(Icons.satellite),
-                  //text: 'Address',
                 ),
                 new Tab(
                   icon: const Icon(Icons.schedule),
-                  //text: 'Location',
                 ),
                 new Tab(
                   icon: const Icon(Icons.payment),
@@ -122,14 +127,84 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
               controller: _controller,
               children: <Widget>[
                 new InfoScreen(student: student),
-                //new AttendantScreen(studentId: widget.studentId),
-                //new PaymentScreen(studentId: widget.studentId),
+                new AttendantScreen(studentId: studId),
+                new PaymentScreen(studentId: studId),
               ],
             ),
           ),
          
         ],
       ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      /*body:new ListView(
+        children: <Widget>[
+          new Stack(
+            alignment: const Alignment(0.0, 1.1),
+            children: <Widget>[
+              CircleAvatar(
+                child: new CachedNetworkImage(
+                            imageUrl: Config.BASE_URL +student.photoPath,
+                            placeholder: new CircularProgressIndicator(),
+                            errorWidget: new Icon(Icons.error),
+                          ),
+          radius: 80.0,
+        ),
+        
+            ],
+          ),
+          new Container(
+            alignment: const Alignment(0.0, 0.0),
+          decoration: BoxDecoration(
+            //color: Colors.white,
+          
+          ),
+          child: Text(
+            student.name,
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              fontFamily:'Zawgyi' ,
+              color: Colors.black,
+            ),
+          ),
+        ),
+          new Container(
+            decoration: new BoxDecoration(color: Theme.of(context).primaryColor),
+            child: new TabBar(
+              controller: _controller,
+              tabs: [
+                new Tab(
+                  icon: const Icon(Icons.satellite),
+                ),
+                new Tab(
+                  icon: const Icon(Icons.schedule),
+                ),
+                new Tab(
+                  icon: const Icon(Icons.payment),
+                  //text: 'Address',
+                ),
+              ],
+            ),
+          ),
+          new Container(
+            height:500.0,
+            child: new TabBarView(
+              controller: _controller,
+              children: <Widget>[
+                new InfoScreen(student: student),
+                new AttendantScreen(studentId: studId),
+                new PaymentScreen(studentId: studId),
+              ],
+            ),
+          ),
+         
+        ],
+      ),*/
     );
   }
 }

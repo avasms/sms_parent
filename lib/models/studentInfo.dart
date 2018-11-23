@@ -72,7 +72,7 @@ class StudentInfo{
       schoolId: json['schoolId'] as int,
       boarderStatus: json['boarderStatus'] as String,
       classLevel: json['classLevel'] as int,
-      diseaseIdList: json['diseaseIdList'] as String,
+      //diseaseIdList: json['diseaseIdList'] as String,
       parent: json['parent'] as int,
   
 
