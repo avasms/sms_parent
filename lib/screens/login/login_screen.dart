@@ -9,9 +9,7 @@ import 'package:connectivity/connectivity.dart';
 
 
 class LoginScreen extends StatefulWidget {
-  final oneSignalId;
-
-  const LoginScreen({Key key, this.oneSignalId}) : super(key: key);
+ 
   @override
   _LoginScreenState createState() => new _LoginScreenState();
 }
@@ -72,7 +70,7 @@ void _checkInternet() async {
     if (_formKey.currentState.validate()) {
     _formKey.currentState.save();
    //CommonComponents.showLoadingDialog(context);
-    AuthManager.login(_username.trim(), _password.trim(), widget.oneSignalId).then((result){
+    AuthManager.login(_username.trim(), _password.trim()).then((result){
       if(result == null){
       Fluttertoast.showToast(
         msg: "Username or Password is invalid!",
