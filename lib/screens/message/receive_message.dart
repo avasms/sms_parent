@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/message/detail.dart';
 import 'package:sms_parent/models/message.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
-import 'package:flutter_html_view/flutter_html_view.dart';
+import 'package:flutter_html_textview/flutter_html_textview.dart';
 
 class Receive extends StatefulWidget {
   final userId;
@@ -68,7 +67,7 @@ class ReceivedMsgList extends StatelessWidget {
                     subtitle: new Container(
                       padding: EdgeInsets.all(2.0),
                       child: new Container(
-                        child: new HtmlView(
+                        child: new HtmlTextView(
                           data: '${string}',
                         ),
                       ),

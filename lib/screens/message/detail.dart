@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sms_parent/models/message.dart';
-import 'package:flutter_html_view/flutter_html_view.dart';
+import 'package:flutter_html_textview/flutter_html_textview.dart';
 
 class MessageView extends StatefulWidget{
   final Message receiveData;
@@ -89,7 +89,7 @@ StateViewPage createState() => new StateViewPage();
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.only(left:25.0),
-                        child: new HtmlView(
+                        child: new HtmlTextView(
                            data:'${receiveData.messageText}',
                           
                         )

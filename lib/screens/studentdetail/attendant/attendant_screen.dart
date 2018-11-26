@@ -5,152 +5,155 @@ import 'package:sms_parent/dao/apicommondao.dart';
 
 class AttendantScreen extends StatefulWidget {
   final studentId;
-  const AttendantScreen({Key key,this.studentId,}) : super(key:key);
+  const AttendantScreen({
+    Key key,
+    this.studentId,
+  }) : super(key: key);
   Attendant_Screen createState() => new Attendant_Screen();
-
 }
-class Attendant_Screen extends State<AttendantScreen>{
-List<String> monthName=[];
-String mName;
-String _selectValue;
-static Map<int, String> month_map = {
-    1:"January",
-    2:"February",
-    3:"March",
-    4:"April",
-    5:"May",
-    6:"June",
-    7:"July",
-    8:"August",
-    9:"September",
-    10:"October",
-    11:"November",
-    12:"December" };
 
-   
-    
-@override
+class Attendant_Screen extends State<AttendantScreen> {
+  String mName;
+  int _selectValue=11;
+  static Map<int, String> month_map = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December"
+  };
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    
-     
   }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Container(
-            padding: EdgeInsets.all(5.0),
-            color: Colors.cyan,
-            width: 350.0,
-            height: 40.0,
-            /*child: new DropdownButtonHideUnderline(
-              child: new DropdownButton<Map<int,String>>(
-                  value: _selectValue,
-                  items: month_map.map((Map<int,String> aa){
-                    return new DropdownMenuItem(
-                      value: aa.value,
-                      child: new Text("${value}")
-                    );
-                  }).toList(),
-                  onChanged: (String value){
-                    _selectValue=value;
-                  }
-                ),
-            ),*/
+      body: new Column(
+        
+        children: <Widget>[
+          new SizedBox(height: 5.0,),
+          new Container(
+            padding: EdgeInsets.all(10.0),
+            width: double.infinity,
+            height: 45.0,
+            child: new DropdownButtonHideUnderline(
+              child: new DropdownButton<int>(
+                hint: Text('Please Select Month'),
+                value: _selectValue,
+                items: getItemsList(),
+                onChanged: (int val) {
+                  setState(() {
+                    _selectValue = val;
+                  });
+                },
+              ),
+            ),
           ),
-    );
-    /*return Scaffold(
-      body: FutureBuilder<List<StudentAttendance>>(
-        future: new ApiCommonDao().viewStudentAttendance(widget.studentId, month) ,
-        builder: (context,snapshot){
-          if(snapshot.hasError) print(snapshot.error);
-          return snapshot.hasData
-          ? new _AttScreen(attList:snapshot.data,month:month)
-          : Center(child: CircularProgressIndicator(),);
-        },
+          new Container(
+            width: double.infinity,
+            height: 700.0,
+            color: Colors.amber,
+            child: FutureBuilder<List<StudentAttendance>>(
+              future: new ApiCommonDao()
+                  .viewStudentAttendance(widget.studentId, _selectValue),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) print(snapshot.error);
+                return snapshot.hasData
+                    ? new _AttScreen(
+                        attList: snapshot.data, month: _selectValue)
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      );
+              },
+            ),
+          ),
+        ],
       ),
-    );*/
+      //getDataContainer('data'),
+    );
+  }
+
+  getItemsList() {
+    List<DropdownMenuItem<int>> obj = new List<DropdownMenuItem<int>>();
+    for (var key in month_map.keys) {
+      obj.add(new DropdownMenuItem(
+          value: key, child: new Text("${month_map[key]}")));
+    }
+    return obj;
+  }
+
+  getDataContainer(String data) {
+    return new Container();
   }
 }
 
-class _AttScreen extends StatefulWidget{
-  List<StudentAttendance> attList;
+class _AttScreen extends StatefulWidget {
+  final  attList;
   final month;
- _AttScreen({Key key,this.attList,this.month}) : super(key:key);
-  _AttendantScreen createState()=> new _AttendantScreen();
+  _AttScreen({Key key, this.attList, this.month}) : super(key: key);
+  _AttendantScreen createState() => new _AttendantScreen();
 }
 
-class _AttendantScreen extends State<_AttScreen>{
-  List<StudentAttendance> attendant;
-  StudentAttendance _selectValue = new StudentAttendance();
-  
+class _AttendantScreen extends State<_AttScreen> {
+
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();   
-    _selectValue= widget.attList.first;
+    super.initState();
     
   }
 
   @override
   Widget build(BuildContext context) {
     //Student studId=widget.studentId;
+    List<StudentAttendance> att=widget.attList;
+  
+    int month=widget.month;
     return new Container(
+      color: Colors.amber,
       padding: EdgeInsets.all(8.0),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Container(
-            padding: EdgeInsets.all(5.0),
-            color: Colors.cyan,
-            width: 350.0,
-            height: 40.0,
-            child: new DropdownButtonHideUnderline(
-              child: new DropdownButton<StudentAttendance>(
-                      hint: Text('Please Select date'),
-                      value: _selectValue,
-                      items: attendant.map((StudentAttendance att) {
-                        return new DropdownMenuItem<StudentAttendance>(
-                          value: att,
-                          child: new Text(att.date),
-                        );
-                      }).toList(),
-                      onChanged: (StudentAttendance adminStaff) {
-                        setState(() {
-                          _selectValue = adminStaff;
-                          //return new Scaffold();
-                          
-                        });
-                      },
-                    ),
-            ),
-          ),
+          
           new SizedBox(
             height: 10.0,
           ),
           new Expanded(
             child: ListView.builder(
-              itemCount: students.length,
+              itemCount: att.length,
               itemBuilder: (context, index) {
+                 List<String> d = att[index].status.split(',');
                 return Container(
                   child: new Card(
                     child: new ListTile(
-                      leading: new Chip(
-                        backgroundColor: Colors.white,
-                        label: new Text(
-                          'Data',
+                      leading: new Container(
+                        width: 100.0,
+                        color: Colors.white,
+                        child: new Text(
+                          att[index].date,
                           overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      trailing: new Container(
+                        ),),
+                        trailing: new Container(
                         width: 150.0,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(students.length, (index) {
+                            children: List.generate(d.length, (index2) {
+                                print('hell$index2');
                               return DataShow(
-                                data: students[index].rollNo,
+                                data: d[index2].toString(),
                               );
                             })),
                       ),
@@ -176,7 +179,9 @@ class DataShow extends StatelessWidget {
   Widget build(BuildContext context) {
     return new CircleAvatar(
       radius: 18.0,
-      child: new Text('$data'),
+      
+      child: (data=='present')? new Icon(Icons.done,color: Colors.green,)
+      :new Icon(Icons.clear,color: Colors.red,),
     );
   }
 }
