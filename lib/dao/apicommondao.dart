@@ -268,4 +268,14 @@ class ApiCommonDao {
     return null;
   }
 
+ getUnreadMessageCount(String userId) async{
+    String url="/unread_message_count_api?userId=$userId";
+    final response= await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+    print('Aung Phyo $response');
+
+    if(response !=null){
+      return 0;
+    }
+    return 0;
+  }
 }
