@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sms_parent/screens/message/detail.dart';
 import 'package:sms_parent/models/message.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
-import 'package:flutter_html_view/flutter_html_view.dart';
+//import 'package:flutter_html_textview/flutter_html_textview.dart';
 
 class Sent extends StatefulWidget {
   final userId;

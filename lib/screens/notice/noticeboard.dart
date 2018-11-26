@@ -4,7 +4,7 @@ import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:sms_parent/util/config.dart';
-import 'package:flutter_html_view/flutter_html_view.dart';
+import 'package:flutter_html_textview/flutter_html_textview.dart';
 
 class NoticeBoardScreen extends StatefulWidget {
   NoticeBoard createState() => new NoticeBoard();
@@ -69,11 +69,6 @@ class NoticeList extends StatelessWidget {
                           ),
                       
                           Container(
-                            child: new Card(
-                              color: Colors.white,
-                              elevation: 1.0,
-                              margin: EdgeInsets.all(3.0),
-                              child: Container(
                                 child: new Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -86,7 +81,7 @@ class NoticeList extends StatelessWidget {
                                     new SizedBox(height: 20.0,),
                                     new Container(
                                         padding: EdgeInsets.all(10.0),
-                                        child: new HtmlView(
+                                        child: new HtmlTextView(
                                           data: '${item.description}',
                                         ),
                                        // child: new Text('${item.description}'),
@@ -94,8 +89,6 @@ class NoticeList extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
