@@ -98,7 +98,7 @@ packages:
       name: cookie_jar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.6"
+    version: "0.0.7"
   crypto:
     dependency: transitive
     description:
@@ -112,7 +112,7 @@ packages:
       name: csslib
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.6"
+    version: "0.14.5"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -125,7 +125,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c5727795659e886a7db8b39a14e2c8987280fe1f
+      resolved-ref: e26916e095244a7e5ea61315b030d298d127ed26
       url: "https://github.com/MarkOSullivan94/dart_config.git"
     source: git
     version: "0.5.0"
@@ -135,7 +135,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.6"
+    version: "1.0.9"
   easy_alert:
     dependency: "direct main"
     description:
@@ -206,7 +206,7 @@ packages:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   front_end:
     dependency: transitive
     description:
@@ -548,7 +548,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
-
+  vm_service_client:
+    dependency: transitive
+    description:
+      name: vm_service_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.6"
+  watcher:
+    dependency: transitive
+    description:
+      name: watcher
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.7+10"
+  web_socket_channel:
+    dependency: transitive
+    description:
+      name: web_socket_channel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.9"
   xml:
     dependency: transitive
     description:
@@ -564,6 +584,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.0.0 <=2.1.0-dev.9.3.flutter-9c07fb64c4"
+  dart: ">=2.0.0 <3.0.0"
   flutter: ">=0.5.6 <1.0.0"
-

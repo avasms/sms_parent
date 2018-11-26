@@ -9,6 +9,7 @@ class Message {
   String receiverId;
   String receiverName;
   String status;
+  int messageCount;
 
   Message({
     this.id,
@@ -19,7 +20,8 @@ class Message {
     this.senderId,
     this.receiverId,
     this.receiverName,
-    this.status
+    this.status,
+    this.messageCount
   });
  
  Message.fromJson(Map<String, dynamic> json)
@@ -31,7 +33,8 @@ class Message {
         senderId = json['senderId'] as String,
         receiverId = json['receiverId'] as String,
         receiverName = json['receiverName'] as String,
-        status = json['status'] as String
+        status = json['status'] as String,
+        messageCount = json['messageCount'] as int
         ;
         
 
@@ -45,7 +48,8 @@ class Message {
       'senderId': senderId,
       'receiverId': receiverId,
       'receiverName': receiverName,
-      'status': status
+      'status': status,
+      'messageCount': messageCount
     };
 }
 

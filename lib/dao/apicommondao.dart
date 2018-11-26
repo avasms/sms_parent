@@ -21,10 +21,9 @@ class ApiCommonDao {
   Future<List<Dormitory>> getDormitoryList() async {
     String url = "/dormitory_data_list";
 
-    final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-
-    final data = response.data;
+    final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);    
     if (response != null) {
+      final data = response.data;
       return data.map<Dormitory>((json) => Dormitory.fromJson(json)).toList();
     }
     return null;
@@ -35,8 +34,9 @@ class ApiCommonDao {
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
+   
     if (response != null) {
+      final data = response.data;
       return data.map<Transport>((json) => Transport.fromJson(json)).toList();
     }
     return null;
@@ -47,8 +47,9 @@ class ApiCommonDao {
     
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
+    
     if (response != null) {
+      final data = response.data;
       return data.map<Student>((json) => Student.fromJson(json)).toList();
     }
     return null;
@@ -60,9 +61,9 @@ class ApiCommonDao {
     print(url);
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
     //print(data);
     if (response != null) {
+      final data = response.data;
       return data.map<ExamGrade>((json) => ExamGrade.fromJson(json)).toList();
     }
     return null;
@@ -70,14 +71,12 @@ class ApiCommonDao {
 
   Future<List<Exam>> getExamListByClassId(String classId) async {
     String url = "/listStudentExam/$classId";
-    // print('APO');
-    //print(classId);
-
+   
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
-    //print(data);
+  
     if (response != null) {
+      final data = response.data;
       return data.map<Exam>((json) => Exam.fromJson(json)).toList();
     }
     return null;
@@ -86,14 +85,12 @@ class ApiCommonDao {
   Future<List<TimeTable>> getTimeTableListByClassId(
       String sectionId, String day) async {
     String url = "/studentTimeTable?day=$day&sid=$sectionId";
-    print(sectionId);
-    print(url);
-
+   
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
-// print(data);
+    
     if (response != null) {
+      final data = response.data;
       return data.map<TimeTable>((json) => TimeTable.fromJson(json)).toList();
     }
     return null;
@@ -103,9 +100,9 @@ class ApiCommonDao {
     String url = "/admin_management_list";
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    //print(response);
-    final data = response.data;
+   
     if (response != null) {
+      final data = response.data;
       return data.map<AdminStaff>((json) => AdminStaff.fromJson(json)).toList();
     }
     return null;
@@ -115,9 +112,9 @@ class ApiCommonDao {
     String url = "/notice_data_list";
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    final data = response.data;
-    print(data);
+    
     if (response != null) {
+      final data = response.data;
       return data.map<Notice>((json) => Notice.fromJson(json)).toList();
     }
     return null;
@@ -133,7 +130,7 @@ class ApiCommonDao {
       "password": newPassword
     };
     var res = await HttpAPIManager.postWithParam(url, data, "post");
-    print(res.data['id']);
+   
     result = res.data['id'];
 
     if (result != null) {
@@ -147,8 +144,8 @@ class ApiCommonDao {
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
     if (response != null) {
+      final data = response.data;
       return data.map<Message>((json) => Message.fromJson(json)).toList();
     }
     return null;
@@ -159,8 +156,8 @@ class ApiCommonDao {
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
     if (response != null) {
+      final data = response.data;
       return data.map<Message>((json) => Message.fromJson(json)).toList();
     }
     return null;
@@ -188,12 +185,12 @@ class ApiCommonDao {
 
   Future<School> getSchoolInformation() async {
     String url = "/retrieve_about_school";
-    final res = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    final data = res.data;
-     print(data);
-    if (res != null) {
+    final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+    
+    if (response != null) {
+      final data = response.data;
      return School.fromJson(data);
-    //  return data.map<School>((json) => School.fromJson(json)).toList();
+    
     }
     return null;
   }
@@ -227,8 +224,8 @@ class ApiCommonDao {
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
     if (response != null) {
+      final data = response.data;
       return data.map<Leave>((json) => Leave.fromJson(json)).toList();
     }
     return null;
@@ -240,9 +237,9 @@ class ApiCommonDao {
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    final data = response.data;
+  
     if (response != null) {
-      //return data.map<Leave>((json) => Leave.fromJson(json)).toList();
+      final data = response.data;
       return StudentInfo.fromJson(data);
     }
     return null;
@@ -251,8 +248,9 @@ class ApiCommonDao {
   Future<List<StudentPayment>> viewStudentPayment(studentId) async {
     String url = "/retrieve_student_payment?studentId=$studentId";
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    final data = response.data;
+  
     if (response != null) {
+      final data = response.data;
       return data.map<StudentPayment>((json) => StudentPayment.fromJson(json)).toList();
     }
     return null;
@@ -261,8 +259,9 @@ class ApiCommonDao {
   Future<List<StudentAttendance>> viewStudentAttendance(studentId,month) async{
     String url="/retrieve_student_attendance?studentId=$studentId&month=$month";
     final response= await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    final data= response.data;
+  
     if(response !=null){
+      final data = response.data;
       return data.map<StudentAttendance> ((json)=>StudentAttendance.fromJson(json)).toList();
     }
     return null;
@@ -271,10 +270,11 @@ class ApiCommonDao {
  getUnreadMessageCount(String userId) async{
     String url="/unread_message_count_api?userId=$userId";
     final response= await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    print('Aung Phyo $response');
-
+    print(userId);
+  print(response);
     if(response !=null){
-      return 0;
+      final data = response.data;
+      return data['messageCount'];
     }
     return 0;
   }

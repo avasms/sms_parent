@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   TransitionType transitionType = TransitionType.native;
   String _parentId;
   String _userId;
-  int _count=1;
+  int _count=0;
 
   @override
   void initState() {
@@ -30,13 +30,18 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     getUserCode().then((res) {
       _userId = res;
-    });
-    ApiCommonDao().getUnreadMessageCount(_userId).then(
+       ApiCommonDao().getUnreadMessageCount(res).then(
       (val){
-        _count = val;
+        print(val);
+        setState(() {
+            _count = val;     
+                });
+       
       }
     );
-    _checkInternet();
+    });
+   
+     _checkInternet();
   }
 
   void _checkInternet() async {
@@ -112,17 +117,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   // Replace with a Row for horizontal icon + text
                   children: <Widget>[
-                    CircleAvatar(
-                      radius: 30.0,
-                      child: new BadgeIconButton(
-                        icon: Icon(Icons.message),
+                   
+                      new BadgeIconButton(
+                        icon: Icon(Icons.message,size: 50.0,color: Colors.blue,),
                         itemCount: _count,
                         hideZeroCount: true, 
+
                       ),
                       /*Image(
                         image: AssetImage('images/message.jpg'),
                       ),*/
-                    ),
+                    
                     // Icon(Icons.directions_bus,size: 100.0,),
                     new Text(AppTranslations.of(context).text("message_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
