@@ -114,7 +114,8 @@ class _AttendantScreen extends State<_AttScreen> {
   @override
   Widget build(BuildContext context) {
     List<StudentAttendance> att = widget.attList;
-    print('kdfjdfdjfdjf:${att.length}');
+    int c = att[0].count;
+    print('kdfjdfdjfdjf:${c.toString()}');
     return new Container(
       color: Colors.amber,
       padding: EdgeInsets.all(8.0),
@@ -123,24 +124,35 @@ class _AttendantScreen extends State<_AttScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Container(
-            height: 30.0,
+            height: 10.0,
             child: new ListTile(
-              leading: new Text('Date'),
+              leading:new Container(
+                width:100.0,
+                child:new Text('DATE',style: TextStyle(fontSize: 19.0,color: Colors.white),),) ,
               title: new Container(
                 child: new Row(
-                    children: List.generate(2, (index1) {
-                  new Container(
-        padding: EdgeInsets.only(right: 4.0),
-        child: CircleAvatar(
-          radius: 18.0,
-          backgroundColor: Colors.yellow,
-          child: new Text(index1.toString()),
-        ));
+                    children: new List.generate(c, (i) {
+                      int inde=i+1;
+                      if (inde==1){
+                        return new Text('  ${inde.toString()}st    ');
+                      }
+                      else if(inde==2){
+                      return new Text('${inde.toString()}nd    ');}
+                      else if(inde==3){
+                      return new Text('${inde.toString()}rd    ');}
+                      else{
+                        return new Text('${inde.toString()}th    ');
+                      }
+                  /*return DataTitle(
+                            title: c[inde].toString(),
+                          );*/
                 })),
               ),
             ),
           ),
-          new SizedBox(height: 100.0,),
+          new SizedBox(
+            height: 40.0,
+          ),
           new Expanded(
             child: ListView.builder(
               itemCount: att.length,
@@ -164,7 +176,7 @@ class _AttendantScreen extends State<_AttScreen> {
                             children: List.generate(d.length, (index2) {
                           print('hell$index2');
                           return DataShow(
-                            data: d[index2].toString(),
+                            data: d[index2],
                           );
                         })),
                       ),
@@ -227,21 +239,22 @@ class DataShow extends StatelessWidget {
     }
   }
 }
-
-class DataTitleShow extends StatelessWidget {
-  //IconData data;
-  //DataShow({this.data});
-  String data;
-  DataTitleShow({this.data});
-
+class DataTitle extends StatelessWidget{
+  final  title;
+  DataTitle({this.title});
   @override
-  Widget build(BuildContext context) {
-    new Container(
-        padding: EdgeInsets.only(right: 4.0),
-        child: CircleAvatar(
-          radius: 18.0,
-          backgroundColor: Colors.yellow,
-          child: new Text(data),
-        ));
+  Widget build(BuildContext context){
+    if(title==0){
+     return new CircleAvatar(
+       radius:20.0,
+       child: new Text('1st'),
+     );
+    }else if(title==1){
+      return new CircleAvatar(
+       radius:20.0,
+       child: new Text('2st'),
+     );
+    }
   }
 }
+

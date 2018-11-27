@@ -176,7 +176,7 @@ class _Info extends State<InfoScreen> {
                         ),
                         new Container(
                           padding: EdgeInsets.all(8.0),
-                          child: new Text('${stud.currentAdress}'),
+                          child: new Text('${(stud.currentAdress==null)?'':stud.currentAdress}'),
                         )
                       ],),
                       new Divider(height: 1.0,),
