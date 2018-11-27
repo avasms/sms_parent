@@ -82,9 +82,10 @@ class ReceivedMsgList extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
+                      
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => new MessageView(
-                                receiveData: item,
+                                receiveData: item
                               )));
                     }),
               ],
