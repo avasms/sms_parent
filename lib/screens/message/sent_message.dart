@@ -8,13 +8,11 @@ import 'package:sms_parent/dao/apicommondao.dart';
 
 class Sent extends StatefulWidget {
   final userId;
-
   const Sent({Key key, this.userId}) : super(key: key);
 
   ViewPage createState() => new ViewPage();
 
 }
-
 class ViewPage extends State<Sent> {
 
       @override
@@ -30,9 +28,6 @@ class ViewPage extends State<Sent> {
         },
       );
       }
-
- 
-     
 }
 
 class ReceivedMsgList extends StatelessWidget {

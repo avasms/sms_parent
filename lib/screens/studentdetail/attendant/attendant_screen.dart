@@ -14,7 +14,7 @@ class AttendantScreen extends StatefulWidget {
 
 class Attendant_Screen extends State<AttendantScreen> {
   String mName;
-  int _selectValue=11;
+  int _selectValue = 11;
   static Map<int, String> month_map = {
     1: "January",
     2: "February",
@@ -39,10 +39,12 @@ class Attendant_Screen extends State<AttendantScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      backgroundColor: Colors.white,
       body: new Column(
-        
         children: <Widget>[
-          new SizedBox(height: 5.0,),
+          new SizedBox(
+            height: 5.0,
+          ),
           new Container(
             padding: EdgeInsets.all(10.0),
             width: double.infinity,
@@ -62,8 +64,9 @@ class Attendant_Screen extends State<AttendantScreen> {
           ),
           new Container(
             width: double.infinity,
-            height: 700.0,
+            height: 350.0,
             color: Colors.amber,
+            margin: EdgeInsets.all(2.0),
             child: FutureBuilder<List<StudentAttendance>>(
               future: new ApiCommonDao()
                   .viewStudentAttendance(widget.studentId, _selectValue),
@@ -92,34 +95,26 @@ class Attendant_Screen extends State<AttendantScreen> {
     }
     return obj;
   }
-
-  getDataContainer(String data) {
-    return new Container();
-  }
 }
 
 class _AttScreen extends StatefulWidget {
-  final  attList;
+  final attList;
   final month;
   _AttScreen({Key key, this.attList, this.month}) : super(key: key);
   _AttendantScreen createState() => new _AttendantScreen();
 }
 
 class _AttendantScreen extends State<_AttScreen> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    
   }
 
   @override
   Widget build(BuildContext context) {
-    //Student studId=widget.studentId;
-    List<StudentAttendance> att=widget.attList;
-  
-    int month=widget.month;
+    List<StudentAttendance> att = widget.attList;
+    print('kdfjdfdjfdjf:${att.length}');
     return new Container(
       color: Colors.amber,
       padding: EdgeInsets.all(8.0),
@@ -127,15 +122,30 @@ class _AttendantScreen extends State<_AttScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          
-          new SizedBox(
-            height: 10.0,
+          new Container(
+            height: 30.0,
+            child: new ListTile(
+              leading: new Text('Date'),
+              title: new Container(
+                child: new Row(
+                    children: List.generate(2, (index1) {
+                  new Container(
+        padding: EdgeInsets.only(right: 4.0),
+        child: CircleAvatar(
+          radius: 18.0,
+          backgroundColor: Colors.yellow,
+          child: new Text(index1.toString()),
+        ));
+                })),
+              ),
+            ),
           ),
+          new SizedBox(height: 100.0,),
           new Expanded(
             child: ListView.builder(
               itemCount: att.length,
               itemBuilder: (context, index) {
-                 List<String> d = att[index].status.split(',');
+                List<String> d = att[index].status.split(',');
                 return Container(
                   child: new Card(
                     child: new ListTile(
@@ -145,17 +155,18 @@ class _AttendantScreen extends State<_AttScreen> {
                         child: new Text(
                           att[index].date,
                           overflow: TextOverflow.ellipsis,
-                        ),),
-                        trailing: new Container(
-                        width: 150.0,
+                        ),
+                      ),
+                      title: new Container(
+                        //width: 150.0,
                         child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: List.generate(d.length, (index2) {
-                                print('hell$index2');
-                              return DataShow(
-                                data: d[index2].toString(),
-                              );
-                            })),
+                          print('hell$index2');
+                          return DataShow(
+                            data: d[index2].toString(),
+                          );
+                        })),
                       ),
                     ),
                   ),
@@ -177,11 +188,60 @@ class DataShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new CircleAvatar(
-      radius: 18.0,
-      
-      child: (data=='present')? new Icon(Icons.done,color: Colors.green,)
-      :new Icon(Icons.clear,color: Colors.red,),
-    );
+    if (data == 'present') {
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 4.0,
+          ),
+          child: CircleAvatar(
+            radius: 18.0,
+            backgroundColor: Colors.green,
+            child: new Icon(
+              Icons.done,
+              color: Colors.white,
+            ),
+          ));
+    } else if (data == 'absent') {
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 4.0,
+          ),
+          child: CircleAvatar(
+              radius: 18.0,
+              backgroundColor: Colors.red,
+              child: new Icon(
+                Icons.clear,
+                color: Colors.white,
+              )));
+    } else {
+      new Container(
+          padding: EdgeInsets.only(right: 4.0),
+          child: CircleAvatar(
+            radius: 18.0,
+            backgroundColor: Colors.yellow,
+            child: new Icon(
+              Icons.clear,
+              color: Colors.white,
+            ),
+          ));
+    }
+  }
+}
+
+class DataTitleShow extends StatelessWidget {
+  //IconData data;
+  //DataShow({this.data});
+  String data;
+  DataTitleShow({this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    new Container(
+        padding: EdgeInsets.only(right: 4.0),
+        child: CircleAvatar(
+          radius: 18.0,
+          backgroundColor: Colors.yellow,
+          child: new Text(data),
+        ));
   }
 }
