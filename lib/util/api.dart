@@ -81,7 +81,6 @@ static postLogin(String url,var formData,String method) async{
 
  } on DioError catch(e) {
   print(e);
-  exit(0);
   return response;
  }
 
