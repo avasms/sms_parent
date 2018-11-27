@@ -22,7 +22,7 @@ class ViewPage extends State<Receive> {
         if (snapshot.hasError) print(snapshot.error);
 
         return snapshot.hasData
-            ? ReceivedMsgList(examList: snapshot.data)
+            ? ReceivedMsgList(examList: snapshot.data,userId: widget.userId)
             : Center(child: CircularProgressIndicator());
       },
     );
@@ -31,8 +31,8 @@ class ViewPage extends State<Receive> {
 
 class ReceivedMsgList extends StatelessWidget {
   final examList;
-
-  const ReceivedMsgList({Key key, this.examList}) : super(key: key);
+  final userId;
+  const ReceivedMsgList({Key key, this.examList, this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +53,13 @@ class ReceivedMsgList extends StatelessWidget {
             
             double c_width = MediaQuery.of(context).size.width * 0.8;
             return Column(
+
               children: <Widget>[
                 Divider(height: 5.0),
-                ListTile(
+                new Container(
+                  color: item.status=='UNREAD'?Colors.grey:Colors.white,
+                  child:  ListTile(
+
                     title: Text(
                       '${item.senderName}',
                       style: TextStyle(
@@ -68,7 +72,7 @@ class ReceivedMsgList extends StatelessWidget {
                       padding: EdgeInsets.all(2.0),
                       child: new Container(
                         child: new HtmlTextView(
-                          data: '${string}',
+                          data: '${string.replaceAll('&nbsp;', ' ').toString()}',
                         ),
                       ),
                     ),
@@ -82,11 +86,14 @@ class ReceivedMsgList extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
+                      new ApiCommonDao().updateReadMessageStatus(item.id.toString(),userId);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => new MessageView(
-                                receiveData: item,
+                                receiveData: item
                               )));
                     }),
+                ),
+               
               ],
             );
           }),

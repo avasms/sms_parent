@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   TransitionType transitionType = TransitionType.native;
   String _parentId;
   String _userId;
-  int _count=0;
+  int _count = 0;
 
   @override
   void initState() {
@@ -28,32 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
     getCode().then((res) {
       _parentId = res;
     });
-    getUserCode().then((res) {
-      _userId = res;
-       ApiCommonDao().getUnreadMessageCount(res).then(
-      (val){
-        print(val);
-        setState(() {
-            _count = val;     
-                });
-       
-      }
-    );
-    });
-   
-     _checkInternet();
+    
+    _checkInternet();
   }
 
   void _checkInternet() async {
     var connectivityResult = await (new Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
-     
-     showDialog(
+      showDialog(
         context: context,
         builder: (BuildContext context) {
           // return object of type Dialog
           return AlertDialog(
-           
             title: new Text("Check Internet"),
             content: new Text("Please Open Mobile Data or Wifi"),
             actions: <Widget>[
@@ -65,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         },
-     );
+      );
     }
   }
 
@@ -117,17 +103,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   // Replace with a Row for horizontal icon + text
                   children: <Widget>[
-                   
-                      new BadgeIconButton(
-                        icon: Icon(Icons.message,size: 50.0,color: Colors.blue,),
-                        itemCount: _count,
-                        hideZeroCount: true, 
-
+                    new BadgeIconButton(
+                      icon: Icon(
+                        Icons.message,
+                        size: 50.0,
+                        color: Colors.blue,
                       ),
-                      /*Image(
-                        image: AssetImage('images/message.jpg'),
-                      ),*/
-                    
+                      itemCount: _getMsgCount(),
+                      hideZeroCount: true,
+                    ),
+                    /*Image(
+                                                image: AssetImage('images/message.jpg'),
+                                              ),*/
+
                     // Icon(Icons.directions_bus,size: 100.0,),
                     new Text(AppTranslations.of(context).text("message_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
@@ -141,22 +129,26 @@ class _HomeScreenState extends State<HomeScreen> {
       new Card(
         child: Center(
           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-               FlatButton(
-                 onPressed: (){
-                  
-                  Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType="+Config.STUDENT_SCREEN,transition: transitionType,replace: false);
-                 },
-                 padding: EdgeInsets.all(5.0),
-                 child: Column( // Replace with a Row for horizontal icon + text
-                   children: <Widget>[
-                     CircleAvatar(
-                    radius: 30.0,
-                   child: Image(
-                   image: AssetImage('images/student.jpg'),
-             
-                    )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Application.router.navigateTo(
+                      context,
+                      "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                          Config.STUDENT_SCREEN,
+                      transition: transitionType,
+                      replace: false);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                        radius: 30.0,
+                        child: Image(
+                          image: AssetImage('images/student.jpg'),
+                        )),
                     // Icon(Icons.directions_bus,size: 100.0,),
                     new Text(AppTranslations.of(context).text("child_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
@@ -170,22 +162,26 @@ class _HomeScreenState extends State<HomeScreen> {
       new Card(
         child: Center(
           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-               FlatButton(
-                 onPressed: () {
-               
-                Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType="+Config.EXAM_SCREEN,transition: transitionType,replace: false);
-                 },
-                 padding: EdgeInsets.all(5.0),
-                 child: Column( // Replace with a Row for horizontal icon + text
-                   children: <Widget>[
-                     CircleAvatar(
-                    radius: 33.0,
-                   child: Image(
-                   image: AssetImage('images/exam.jpg'),
- 
-                    )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Application.router.navigateTo(
+                      context,
+                      "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                          Config.EXAM_SCREEN,
+                      transition: transitionType,
+                      replace: false);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                        radius: 33.0,
+                        child: Image(
+                          image: AssetImage('images/exam.jpg'),
+                        )),
                     new Text(AppTranslations.of(context).text("exam_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
                   ],
@@ -198,21 +194,26 @@ class _HomeScreenState extends State<HomeScreen> {
       new Card(
         child: Center(
           child: Column(
-
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-               FlatButton(
-                 onPressed: (){
-                Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType="+Config.GRADE_SCREEN,transition: transitionType,replace: false);
-                 },
-                 padding: EdgeInsets.all(5.0),
-                 child: Column( // Replace with a Row for horizontal icon + text
-                   children: <Widget>[
-                     CircleAvatar(
-                    radius: 45.0,
-                   child: Image(
-                   image: AssetImage('images/grade_menu.jpg'),
-                    )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Application.router.navigateTo(
+                      context,
+                      "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                          Config.GRADE_SCREEN,
+                      transition: transitionType,
+                      replace: false);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                        radius: 45.0,
+                        child: Image(
+                          image: AssetImage('images/grade_menu.jpg'),
+                        )),
                     new Text(AppTranslations.of(context).text("grade_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
                   ],
@@ -225,21 +226,26 @@ class _HomeScreenState extends State<HomeScreen> {
       new Card(
         child: Center(
           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-               FlatButton(
-                 onPressed: (){
-                 Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType="+Config.TIMETABLE_SCREEN,transition: transitionType,replace: false);
-                 },
-                 padding: EdgeInsets.all(5.0),
-                 child: Column( // Replace with a Row for horizontal icon + text
-                   children: <Widget>[
-                     CircleAvatar(
-                    radius: 30.0,
-                   child: Image(
-                   image: AssetImage('images/timetable.jpg'),
-  
-                    )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Application.router.navigateTo(
+                      context,
+                      "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                          Config.TIMETABLE_SCREEN,
+                      transition: transitionType,
+                      replace: false);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                        radius: 30.0,
+                        child: Image(
+                          image: AssetImage('images/timetable.jpg'),
+                        )),
                     new Text(AppTranslations.of(context).text("timetable_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
                   ],
@@ -252,21 +258,26 @@ class _HomeScreenState extends State<HomeScreen> {
       new Card(
         child: Center(
           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-               FlatButton(
-                 onPressed: () {
-                 Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType="+Config.LEAVE_SCREEN,transition: transitionType,replace: false);
-               
-                 },
-                 padding: EdgeInsets.all(5.0),
-                 child: Column( // Replace with a Row for horizontal icon + text
-                   children: <Widget>[
-                     CircleAvatar(
-                    radius: 30.0,
-                   child: Image(
-                   image: AssetImage('images/leave.jpg'),
-                     )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Application.router.navigateTo(
+                      context,
+                      "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                          Config.LEAVE_SCREEN,
+                      transition: transitionType,
+                      replace: false);
+                },
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  // Replace with a Row for horizontal icon + text
+                  children: <Widget>[
+                    CircleAvatar(
+                        radius: 30.0,
+                        child: Image(
+                          image: AssetImage('images/leave.jpg'),
+                        )),
                     new Text(AppTranslations.of(context).text("leave_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
                   ],
@@ -444,6 +455,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void deleteDBdata() async {
     var db = new DBHelper();
     await db.deleteData();
+  }
+
+  _getMsgCount() {
+    getUserCode().then((res) {
+      _userId = res;
+      ApiCommonDao().getUnreadMessageCount(res).then((val) {
+        print(val);
+        setState(() {
+          _count = val;
+        });
+      });
+    });
+    return _count;
   }
 }
 

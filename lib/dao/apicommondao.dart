@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:sms_parent/models/admin.dart';
 import 'package:sms_parent/models/dormitory.dart';
 import 'package:sms_parent/models/timetable.dart';
@@ -18,6 +17,7 @@ import 'package:sms_parent/util/api.dart';
 import 'package:sms_parent/util/config.dart';
 
 class ApiCommonDao {
+
   Future<List<Dormitory>> getDormitoryList() async {
     String url = "/dormitory_data_list";
 
@@ -277,5 +277,11 @@ class ApiCommonDao {
       return data['messageCount'];
     }
     return 0;
+  }
+
+  void updateReadMessageStatus(String msgId, userId) async{
+    String url="/update_read_message_api?messageId=$msgId&userId=$userId";
+    final response= await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
+    
   }
 }

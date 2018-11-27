@@ -4,9 +4,8 @@ import 'package:flutter_html_textview/flutter_html_textview.dart';
 
 class MessageView extends StatefulWidget{
   final Message receiveData;
-  
 
-  MessageView({this.receiveData,});
+  MessageView({this.receiveData, String screen,});
 StateViewPage createState() => new StateViewPage();
 //final ReceiveData mess;
 //ReceiveData({this.mess});
@@ -90,7 +89,7 @@ StateViewPage createState() => new StateViewPage();
                         width: double.infinity,
                         padding: EdgeInsets.only(left:25.0),
                         child: new HtmlTextView(
-                           data:'${receiveData.messageText}',
+                           data:'${receiveData.messageText.replaceAll('&nbsp;', ' ').toString()}',
                           
                         )
                       ),
