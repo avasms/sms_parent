@@ -89,7 +89,7 @@ StateViewPage createState() => new StateViewPage();
                         width: double.infinity,
                         padding: EdgeInsets.only(left:25.0),
                         child: new HtmlTextView(
-                           data:'${receiveData.messageText}',
+                           data:'${receiveData.messageText.replaceAll('&nbsp;', ' ').toString()}',
                           
                         )
                       ),

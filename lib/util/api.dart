@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:sms_parent/util/localStorage.dart';
 import 'package:sms_parent/util/config.dart';
@@ -28,6 +30,7 @@ static getWithUrl(String url,String method) async{
         bgcolor: "#e74c3c",
         textcolor: '#ffffff'
    );
+   exit(0);
   return null;
  }
 
@@ -57,6 +60,7 @@ static postWithParam(String url,var formData,String method) async{
         bgcolor: "#e74c3c",
         textcolor: '#ffffff'
    );
+   exit(0);
   return null;
  }
 
@@ -77,6 +81,7 @@ static postLogin(String url,var formData,String method) async{
 
  } on DioError catch(e) {
   print(e);
+  exit(0);
   return response;
  }
 
