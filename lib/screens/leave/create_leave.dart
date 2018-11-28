@@ -64,9 +64,9 @@ class LeaveFormState extends State<LeaveForm> {
 
   int fromdate;
 
-  int toyear ;
+  int toyear;
 
-  int tomonth ;
+  int tomonth;
 
   int todate;
 
@@ -81,11 +81,10 @@ class LeaveFormState extends State<LeaveForm> {
     _stuId = widget.studentId;
     fromyear = nowDate.year;
     frommonth = nowDate.month;
-    fromdate=nowDate.day;
-    toyear=nowDate.year;
-    tomonth=nowDate.month;
-    todate=nowDate.day;
-
+    fromdate = nowDate.day;
+    toyear = nowDate.year;
+    tomonth = nowDate.month;
+    todate = nowDate.day;
   }
 
   @override
@@ -100,7 +99,10 @@ class LeaveFormState extends State<LeaveForm> {
           items: dataList.map((AdminStaff adminStaff) {
             return new DropdownMenuItem<AdminStaff>(
               value: adminStaff,
-              child: new Text(adminStaff.name,style: TextStyle(color: Colors.indigoAccent),),
+              child: new Text(
+                adminStaff.name,
+                style: TextStyle(color: Colors.indigoAccent),
+              ),
             );
           }).toList(),
           onChanged: (AdminStaff adminStaff) {
@@ -116,7 +118,8 @@ class LeaveFormState extends State<LeaveForm> {
         width: 320.0,
         height: 50.0,
         child: new Text(
-          widget.studentName,style: TextStyle(color: Colors.indigoAccent),
+          widget.studentName,
+          style: TextStyle(color: Colors.indigoAccent),
         ));
 
     final dateForm = new Container(
@@ -133,7 +136,8 @@ class LeaveFormState extends State<LeaveForm> {
                 shape: BoxShape.rectangle),
             child: new FlatButton(
                 child: new Text(
-                  'From Date\n$_fromdatetime',style: TextStyle(color: Colors.indigoAccent),
+                  'From Date\n$_fromdatetime',
+                  style: TextStyle(color: Colors.indigoAccent),
                 ),
                 onPressed: () {
                   final bool showTitleActions = true;
@@ -174,7 +178,8 @@ class LeaveFormState extends State<LeaveForm> {
                 shape: BoxShape.rectangle),
             child: new FlatButton(
                 child: new Text(
-                  'To Date\n$_todatetime',style: TextStyle(color: Colors.indigoAccent),
+                  'To Date\n$_todatetime',
+                  style: TextStyle(color: Colors.indigoAccent),
                 ),
                 onPressed: () {
                   final bool showTitleActions = true;
@@ -263,19 +268,34 @@ class LeaveFormState extends State<LeaveForm> {
                 new Padding(
                   padding: EdgeInsets.all(8.0),
                   child: new ListTile(
-                    leading: new Text('To',style: TextStyle(fontSize: 16.0,color: Colors.indigoAccent),),
+                    leading: new Text(
+                      'To',
+                      style:
+                          TextStyle(fontSize: 16.0, color: Colors.indigoAccent),
+                    ),
                     title: receiver,
                   ),
                 ),
-                new Divider(height: 1.0,),
-                new Padding(padding: EdgeInsets.all(8.0),
-                 child: new ListTile(
-                   leading: new Text('From',style: TextStyle(fontSize: 16.0,color: Colors.indigoAccent),),
-                   title: sender,
-                 )),
-                 new Divider(height: 1.0,),
+                new Divider(
+                  height: 1.0,
+                ),
+                new Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: new ListTile(
+                      leading: new Text(
+                        'From',
+                        style: TextStyle(
+                            fontSize: 16.0, color: Colors.indigoAccent),
+                      ),
+                      title: sender,
+                    )),
+                new Divider(
+                  height: 1.0,
+                ),
                 new Padding(padding: EdgeInsets.all(8.0), child: dateForm),
-                new Divider(height: 1.0,),
+                new Divider(
+                  height: 1.0,
+                ),
                 new Padding(
                   padding: EdgeInsets.all(8.0),
                   child: title,
@@ -287,7 +307,9 @@ class LeaveFormState extends State<LeaveForm> {
                   padding: EdgeInsets.all(8.0),
                   child: description,
                 ),
-                new Divider(height: 1.0,),
+                new Divider(
+                  height: 1.0,
+                ),
                 new Padding(
                   padding: EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -328,11 +350,11 @@ class LeaveFormState extends State<LeaveForm> {
                                 _description);
 
                             Fluttertoast.showToast(
-                                msg: "Leave Form Successfully Sent",
+                                msg: "Leave form successfully sent!",
                                 toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIos: 20,
-                                bgcolor: '#ffffff',
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIos: 1,
+                                bgcolor: '#BCE0F4',
                                 textcolor: '#d50000');
 
                             setState(() {
@@ -347,9 +369,7 @@ class LeaveFormState extends State<LeaveForm> {
                       color: Colors.blueAccent,
                       child: Text(
                         'Send',
-                        style: TextStyle(
-                          fontSize: 18.0,color: Colors.white
-                        ),
+                        style: TextStyle(fontSize: 18.0, color: Colors.white),
                       ),
                     ),
                   ),

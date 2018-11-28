@@ -11,7 +11,7 @@ class StudentInfo{
   String rollNo;int parent;
   int classLevel;int section;
   int dormitory;String relation;
-  //List<String> foodList;
+  //List foodList;
   int userId;
   String passward;String runningYear;
   String parentNrc;String className;
@@ -57,7 +57,7 @@ class StudentInfo{
       section: json['section'] as int,
       dormitory:json['dormitory'] as int,
       religion: json['religion'] as String,
-      //foodList: json['foodList'] as List,
+      //foodList: json['foodList'] as List<String>,
       userId: json['userId'] as int,
       passward: json['passward'] as String,
       runningYear: json['runningYear'] as String,

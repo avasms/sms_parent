@@ -55,9 +55,9 @@ class ReceivedMsgList extends StatelessWidget {
             return Column(
 
               children: <Widget>[
-                Divider(height: 5.0),
+                Divider(height: 2.0),
                 new Container(
-                  color: item.status=='UNREAD'?Colors.grey:Colors.white,
+                  color: item.status=='UNREAD'?new Color(0xACC9EC):Colors.white,
                   child:  ListTile(
 
                     title: Text(

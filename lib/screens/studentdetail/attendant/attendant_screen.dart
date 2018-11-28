@@ -14,7 +14,7 @@ class AttendantScreen extends StatefulWidget {
 
 class Attendant_Screen extends State<AttendantScreen> {
   String mName;
-  int _selectValue = 11;
+  int _selectValue=1;
   static Map<int, String> month_map = {
     1: "January",
     2: "February",
@@ -114,7 +114,13 @@ class _AttendantScreen extends State<_AttScreen> {
   @override
   Widget build(BuildContext context) {
     List<StudentAttendance> att = widget.attList;
-    int c = att[0].count;
+    int c = 0;
+    if(att.length>0){
+      c = att[0].count;
+    }
+
+    print('gkfjgjfkgfjgfkg:${att.length}');
+    
     print('kdfjdfdjfdjf:${c.toString()}');
     return new Container(
       color: Colors.amber,
@@ -128,7 +134,7 @@ class _AttendantScreen extends State<_AttScreen> {
             child: new ListTile(
               leading:new Container(
                 width:100.0,
-                child:new Text('DATE',style: TextStyle(fontSize: 19.0,color: Colors.white),),) ,
+                child:(c==0?null:new Text('DATE',style: TextStyle(fontSize: 19.0,color: Colors.white),)),) ,
               title: new Container(
                 child: new Row(
                     children: new List.generate(c, (i) {

@@ -47,7 +47,7 @@ class ShowData extends StatelessWidget {
             decoration: new BoxDecoration(
               color: Colors.white,
               image: new DecorationImage(
-                image: AssetImage('images/ba_school.jpg'),
+                image: NetworkImage(Config.BASE_URL+'/Images/System/Background/login.jpg'),
                 fit: BoxFit.fill,
               ),
               border: Border.all(

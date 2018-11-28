@@ -28,6 +28,16 @@ class _HomeScreenState extends State<HomeScreen> {
     getCode().then((res) {
       _parentId = res;
     });
+
+    getUserCode().then((res) {
+      _userId = res;
+      ApiCommonDao().getUnreadMessageCount(res).then((val) {
+        print(val);
+        setState(() {
+          _count = val;
+        });
+      });
+    });
     
     _checkInternet();
   }
@@ -462,9 +472,9 @@ class _HomeScreenState extends State<HomeScreen> {
       _userId = res;
       ApiCommonDao().getUnreadMessageCount(res).then((val) {
         print(val);
-        setState(() {
+       // setState(() {
           _count = val;
-        });
+      //  });
       });
     });
     return _count;

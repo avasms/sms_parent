@@ -181,6 +181,7 @@ class _Info extends State<InfoScreen> {
                       ],),
                       new Divider(height: 1.0,),
                       
+                      
                     ],
                   ),
                 ),

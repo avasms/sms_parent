@@ -30,7 +30,7 @@ static getWithUrl(String url,String method) async{
         bgcolor: "#e74c3c",
         textcolor: '#ffffff'
    );
-   exit(0);
+   //exit(0);
   return null;
  }
 
@@ -60,7 +60,7 @@ static postWithParam(String url,var formData,String method) async{
         bgcolor: "#e74c3c",
         textcolor: '#ffffff'
    );
-   exit(0);
+   //exit(0);
   return null;
  }
 

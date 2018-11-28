@@ -92,7 +92,7 @@ class StudentList extends StatelessWidget {
                             ),
                             new Container(
                               width: 150.0,
-                              child: new Text(': ${item.schoolName}',
+                              child: new Text(': ${(item.schoolName==null)?'':item.schoolName}',
                                   style: TextStyle(
                                       fontFamily: 'Zawgyi', fontSize: 16.0)),
                             ),
@@ -112,7 +112,7 @@ class StudentList extends StatelessWidget {
                             ),
                             new Container(
                               width: 150.0,
-                              child: new Text(': ${item.description}',
+                              child: new Text(': ${(item.description==null)?'':item.description}',
                                   style: TextStyle(
                                       fontFamily: 'Zawgyi', fontSize: 16.0)),
                             ),
@@ -132,7 +132,7 @@ class StudentList extends StatelessWidget {
                             ),
                             new Container(
                               width: 150.0,
-                              child: new Text(': ${item.roomNo}',
+                              child: new Text(': ${(item.roomNo==null?'':item.roomNo)}',
                                   style: TextStyle(
                                       fontFamily: 'Zawgyi', fontSize: 16.0)),
                             ),
@@ -153,7 +153,7 @@ class StudentList extends StatelessWidget {
                             new Container(
                               width: 150.0,
                               child: new Text(
-                                ': ${item.teacherName}',
+                                ': ${(item.teacherName==null)?'':item.teacherName==null}',
                                 style: TextStyle(
                                     fontFamily: 'Zawgyi', fontSize: 16.0),
                                 //overflow: TextOverflow.ellipsis,

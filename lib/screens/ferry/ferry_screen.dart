@@ -53,7 +53,7 @@ class FerryList extends StatelessWidget {
                           text: AppTranslations.of(context).text("ferry_name"),
                           style: TextStyle(fontFamily: 'Myanmar')),
                       TextSpan(
-                          text: ': ${item.name}',
+                          text: ': ${(item.name==null)?'':item.name}',
                           style: TextStyle(fontFamily: 'Zawgyi')),
                     ],
                   ),
@@ -89,7 +89,7 @@ class FerryList extends StatelessWidget {
                             ),
                             new Container(
                               width: 150.0,
-                              child: new Text(': ${item.schoolName}',
+                              child: new Text(': ${(item.schoolName==null)?'':item.schoolName}',
                                   style: TextStyle(
                                       fontFamily: 'Zawgyi', fontSize: 16.0)),
                             ),
@@ -109,7 +109,7 @@ class FerryList extends StatelessWidget {
                             ),
                             new Container(
                               width: 150.0,
-                              child: new Text(': ${item.routeFare}',
+                              child: new Text(': ${(item.routeFare==null)?'':item.routeFare}',
                                   style: TextStyle(
                                       fontFamily: 'Zawgyi', fontSize: 16.0)),
                             ),
@@ -129,7 +129,7 @@ class FerryList extends StatelessWidget {
                             ),
                             new Container(
                               width: 150.0,
-                              child: new Text(': ${item.vehicleNo}',
+                              child: new Text(': ${(item.vehicleNo==null)?'':item.vehicleNo}?',
                                   style: TextStyle(
                                       fontFamily: 'Zawgyi', fontSize: 16.0)),
                             ),
@@ -150,7 +150,7 @@ class FerryList extends StatelessWidget {
                             new Container(
                               width: 150.0,
                               child: new Text(
-                                ': ${item.driverName}',
+                                ': ${(item.driverName==null)?'':item.driverName}',
                                 style: TextStyle(
                                     fontFamily: 'Zawgyi', fontSize: 16.0),
                                 //overflow: TextOverflow.ellipsis,
@@ -160,46 +160,7 @@ class FerryList extends StatelessWidget {
                         ),
                       ]),
                     ),
-                    /*title: Text.rich(
-                      TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: AppTranslations.of(context)
-                                  .text("common_school"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.schoolName}',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                        ],
-                      ),
-                    ),*/
-                    /*subtitle: new RichText(
-                      text: new TextSpan(
-                        //text: 'Driver Name: U Maung Maung\n ' ,
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: AppTranslations.of(context).text("routes"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.routeFare}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                          TextSpan(
-                              text: AppTranslations.of(context).text("car_no"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.vehicleNo}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                          TextSpan(
-                              text: AppTranslations.of(context)
-                                  .text("driver_name"),
-                              style: TextStyle(fontFamily: 'Myanmar',fontSize: 16.0)),
-                          TextSpan(
-                              text: ' : ${item.driverName}\n',
-                              style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0)),
-                        ],
-                      ),
-                    ),*/
+                    
                   ),
                 ]),
           );
