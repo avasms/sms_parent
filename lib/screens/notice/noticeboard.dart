@@ -143,7 +143,7 @@ class NoticeList extends StatelessWidget {
   }
 }
 class PDFScreen extends StatelessWidget {
-  String pathPDF = "";
+  String pathPDF;
   PDFScreen(this.pathPDF);
 
   @override
