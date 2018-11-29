@@ -41,18 +41,28 @@ class NoticeBoard extends State<NoticeBoardScreen> {
   }
 }
 
-class NoticeList extends StatelessWidget {
+class NoticeList extends StatefulWidget {
   final List<Notice> notice;
   NoticeList({Key key, this.notice}) : super(key: key);
 
+  @override
+  NoticeListState createState() {
+    return new NoticeListState();
+  }
+}
+
+class NoticeListState extends State<NoticeList> {
   @override
   Widget build(BuildContext context) {
 
     getImageOrFile(String ftype, String filePath, BuildContext context) {
     if (ftype == '.pdf' || ftype == '.PDF') {
     createFileOfPdfUrl(filePath).then((f) {
-        filePath = f.path;
-        print(filePath);
+      setState(() {
+           filePath = f.path;   
+            });
+        
+       // print(filePath);
       });
     
     return  Center(
@@ -75,9 +85,9 @@ class NoticeList extends StatelessWidget {
   
     // TODO: implement build
     return ListView.builder(
-      itemCount: notice.length,
+      itemCount: widget.notice.length,
       itemBuilder: (context, index) {
-        final item = notice[index];
+        final item = widget.notice[index];
         String temp = item.filePath.toString();
         String ftype = temp.substring(temp.lastIndexOf('.'), temp.length);
         return GestureDetector(
@@ -127,8 +137,6 @@ class NoticeList extends StatelessWidget {
       },
     );
   }
-
- 
 
   Future<File> createFileOfPdfUrl(String filePath) async {
     final url =  Config.BASE_URL + filePath;
