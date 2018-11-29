@@ -153,7 +153,7 @@ class StudentList extends StatelessWidget {
                             new Container(
                               width: 150.0,
                               child: new Text(
-                                ': ${(item.teacherName==null)?'':item.teacherName==null}',
+                                ': ${(item.teacherName==null?'':item.teacherName)}',
                                 style: TextStyle(
                                     fontFamily: 'Zawgyi', fontSize: 16.0),
                                 //overflow: TextOverflow.ellipsis,

@@ -129,7 +129,7 @@ class FerryList extends StatelessWidget {
                             ),
                             new Container(
                               width: 150.0,
-                              child: new Text(': ${(item.vehicleNo==null)?'':item.vehicleNo}?',
+                              child: new Text(': ${(item.vehicleNo==null)?'':item.vehicleNo}',
                                   style: TextStyle(
                                       fontFamily: 'Zawgyi', fontSize: 16.0)),
                             ),
