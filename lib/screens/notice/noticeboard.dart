@@ -41,38 +41,40 @@ class NoticeBoard extends State<NoticeBoardScreen> {
   }
 }
 
-class NoticeList extends StatelessWidget {
+class NoticeList extends StatefulWidget {
   final List<Notice> notice;
   NoticeList({Key key, this.notice}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-
-    getImageOrFile(String ftype, String filePath, BuildContext context) {
-    if (ftype == '.pdf' || ftype == '.PDF') {
-    createFileOfPdfUrl(filePath).then((f) {
-        filePath = f.path;
-        print(filePath);
-      });
-    
-    return  Center(
-        child: RaisedButton(
-          child: Text("Open PDF"),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
-          ),
-        ),
-      );
-    } else {
-      return new CachedNetworkImage(
-        imageUrl: Config.BASE_URL + filePath,
-        placeholder: new CircularProgressIndicator(),
-        errorWidget: new Icon(Icons.error),
-      );
-    }
+  NoticeListState createState() {
+    return new NoticeListState();
   }
-  
+}
+
+class NoticeListState extends State<NoticeList> {
+  @override
+  Widget build(BuildContext context) {
+    List<Notice> notice = widget.notice;
+    getImageOrFile(String ftype, String filePath, BuildContext context) {
+      if (ftype == '.pdf' || ftype == '.PDF') {
+        return Center(
+          child: RaisedButton(
+            child: Text("Open PDF"),
+            onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
+                ),
+          ),
+        );
+      } else {
+        return new CachedNetworkImage(
+          imageUrl: Config.BASE_URL + filePath,
+          placeholder: new CircularProgressIndicator(),
+          errorWidget: new Icon(Icons.error),
+        );
+      }
+    }
+
     // TODO: implement build
     return ListView.builder(
       itemCount: notice.length,
@@ -104,7 +106,7 @@ class NoticeList extends StatelessWidget {
                       child: new Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          getImageOrFile(ftype,item.filePath,context),
+                          getImageOrFile(ftype, item.filePath, context),
                           new SizedBox(
                             height: 20.0,
                           ),
@@ -127,11 +129,32 @@ class NoticeList extends StatelessWidget {
       },
     );
   }
+}
 
- 
+class PDFScreen extends StatelessWidget {
+  String pathPDF = "";
+  PDFScreen(this.pathPDF);
 
-  Future<File> createFileOfPdfUrl(String filePath) async {
-    final url =  Config.BASE_URL + filePath;
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<File>(
+      future: createFileOfPdfUrl(pathPDF),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) print(snapshot.error);
+
+        return snapshot.hasData
+            ? PDFViewerScaffold(
+                appBar: AppBar(
+                  title: Text("Document"),
+                ),
+                path: snapshot.data.path)
+            : Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+
+  Future<File> createFileOfPdfUrl(String pathPDF) async {
+    final url = Config.BASE_URL + pathPDF;
     final filename = url.substring(url.lastIndexOf("/") + 1);
     var request = await HttpClient().getUrl(Uri.parse(url));
     var response = await request.close();
@@ -140,24 +163,5 @@ class NoticeList extends StatelessWidget {
     File file = new File('$dir/$filename');
     await file.writeAsBytes(bytes);
     return file;
-  }
-}
-class PDFScreen extends StatelessWidget {
-  String pathPDF;
-  PDFScreen(this.pathPDF);
-
-  @override
-  Widget build(BuildContext context) {
-    return PDFViewerScaffold(
-        appBar: AppBar(
-          title: Text("Document"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.share),
-              onPressed: () {},
-            ),
-          ],
-        ),
-        path: pathPDF);
   }
 }
