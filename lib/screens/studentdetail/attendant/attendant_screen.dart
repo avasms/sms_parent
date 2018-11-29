@@ -65,7 +65,7 @@ class Attendant_Screen extends State<AttendantScreen> {
           new Container(
             width: double.infinity,
             height: 350.0,
-            color: Colors.amber,
+            color: Colors.white,
             margin: EdgeInsets.all(2.0),
             child: FutureBuilder<List<StudentAttendance>>(
               future: new ApiCommonDao()
@@ -123,9 +123,11 @@ class _AttendantScreen extends State<_AttScreen> {
     
     print('kdfjdfdjfdjf:${c.toString()}');
     return new Container(
-      color: Colors.amber,
+      //height: 500.0,
+      color: Colors.white54,
       padding: EdgeInsets.all(8.0),
       child: new Column(
+
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -134,7 +136,7 @@ class _AttendantScreen extends State<_AttScreen> {
             child: new ListTile(
               leading:new Container(
                 width:100.0,
-                child:(c==0?null:new Text('DATE',style: TextStyle(fontSize: 19.0,color: Colors.white),)),) ,
+                child:(c==0?null:new Text('DATE',style: TextStyle(fontSize: 19.0,color: Colors.black),)),) ,
               title: new Container(
                 child: new Row(
                     children: new List.generate(c, (i) {
@@ -160,12 +162,16 @@ class _AttendantScreen extends State<_AttScreen> {
             height: 40.0,
           ),
           new Expanded(
+
             child: ListView.builder(
               itemCount: att.length,
               itemBuilder: (context, index) {
                 List<String> d = att[index].status.split(',');
                 return Container(
+
                   child: new Card(
+                    elevation: 5.0,
+                    margin: EdgeInsets.all(1.0),
                     child: new ListTile(
                       leading: new Container(
                         width: 100.0,
