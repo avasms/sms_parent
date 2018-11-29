@@ -161,7 +161,12 @@ class PDFScreen extends StatelessWidget {
     var bytes = await consolidateHttpClientResponseBytes(response);
     String dir = (await getApplicationDocumentsDirectory()).path;
     File file = new File('$dir/$filename');
-    await file.writeAsBytes(bytes);
+    if(file.exists() != null){
+      return  file;
+    }else {
+      await file.writeAsBytes(bytes);
     return file;
+    }
+    
   }
 }
