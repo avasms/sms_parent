@@ -54,40 +54,32 @@ class NoticeList extends StatefulWidget {
 class NoticeListState extends State<NoticeList> {
   @override
   Widget build(BuildContext context) {
-
+    List<Notice> notice = widget.notice;
     getImageOrFile(String ftype, String filePath, BuildContext context) {
-    if (ftype == '.pdf' || ftype == '.PDF') {
-    createFileOfPdfUrl(filePath).then((f) {
-      setState(() {
-           filePath = f.path;   
-            });
-        
-       // print(filePath);
-      });
-    
-    return  Center(
-        child: RaisedButton(
-          child: Text("Open PDF"),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
+      if (ftype == '.pdf' || ftype == '.PDF') {
+        return Center(
+          child: RaisedButton(
+            child: Text("Open PDF"),
+            onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
+                ),
           ),
-        ),
-      );
-    } else {
-      return new CachedNetworkImage(
-        imageUrl: Config.BASE_URL + filePath,
-        placeholder: new CircularProgressIndicator(),
-        errorWidget: new Icon(Icons.error),
-      );
+        );
+      } else {
+        return new CachedNetworkImage(
+          imageUrl: Config.BASE_URL + filePath,
+          placeholder: new CircularProgressIndicator(),
+          errorWidget: new Icon(Icons.error),
+        );
+      }
     }
-  }
-  
+
     // TODO: implement build
     return ListView.builder(
-      itemCount: widget.notice.length,
+      itemCount: notice.length,
       itemBuilder: (context, index) {
-        final item = widget.notice[index];
+        final item = notice[index];
         String temp = item.filePath.toString();
         String ftype = temp.substring(temp.lastIndexOf('.'), temp.length);
         return GestureDetector(
@@ -114,7 +106,7 @@ class NoticeListState extends State<NoticeList> {
                       child: new Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          getImageOrFile(ftype,item.filePath,context),
+                          getImageOrFile(ftype, item.filePath, context),
                           new SizedBox(
                             height: 20.0,
                           ),
@@ -137,9 +129,32 @@ class NoticeListState extends State<NoticeList> {
       },
     );
   }
+}
 
-  Future<File> createFileOfPdfUrl(String filePath) async {
-    final url =  Config.BASE_URL + filePath;
+class PDFScreen extends StatelessWidget {
+  String pathPDF = "";
+  PDFScreen(this.pathPDF);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<File>(
+      future: createFileOfPdfUrl(pathPDF),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) print(snapshot.error);
+
+        return snapshot.hasData
+            ? PDFViewerScaffold(
+                appBar: AppBar(
+                  title: Text("Document"),
+                ),
+                path: snapshot.data.path)
+            : Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+
+  Future<File> createFileOfPdfUrl(String pathPDF) async {
+    final url = Config.BASE_URL + pathPDF;
     final filename = url.substring(url.lastIndexOf("/") + 1);
     var request = await HttpClient().getUrl(Uri.parse(url));
     var response = await request.close();
@@ -148,24 +163,5 @@ class NoticeListState extends State<NoticeList> {
     File file = new File('$dir/$filename');
     await file.writeAsBytes(bytes);
     return file;
-  }
-}
-class PDFScreen extends StatelessWidget {
-  String pathPDF = "";
-  PDFScreen(this.pathPDF);
-
-  @override
-  Widget build(BuildContext context) {
-    return PDFViewerScaffold(
-        appBar: AppBar(
-          title: Text("Document"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.share),
-              onPressed: () {},
-            ),
-          ],
-        ),
-        path: pathPDF);
   }
 }
