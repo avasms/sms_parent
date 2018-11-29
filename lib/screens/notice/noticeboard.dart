@@ -141,7 +141,8 @@ class PDFScreen extends StatelessWidget {
       future: createFileOfPdfUrl(pathPDF),
       builder: (context, snapshot) {
         if (snapshot.hasError) print(snapshot.error);
-
+        //print('AAAA:${snapshot.data}');
+        //print('BBB:$pathPDF');
         return snapshot.hasData
             ? PDFViewerScaffold(
                 appBar: AppBar(
@@ -161,12 +162,10 @@ class PDFScreen extends StatelessWidget {
     var bytes = await consolidateHttpClientResponseBytes(response);
     String dir = (await getApplicationDocumentsDirectory()).path;
     File file = new File('$dir/$filename');
-    if(file.exists() != null){
-      return  file;
-    }else {
+   //print('CCCC:$bytes');
       await file.writeAsBytes(bytes);
     return file;
-    }
+    
     
   }
 }
