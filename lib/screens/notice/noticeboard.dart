@@ -47,6 +47,32 @@ class NoticeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    getImageOrFile(String ftype, String filePath, BuildContext context) {
+    if (ftype == '.pdf' || ftype == '.PDF') {
+    createFileOfPdfUrl(filePath).then((f) {
+        filePath = f.path;
+        print(filePath);
+      });
+    
+    return  Center(
+        child: RaisedButton(
+          child: Text("Open PDF"),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
+          ),
+        ),
+      );
+    } else {
+      return new CachedNetworkImage(
+        imageUrl: Config.BASE_URL + filePath,
+        placeholder: new CircularProgressIndicator(),
+        errorWidget: new Icon(Icons.error),
+      );
+    }
+  }
+  
     // TODO: implement build
     return ListView.builder(
       itemCount: notice.length,
@@ -102,31 +128,7 @@ class NoticeList extends StatelessWidget {
     );
   }
 
-  getImageOrFile(String ftype, String filePath, BuildContext context) {
-    if (ftype == 'pdf' || ftype == 'PDF') {
-    createFileOfPdfUrl(filePath).then((f) {
-    
-        filePath = f.path;
-        print(filePath);
-      });
-    
-    return  Center(
-        child: RaisedButton(
-          child: Text("Open PDF"),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
-          ),
-        ),
-      );
-    } else {
-      return new CachedNetworkImage(
-        imageUrl: Config.BASE_URL + filePath,
-        placeholder: new CircularProgressIndicator(),
-        errorWidget: new Icon(Icons.error),
-      );
-    }
-  }
+ 
 
   Future<File> createFileOfPdfUrl(String filePath) async {
     final url =  Config.BASE_URL + filePath;
