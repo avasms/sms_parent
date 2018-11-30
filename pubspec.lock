@@ -136,13 +136,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.9"
-  easy_alert:
-    dependency: "direct main"
-    description:
-      name: easy_alert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
   fluro:
     dependency: "direct main"
     description:
@@ -195,13 +188,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_pdf_viewer:
-    dependency: "direct main"
-    description:
-      name: flutter_pdf_viewer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.3"
   flutter_spinkit:
     dependency: "direct main"
     description:
