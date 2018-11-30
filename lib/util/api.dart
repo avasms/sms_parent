@@ -21,16 +21,7 @@ static getWithUrl(String url,String method) async{
   response = await dio.request(requestUrl,options: option);
 
  } on DioError catch(e) {
-   print(e);
-   Fluttertoast.showToast(
-        msg: e.toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIos: 10,
-        bgcolor: "#e74c3c",
-        textcolor: '#ffffff'
-   );
-   //exit(0);
+   
   return null;
  }
 
