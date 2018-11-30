@@ -161,8 +161,7 @@ class _AttendantScreen extends State<_AttScreen> {
           new SizedBox(
             height: 40.0,
           ),
-          new Expanded(
-
+          new Expanded(            
             child: ListView.builder(
               itemCount: att.length,
               itemBuilder: (context, index) {
@@ -184,7 +183,6 @@ class _AttendantScreen extends State<_AttScreen> {
                       title: new Container(
                         //width: 150.0,
                         child: Row(
-                            //mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: List.generate(d.length, (index2) {
                           print('hell$index2');
                           return DataShow(

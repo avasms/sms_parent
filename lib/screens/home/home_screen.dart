@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     
     _checkInternet();
   }
-
+  
   void _checkInternet() async {
     var connectivityResult = await (new Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
