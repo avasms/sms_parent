@@ -21,7 +21,6 @@ static getWithUrl(String url,String method) async{
   response = await dio.request(requestUrl,options: option);
 
  } on DioError catch(e) {
-   
   return null;
  }
 
