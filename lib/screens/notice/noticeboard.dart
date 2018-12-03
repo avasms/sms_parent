@@ -9,8 +9,8 @@ import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:flutter_html_textview/flutter_html_textview.dart';
-import 'package:flutter_full_pdf_viewer/flutter_full_pdf_viewer.dart';
-import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
+//import 'package:flutter_full_pdf_viewer/flutter_full_pdf_viewer.dart';
+//import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 import 'dart:core';
 
 class NoticeBoardScreen extends StatefulWidget {
@@ -58,13 +58,8 @@ class NoticeListState extends State<NoticeList> {
     getImageOrFile(String ftype, String filePath, BuildContext context) {
       if (ftype == '.pdf' || ftype == '.PDF') {
         return Center(
-          child: RaisedButton(
-            child: Text("Open PDF"),
-            onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
-                ),
-          ),
+          child: Text("Open PDF"),
+            
         );
       } else {
         return new CachedNetworkImage(
@@ -130,7 +125,7 @@ class NoticeListState extends State<NoticeList> {
     );
   }
 }
-
+/*
 class PDFScreen extends StatelessWidget {
   String pathPDF = "";
   PDFScreen(this.pathPDF);
@@ -169,3 +164,4 @@ class PDFScreen extends StatelessWidget {
     
   }
 }
+*/
