@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
+import 'dart:typed_data';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,9 +12,10 @@ import 'package:sms_parent/models/notice.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:flutter_html_textview/flutter_html_textview.dart';
-import 'package:flutter_full_pdf_viewer/flutter_full_pdf_viewer.dart';
-import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 import 'dart:core';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
+//import 'package:flutter_pdf_viewer/flutter_pdf_viewer.dart';
 
 class NoticeBoardScreen extends StatefulWidget {
   NoticeBoard createState() => new NoticeBoard();
@@ -55,26 +59,41 @@ class NoticeListState extends State<NoticeList> {
   @override
   Widget build(BuildContext context) {
     List<Notice> notice = widget.notice;
+
+     _launchUrl(String filePath) async {
+      var path = Config.BASE_URL + filePath;
+      var url = 'http://docs.google.com/viewer?url=$path';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     getImageOrFile(String ftype, String filePath, BuildContext context) {
       if (ftype == '.pdf' || ftype == '.PDF') {
         return Center(
           child: RaisedButton(
-            child: Text("Open PDF"),
-            onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PDFScreen(filePath)),
-                ),
-          ),
-        );
-      } else {
-        return new CachedNetworkImage(
-          imageUrl: Config.BASE_URL + filePath,
-          placeholder: new CircularProgressIndicator(),
-          errorWidget: new Icon(Icons.error),
-        );
-      }
-    }
-
+              child: Text("Open PDF"),
+              onPressed: () {
+                _launchUrl(filePath);
+                              }
+                              //onPressed: ()=>Navigator.push
+                              //(context, MaterialPageRoute(builder: (context)=>LoadUrlAsFile(filePath: filePath,))),
+                              /*onPressed: ()=>Navigator.push(
+                                            context, MaterialPageRoute(builder: (context)=>WebViewShow(file:filePath))),*/
+                              /* onPressed: ()=>Navigator.push(
+                                            context, MaterialPageRoute(builder: (context)=>LoadUrlAsFile(filePath:filePath))),*/
+                              ),
+                        );
+                      } else {
+                        return new CachedNetworkImage(
+                          imageUrl: Config.BASE_URL + filePath,
+                          placeholder: new CircularProgressIndicator(),
+                          errorWidget: new Icon(Icons.error),
+                        );
+                      }
+                    }
     // TODO: implement build
     return ListView.builder(
       itemCount: notice.length,
@@ -130,8 +149,29 @@ class NoticeListState extends State<NoticeList> {
     );
   }
 }
+/*class LoadUrlAsFile extends StatelessWidget {
+  final filePath;
+  LoadUrlAsFile({this.filePath});
+  @override
+  Widget build(BuildContext context) {
+   return FutureBuilder<File>(
+      future: createFileOfPdfUrl(filePath),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) print(snapshot.error);
+        return snapshot.hasData
+            ? PDFViewerScaffold(
+                appBar: AppBar(
+                  title: Text("Document"),
+                ),
+                path: snapshot.data.path)
+            : Center(child: CircularProgressIndicator());
+      },
+   ) ;
+   
+  }
+}*/
 
-class PDFScreen extends StatelessWidget {
+/*class PDFScreen extends StatelessWidget {
   String pathPDF = "";
   PDFScreen(this.pathPDF);
 
@@ -152,20 +192,17 @@ class PDFScreen extends StatelessWidget {
             : Center(child: CircularProgressIndicator());
       },
     );
-  }
+  }*/
 
-  Future<File> createFileOfPdfUrl(String pathPDF) async {
-    final url = Config.BASE_URL + pathPDF;
-    final filename = url.substring(url.lastIndexOf("/") + 1);
-    var request = await HttpClient().getUrl(Uri.parse(url));
-    var response = await request.close();
-    var bytes = await consolidateHttpClientResponseBytes(response);
-    String dir = (await getApplicationDocumentsDirectory()).path;
-    File file = new File('$dir/$filename');
-   //print('CCCC:$bytes');
-      await file.writeAsBytes(bytes);
-    return file;
-    
-    
-  }
+Future<File> createFileOfPdfUrl(String pathPDF) async {
+  final url = Config.BASE_URL + pathPDF;
+  final filename = url.substring(url.lastIndexOf("/") + 1);
+  var request = await HttpClient().getUrl(Uri.parse(url));
+  var response = await request.close();
+  var bytes = await consolidateHttpClientResponseBytes(response);
+  String dir = (await getApplicationDocumentsDirectory()).path;
+  File file = new File('$dir/$filename');
+  //print('CCCC:$bytes');
+  await file.writeAsBytes(bytes);
+  return file;
 }

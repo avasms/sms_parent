@@ -28,16 +28,16 @@ dependencies:
   fluttertoast: ^2.0.7
   connectivity: ^0.3.2
   flutter_spinkit: ^2.1.0
-  cached_network_image: ^0.4.2
-  flutter_cupertino_date_picker: ^0.0.6
+  cached_network_image: "^0.4.1"
+  flutter_cupertino_date_picker: ^0.3.0
   sqflite: any
   path_provider: ^0.4.1
   flutter_launcher_icons: ^0.6.1
-  url_launcher: ^4.0.1
+  url_launcher: ^3.0.3
   flutter_html_textview: ^0.2.6
   onesignal: ^1.0.3
   badges: ^0.0.6
-  flutter_full_pdf_viewer: ^1.0.2
+  
   
 flutter_icons:
   android: true 
@@ -70,6 +70,7 @@ flutter:
     - images/grade_menu.jpg
     - images/message.jpg
     - images/ba_school.jpg
+    
     
   
   fonts:
