@@ -1,7 +1,7 @@
 
 class Config {
-  //static const BASE_URL = "http://192.168.100.12:8080/AVASMS";
-  //static const MOBILE_API_URL = "/api";
+  static const BASE_URL = "http://192.168.100.3:8080/AVASMS_TMD";
+  static const MOBILE_API_URL = "/mapi";
   static const TOKEN_KEY = "api_token";
   static const USER_NAME = "user_name";
   static const USER_ID = "user_id";

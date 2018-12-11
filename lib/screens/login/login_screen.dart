@@ -7,33 +7,26 @@ import 'package:sms_parent/dao/authdao.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:connectivity/connectivity.dart';
 
-
 class LoginScreen extends StatefulWidget {
- 
   @override
   _LoginScreenState createState() => new _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-   
   @override
   void initState() {
     super.initState();
-   _checkInternet();
-    
+    _checkInternet();
   }
 
-void _checkInternet() async {
+  void _checkInternet() async {
     var connectivityResult = await (new Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
-    
-     showDialog(
+      showDialog(
         context: context,
         builder: (BuildContext context) {
           // return object of type Dialog
           return AlertDialog(
-           
             title: new Text("Check Internet"),
             content: new Text("Please Open Mobile Data or Wifi"),
             actions: <Widget>[
@@ -45,49 +38,44 @@ void _checkInternet() async {
             ],
           );
         },
-     );
+      );
     }
   }
-  
+
   @override
   void dispose() {
-  
     super.dispose();
   }
 
   //BuildContext _contx;
   // bool _isLoading = false;
   String _username, _password;
-  
+
   bool _obscureText = true;
   final _formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   IconData _passVisible = Icons.visibility_off;
   TransitionType transitionType = TransitionType.native;
 
-
-  void _login() async{
+  void _login() async {
     if (_formKey.currentState.validate()) {
-    _formKey.currentState.save();
-   //CommonComponents.showLoadingDialog(context);
-    AuthManager.login(_username.trim(), _password.trim()).then((result){
-      if(result == null){
-      Fluttertoast.showToast(
-        msg: "Username or Password is invalid!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.TOP,
-        timeInSecForIos: 1,
-        bgcolor: '#ffffff',
-        textcolor: '#d50000'
-   );
-      }else{
-         Application.router.navigateTo(context, "home",transition: transitionType,replace: true);
-      }
-      
-    });
-    
+      _formKey.currentState.save();
+      //CommonComponents.showLoadingDialog(context);
+      AuthManager.login(_username.trim(), _password.trim()).then((result) {
+        if (result == null) {
+          Fluttertoast.showToast(
+              msg: "Username or Password is invalid!",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.TOP,
+              timeInSecForIos: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.black);
+        } else {
+          Application.router.navigateTo(context, "home",
+              transition: transitionType, replace: true);
+        }
+      });
     }
- 
   }
 
   @override
@@ -101,9 +89,8 @@ void _checkInternet() async {
         child: MaterialButton(
           minWidth: 170.0,
           height: 50.0,
-          onPressed: () { 
-            _login();         
-                    
+          onPressed: () {
+            _login();
           },
           color: Colors.blueAccent,
           child: Text('Log In', style: TextStyle(color: Colors.white)),
@@ -112,32 +99,30 @@ void _checkInternet() async {
     );
 
     _togglePassword() {
-		setState(() {
-			_obscureText = !_obscureText;
-      if(_obscureText){
-      _passVisible = Icons.visibility_off;
-      }else{
-      _passVisible = Icons.visibility;
-      }
-      
-		});
-	}
+      setState(() {
+        _obscureText = !_obscureText;
+        if (_obscureText) {
+          _passVisible = Icons.visibility_off;
+        } else {
+          _passVisible = Icons.visibility;
+        }
+      });
+    }
 
     final logo = Hero(
       tag: Hero,
       child: Center(
         child: CircleAvatar(
-          radius: 65.0,
-          child: Image(
-            image: AssetImage('images/avasms_logo.png'),
-          
-          )
-       //   backgroundColor: Colors.transparent,
-         // child: new Icon(
-         //   Icons.school,
-         //   size: 45.0,
-        //  ),
-        ),
+            radius: 65.0,
+            child: Image(
+              image: AssetImage('images/avasms_logo.png'),
+            )
+            //   backgroundColor: Colors.transparent,
+            // child: new Icon(
+            //   Icons.school,
+            //   size: 45.0,
+            //  ),
+            ),
       ),
     );
 
@@ -145,9 +130,9 @@ void _checkInternet() async {
       //keyboardType: TextInputType.emailAddress,
       autofocus: false,
       onSaved: (value) => _username = value,
-      validator: (value){
-        if(value.isEmpty){
-           return 'Please enter username';
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please enter username';
         }
       },
       decoration: InputDecoration(
@@ -160,19 +145,18 @@ void _checkInternet() async {
       autofocus: false,
       obscureText: _obscureText,
       onSaved: (value) => _password = value,
-      validator: (value){
-        if(value.isEmpty){
-           return 'Please enter password';
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please enter password';
         }
       },
       decoration: InputDecoration(
-        labelText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
-        suffixIcon: new GestureDetector(
-							onTap: _togglePassword ,
-							child: new Icon(_passVisible),
-			  )
-      ),
+          labelText: 'Password',
+          contentPadding: EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 10.0),
+          suffixIcon: new GestureDetector(
+            onTap: _togglePassword,
+            child: new Icon(_passVisible),
+          )),
     );
 
     final companyTitle = new Center(
@@ -203,7 +187,6 @@ void _checkInternet() async {
                 password,
                 SizedBox(height: 24.0),
                 loginButton,
-              
               ],
             ),
           ),

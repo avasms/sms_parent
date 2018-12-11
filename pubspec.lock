@@ -180,7 +180,7 @@ packages:
       name: flutter_spinkit
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "2.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -192,7 +192,7 @@ packages:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.4"
   html:
     dependency: transitive
     description:
@@ -220,7 +220,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   intl:
     dependency: transitive
     description:
@@ -309,7 +309,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.2+1"
+    version: "0.13.0"
   stack_trace:
     dependency: transitive
     description:
