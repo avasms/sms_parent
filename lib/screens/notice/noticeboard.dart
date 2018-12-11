@@ -15,7 +15,6 @@ import 'package:flutter_html_textview/flutter_html_textview.dart';
 import 'dart:core';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
-//import 'package:flutter_pdf_viewer/flutter_pdf_viewer.dart';
 
 class NoticeBoardScreen extends StatefulWidget {
   NoticeBoard createState() => new NoticeBoard();
