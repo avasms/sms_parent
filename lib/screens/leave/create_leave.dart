@@ -326,16 +326,16 @@ class LeaveFormState extends State<LeaveForm> {
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIos: 20,
-                                bgcolor: '#ffffff',
-                                textcolor: '#d50000');
+                                backgroundColor: Colors.red,
+                                textColor: Colors.black);
                           } else {
                             Fluttertoast.showToast(
                                 msg: "Please insert To Date",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIos: 20,
-                                bgcolor: '#ffffff',
-                                textcolor: '#d50000');
+                                backgroundColor: Colors.red,
+                                textColor: Colors.black);
                           }
                         } else {
                           if (_formkey.currentState.validate()) {
@@ -354,8 +354,8 @@ class LeaveFormState extends State<LeaveForm> {
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIos: 1,
-                                bgcolor: '#BCE0F4',
-                                textcolor: '#d50000');
+                                backgroundColor: Colors.red,
+                                textColor: Colors.black);
 
                             setState(() {
                               _clear1.clear();

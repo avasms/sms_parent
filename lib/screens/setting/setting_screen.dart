@@ -12,16 +12,15 @@ class SettingPage extends State<Setting> {
   String _oldPassword = '';
   String _newPassword = '';
   String _confirmPassword = '';
-  TextEditingController _oldpassctrl=new TextEditingController();
-  TextEditingController _passctrl=new TextEditingController();
-  TextEditingController _confirmpassctrl=new TextEditingController();
+  TextEditingController _oldpassctrl = new TextEditingController();
+  TextEditingController _passctrl = new TextEditingController();
+  TextEditingController _confirmpassctrl = new TextEditingController();
   bool _obsureText = true;
   IconData _passVisible = Icons.visibility_off;
   final _formKey = new GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
     final oldPassword = new TextFormField(
       autofocus: false,
       obscureText: _obsureText,
@@ -72,8 +71,6 @@ class SettingPage extends State<Setting> {
       ),
     );
 
-    
-
     _changePass() {
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
@@ -83,21 +80,23 @@ class SettingPage extends State<Setting> {
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIos: 3,
-              bgcolor: '#ffffff',
-              textcolor: '#d50000');
+              backgroundColor: Colors.red,
+              textColor: Colors.black);
         } else {
           // check old password and userid match
-         
+
           String _id = widget.userId.trim();
-          ApiCommonDao.checkOldPassword(_id, _oldPassword.trim(),_confirmPassword.trim()).then((res) {
+          ApiCommonDao.checkOldPassword(
+                  _id, _oldPassword.trim(), _confirmPassword.trim())
+              .then((res) {
             if (res) {
               Fluttertoast.showToast(
                   msg: 'Password changed Successfully',
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIos: 3,
-                  bgcolor: '#ffffff',
-                  textcolor: '#d50000');
+                  backgroundColor: Colors.red,
+                  textColor: Colors.black);
               setState(() {
                 _oldpassctrl.clear();
                 _passctrl.clear();
@@ -109,8 +108,8 @@ class SettingPage extends State<Setting> {
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIos: 3,
-                  bgcolor: '#ffffff',
-                  textcolor: '#d50000');
+                  backgroundColor: Colors.red,
+                  textColor: Colors.black);
             }
           });
         }
@@ -136,7 +135,6 @@ class SettingPage extends State<Setting> {
             ),
           ),
         ));
-
 
     return Scaffold(
       appBar: new AppBar(

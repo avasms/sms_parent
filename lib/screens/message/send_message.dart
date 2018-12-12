@@ -158,18 +158,19 @@ class MessageFormState extends State<MessageForm> {
                       borderRadius: BorderRadius.circular(30.0),
                       shadowColor: Colors.blueAccent.shade100,
                       elevation: 5.0,
-                      child:new Container(
-                        height: 45.0,
-                      child: new RaisedButton(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                        color: Colors.blue,
-                        child: new Text('Send',
-                            style: new TextStyle(
-                                fontSize: 20.0, color: Colors.white)),
-                        onPressed: () {
-                          _sendMessage();
-                        },
-                      )))),
+                      child: new Container(
+                          height: 45.0,
+                          child: new RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            color: Colors.blue,
+                            child: new Text('Send',
+                                style: new TextStyle(
+                                    fontSize: 20.0, color: Colors.white)),
+                            onPressed: () {
+                              _sendMessage();
+                            },
+                          )))),
             ],
           ),
         ),
@@ -185,10 +186,10 @@ class MessageFormState extends State<MessageForm> {
           .then((res) {
         if (res) {
           Fluttertoast.showToast(
-          msg: 'Send Message Complete',
-          toastLength: Toast.LENGTH_LONG,
-          //bgcolor: "#e74c3c",
-          textcolor: '#ffffff');
+              msg: 'Send Message Complete',
+              toastLength: Toast.LENGTH_LONG,
+              backgroundColor: Colors.red,
+              textColor: Colors.black);
           setState(() {
             _clear1.clear();
             _clear2.clear();
