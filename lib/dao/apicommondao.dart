@@ -88,7 +88,7 @@ class ApiCommonDao {
    
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
 
-    
+    print(response);
     if (response != null) {
       final data = response.data;
       return data.map<TimeTable>((json) => TimeTable.fromJson(json)).toList();
@@ -112,7 +112,7 @@ class ApiCommonDao {
     String url = "/notice_data_list";
 
     final response = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
-    
+    print(response);
     if (response != null) {
       final data = response.data;
       return data.map<Notice>((json) => Notice.fromJson(json)).toList();

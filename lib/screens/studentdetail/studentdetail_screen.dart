@@ -10,9 +10,8 @@ import 'package:sms_parent/util/config.dart';
 
 class StudentDetailScreen extends StatefulWidget {
   final studentId;
-  final studentName;
-
-  const StudentDetailScreen({Key key, this.studentId, this.studentName,}) : super(key: key);
+  
+  const StudentDetailScreen({Key key, this.studentId}) : super(key: key);
   
   //_AboutScreen createState() => new _AboutScreen();
   _AboutStudent createState()=>new _AboutStudent();

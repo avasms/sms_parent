@@ -46,7 +46,7 @@ TimeTableList({Key key, this.timetable}) : super(key: key);
              new Container(
                padding: EdgeInsets.only(left:5.0,right: 10.0,bottom: 10.0,top: 10.0),
                width: 150.0,
-               child: new Text(item.subjectName,style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0),),
+               child: new Text(item.subjectName !=null?item.subjectName:'-',style: TextStyle(fontFamily: 'Zawgyi',fontSize: 16.0),),
              ),
              new Container(
                padding: EdgeInsets.all(10.0),

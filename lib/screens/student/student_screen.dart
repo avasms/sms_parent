@@ -83,8 +83,9 @@ class StudentListState extends State<StudentList> {
                           switch (widget.screenType) {
                             case Config.STUDENT_SCREEN:
                              Application.router.navigateTo(context,
-                                  "studentDetail?studentId=" + item.id.toString()+"&userId="+widget.userId+"&studentName="+item.name.toString(),
-                                  transition: transitionType, replace: false);
+                                  "studentScreen?studentId=${item.id.toString()}",
+                                  transition: transitionType, replace: false
+                                  );
                               break;
                             case Config.EXAM_SCREEN:
                               Application.router.navigateTo(

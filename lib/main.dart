@@ -211,13 +211,12 @@ class _MyAppState extends State<MyApp> {
         }));
     
         //Define our Student Detail Page.
-        router.define('studentDetail', handler: new Handler(
+        router.define('studentScreen', handler: new Handler(
             handlerFunc: (BuildContext context, Map<String, dynamic> params) {
           String _sid = params["studentId"]?.first;
-          String _sname = params["studentName"]?.first;
+         
           return new StudentDetailScreen(
             studentId: _sid,
-            studentName: _sname,
           );
         }));
     

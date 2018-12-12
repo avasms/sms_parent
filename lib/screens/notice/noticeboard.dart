@@ -87,7 +87,8 @@ class NoticeListState extends State<NoticeList> {
                         );
                       } else {
                         return new CachedNetworkImage(
-                          imageUrl: Config.BASE_URL + filePath,
+                         imageUrl: Config.BASE_URL + filePath,
+                         //imageUrl:'http://www.hello.com/img_/hellowithwaves.png',
                           placeholder: new CircularProgressIndicator(),
                           errorWidget: new Icon(Icons.error),
                         );
@@ -98,8 +99,13 @@ class NoticeListState extends State<NoticeList> {
       itemCount: notice.length,
       itemBuilder: (context, index) {
         final item = notice[index];
-        String temp = item.filePath.toString();
-        String ftype = temp.substring(temp.lastIndexOf('.'), temp.length);
+        String temp = '';
+        String ftype = '';
+        if(item.filePath!=null){
+          temp = item.filePath.toString();
+          ftype = temp.substring(temp.lastIndexOf('.'), temp.length);
+        }
+         
         return GestureDetector(
           child: Card(
             child: new Padding(
@@ -131,7 +137,7 @@ class NoticeListState extends State<NoticeList> {
                           new Container(
                             padding: EdgeInsets.all(10.0),
                             child: new HtmlTextView(
-                              data: '${item.description}',
+                              data: '${item.description.replaceAll('&nbsp;', ' ')}',
                             ),
                             // child: new Text('${item.description}'),
                           ),
