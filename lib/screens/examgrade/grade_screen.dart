@@ -89,7 +89,7 @@ class StudentList extends StatelessWidget {
           ),
           leading: new Icon(Icons.star_border),
           trailing:  new Text(
-            grade['grade'].toString(),
+            grade['grade']==null?'':grade['grade'].toString(),
             style: new TextStyle(fontSize: 18.0,fontFamily: 'Zawgyi'),
           ),
         ),

@@ -142,7 +142,7 @@ class Payment_screen extends StatelessWidget{
                             new Container(
                               width: 100.0,
                               child: new Text(
-                                AppTranslations.of(context).text("balance"),
+                                AppTranslations.of(context).text("left_balance"),
                                 style: TextStyle(
                                     fontFamily: 'Myanmar', fontSize: 16.0),
                               ),
