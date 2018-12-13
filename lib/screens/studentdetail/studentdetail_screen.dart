@@ -70,6 +70,7 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
             children: <Widget>[
               new Expanded(
                 child: SingleChildScrollView(
+                
                   child: new Column(
         children: <Widget>[
           new Stack(

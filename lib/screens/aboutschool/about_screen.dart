@@ -70,14 +70,15 @@ class ShowData extends StatelessWidget {
         new SizedBox(
           height: 80.0,
         ),
-        new Center(
+        new Container(
+        child:new Center(
             child: new Text(
           '${school.schoolName}',
           style: TextStyle(
               fontSize: 20.0,
               fontFamily: 'Serifs',
               fontWeight: FontWeight.w600),
-        )),
+        ))),
         new Container(
             child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
