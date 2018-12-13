@@ -40,14 +40,16 @@ class Attendant_Screen extends State<AttendantScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       backgroundColor: Colors.white,
-      body: new Column(
+      body: new ListView(
         children: <Widget>[
           new SizedBox(
             height: 5.0,
           ),
           new Container(
-            padding: EdgeInsets.all(10.0),
+            //padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.only(left: 30.0,right: 30.0),
             width: double.infinity,
+            decoration: BoxDecoration(color: Colors.grey.shade200),
             height: 45.0,
             child: new DropdownButtonHideUnderline(
               child: new DropdownButton<int>(
@@ -64,7 +66,7 @@ class Attendant_Screen extends State<AttendantScreen> {
           ),
           new Container(
             width: double.infinity,
-            height: 350.0,
+            height: 280.0,
             color: Colors.white,
             margin: EdgeInsets.all(2.0),
             child: FutureBuilder<List<StudentAttendance>>(
@@ -119,20 +121,19 @@ class _AttendantScreen extends State<_AttScreen> {
       c = att[0].count;
     }
 
-    print('gkfjgjfkgfjgfkg:${att.length}');
+    //print('gkfjgjfkgfjgfkg:${att.length}');
     
-    print('kdfjdfdjfdjf:${c.toString()}');
+    //print('kdfjdfdjfdjf:${c.toString()}');
     return new Container(
       //height: 500.0,
       color: Colors.white54,
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(5.0),
       child: new Column(
 
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Container(
-            height: 10.0,
             child: new ListTile(
               leading:new Container(
                 width:100.0,
@@ -158,10 +159,8 @@ class _AttendantScreen extends State<_AttScreen> {
               ),
             ),
           ),
-          new SizedBox(
-            height: 40.0,
-          ),
-          new Expanded(            
+          new Container(
+          child:new Expanded(            
             child: ListView.builder(
               itemCount: att.length,
               itemBuilder: (context, index) {
@@ -196,6 +195,7 @@ class _AttendantScreen extends State<_AttScreen> {
               },
             ),
           )
+          ),
         ],
       ),
     );

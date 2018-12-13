@@ -117,7 +117,7 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
             ),
           ),
           new Container(
-            height:500.0,
+            height: MediaQuery.of(context).size.width,
             child: new TabBarView(
               controller: _controller,
               children: <Widget>[
