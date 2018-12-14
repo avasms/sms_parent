@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\flutter\.pub-cache\hosted\pub.dartlang.org\fluttertoast-2.1.1\android\src\main\assets"/><source path="D:\sms_parent\build\fluttertoast\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\flutter\.pub-cache\hosted\pub.dartlang.org\fluttertoast-2.1.1\android\src\release\assets"/></dataSet></merger>

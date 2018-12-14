@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_custom_tabs\\intermediates\\res\\merged\\release\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c363308dbbe80a190eeb419f6324e69e\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_custom_tabs\\intermediates\\res\\merged\\release\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c363308dbbe80a190eeb419f6324e69e\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_custom_tabs\\intermediates\\res\\merged\\release\\layout\\browser_actions_context_menu_row.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\customtabs-27.1.1.aar\\ad5ad54211b66f2750e365abc9cab645\\res\\layout\\browser_actions_context_menu_row.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_custom_tabs\\intermediates\\res\\merged\\release\\layout\\browser_actions_context_menu_page.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\customtabs-27.1.1.aar\\ad5ad54211b66f2750e365abc9cab645\\res\\layout\\browser_actions_context_menu_page.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_custom_tabs\\intermediates\\res\\merged\\release\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c363308dbbe80a190eeb419f6324e69e\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_custom_tabs\\intermediates\\res\\merged\\release\\layout\\notification_action.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c363308dbbe80a190eeb419f6324e69e\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_custom_tabs\\intermediates\\res\\merged\\release\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\c363308dbbe80a190eeb419f6324e69e\\res\\layout\\notification_template_icon_group.xml"
+    }
+]

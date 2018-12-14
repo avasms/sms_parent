@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\75c5b13f75b2273baa70b02489ebdbc1\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_top.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\android-pdf-viewer-3.1.0-beta.1.aar\\feef1e184645f642e19a80ecc559d83d\\res\\drawable\\default_scroll_handle_top.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\75c5b13f75b2273baa70b02489ebdbc1\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_bottom.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\android-pdf-viewer-3.1.0-beta.1.aar\\feef1e184645f642e19a80ecc559d83d\\res\\drawable\\default_scroll_handle_bottom.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_left.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\android-pdf-viewer-3.1.0-beta.1.aar\\feef1e184645f642e19a80ecc559d83d\\res\\drawable\\default_scroll_handle_left.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_right.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\android-pdf-viewer-3.1.0-beta.1.aar\\feef1e184645f642e19a80ecc559d83d\\res\\drawable\\default_scroll_handle_right.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\75c5b13f75b2273baa70b02489ebdbc1\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "D:\\sms_parent\\build\\flutter_pdf_viewer\\intermediates\\res\\merged\\release\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\Lenovo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\75c5b13f75b2273baa70b02489ebdbc1\\res\\drawable\\notification_bg.xml"
+    }
+]
