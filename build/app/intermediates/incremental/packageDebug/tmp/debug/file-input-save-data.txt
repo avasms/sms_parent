@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Dec 14 16:04:16 MMT 2018
+#Fri Dec 14 16:16:01 MMT 2018
 17.baseType=DIRECTORY
 4.path=flutter_assets/vm_snapshot_data
 25.base=/Users/infoava/Documents/Flutter/sms_parent/build/app/intermediates/merged_assets/debug/mergeDebugAssets/out
