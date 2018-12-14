@@ -1,0 +1,4 @@
+#Fri Dec 14 16:04:15 MMT 2018
+base.0=/Users/infoava/Documents/Flutter/sms_parent/build/app/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
