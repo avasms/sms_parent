@@ -119,7 +119,7 @@ class LeaveFormState extends State<LeaveForm> {
         height: 50.0,
         child: new Text(
           widget.studentName,
-          style: TextStyle(color: Colors.indigoAccent),
+          style: TextStyle(color: Colors.indigoAccent,fontFamily: 'Zawgyi'),
         ));
 
     final dateForm = new Container(

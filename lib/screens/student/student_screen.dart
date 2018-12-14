@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_parent/models/student.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:sms_parent/screens/leave/leave_screen.dart';
 import 'package:sms_parent/util/config.dart';
 import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/util/application.dart';
@@ -12,45 +13,45 @@ class StudentListData extends StatelessWidget {
   final String parentId;
   final String screenType;
   final String userId;
-  const StudentListData({Key key, this.parentId, this.screenType,this.userId})
+  const StudentListData({Key key, this.parentId, this.screenType, this.userId})
       : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: new AppBar(
+          backgroundColor: Colors.indigo.shade700,
+          title: new Text(
+            AppTranslations.of(context).text("child_menu"),
+            style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
+          )),
+      body: FutureBuilder<List<Student>>(
+        future: new ApiCommonDao().getStudentList(this.parentId),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
 
-   @override
-   Widget build(BuildContext context) {
-     return Scaffold(
-       appBar: new AppBar(
-           backgroundColor: Colors.indigo.shade700,
-           title: new Text(
-             AppTranslations.of(context).text("child_menu"),
-             style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
-           )),
-       body: FutureBuilder<List<Student>>(
-         future: new ApiCommonDao().getStudentList(this.parentId),
-         builder: (context, snapshot) {
-           if (snapshot.hasError) print(snapshot.error);
- 
-           return snapshot.hasData
-               ? StudentList(
-                   student: snapshot.data,
-                   screenType: screenType,
-                   parentId: this.parentId,
-                   userId: this.userId,
-                 )
-               : Center(child: CircularProgressIndicator());
-         },
-       ),
-     );
-   }
- 
+          return snapshot.hasData
+              ? StudentList(
+                  student: snapshot.data,
+                  screenType: screenType,
+                  parentId: this.parentId,
+                  userId: this.userId,
+                )
+              : Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
+  }
 }
 
 class StudentList extends StatefulWidget {
   final List<Student> student;
   final String screenType;
-  final String parentId,userId;
+  final String parentId, userId;
 
-  StudentList({Key key, this.student, this.screenType, this.parentId,this.userId}) : super(key: key);
+  StudentList(
+      {Key key, this.student, this.screenType, this.parentId, this.userId})
+      : super(key: key);
 
   @override
   StudentListState createState() {
@@ -82,10 +83,9 @@ class StudentListState extends State<StudentList> {
                         onTap: () {
                           switch (widget.screenType) {
                             case Config.STUDENT_SCREEN:
-                             Application.router.navigateTo(context,
+                              Application.router.navigateTo(context,
                                   "studentScreen?studentId=${item.id.toString()}",
-                                  transition: transitionType, replace: false
-                                  );
+                                  transition: transitionType, replace: false);
                               break;
                             case Config.EXAM_SCREEN:
                               Application.router.navigateTo(
@@ -108,10 +108,20 @@ class StudentListState extends State<StudentList> {
                                   transition: transitionType,
                                   replace: false);
                               break;
-                              case Config.LEAVE_SCREEN:
-                              Application.router.navigateTo(context,
-                                  "leave?studentId=" + item.id.toString()+"&userId="+widget.userId+"&studentName="+item.name.toString(),
-                                  transition: transitionType, replace: false);
+                            case Config.LEAVE_SCREEN:
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => new LeaveScreen(
+                                        studentId: item.id.toString(),
+                                        userId: widget.userId,
+                                        studentName: item.name.toString(),
+                                      ),
+                                ),
+                              );
+                              // Application.router.navigateTo(context,
+                              //    "leave?studentId=" + item.id.toString()+"&userId="+widget.userId+"&studentName="+item.name.toString(),
+                              //     transition: transitionType, replace: false);
                               break;
                           }
                         },
@@ -129,45 +139,45 @@ class StudentListState extends State<StudentList> {
                           size: 35.0,
                         ),
                         title: Text(
-                          AppTranslations.of(context).text("common_name")+'\n',
+                          AppTranslations.of(context).text("common_name") +
+                              '\n',
                           maxLines: 1,
                           style: new TextStyle(
-                              fontFamily: 'Myanmar',
-                              color: Colors.blue[700],
-                              fontSize: 17.0,
-                              ),
+                            fontFamily: 'Myanmar',
+                            color: Colors.blue[700],
+                            fontSize: 17.0,
+                          ),
                         ),
                         subtitle: new RichText(
                           text: new TextSpan(
-                          
                             style: DefaultTextStyle.of(context).style,
-
                             children: <TextSpan>[
                               new TextSpan(
                                 text: '${item.name}\n',
                                 style: new TextStyle(
-                                    fontFamily: 'Zawgyi',
-                                    color: Colors.black,
-                                    fontSize: 14.0,
-                                    ),
+                                  fontFamily: 'Zawgyi',
+                                  color: Colors.black,
+                                  fontSize: 14.0,
+                                ),
                               ),
                               new TextSpan(
-                                text:  AppTranslations.of(context).text("common_class"),
+                                text: AppTranslations.of(context)
+                                    .text("common_class"),
                                 style: new TextStyle(
                                   fontFamily: 'Myanmar',
-                                    color: Colors.blue[700],
-                                    fontSize: 17.0,
-                                    ),
+                                  color: Colors.blue[700],
+                                  fontSize: 17.0,
+                                ),
                               ),
                               new TextSpan(
                                 text: '\n${item.className}',
                                 style: new TextStyle(
-                                    fontFamily: 'Zawgyi',
-                                    color: Colors.black,
-                                    fontSize: 14.0,
-                                    ),
+                                  fontFamily: 'Zawgyi',
+                                  color: Colors.black,
+                                  fontSize: 14.0,
+                                ),
                               ),
-                              ],
+                            ],
                           ),
                         ),
                       ),
