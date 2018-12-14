@@ -1,4 +1,0 @@
-#Thu Dec 13 17:16:05 MMT 2018
-base.0=D\:\\sms_parent\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
