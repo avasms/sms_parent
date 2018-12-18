@@ -48,6 +48,8 @@ class StudentList extends StatelessWidget {
             return Card(
                color: Colors.white,
               child: new ExpansionTile(
+                leading: new Icon(Icons.star_border,
+                size: 29.0, color: Colors.black,),
                 title: Text.rich(
                       TextSpan(
                         children: <TextSpan>[
@@ -58,7 +60,7 @@ class StudentList extends StatelessWidget {
                               ),
                           TextSpan(
                               text: ' : ${item.examName}',
-                              style: TextStyle(fontFamily: 'Zawgyi')),
+                              style: TextStyle(fontFamily: 'Zawgyi',fontWeight: FontWeight.w500,color: Colors.black)),
                         ],
                       ),
                     ),
@@ -87,7 +89,7 @@ class StudentList extends StatelessWidget {
             grade['subjectName'].toString(),
             style: new TextStyle(fontSize: 18.0,fontFamily: 'Zawgyi'),
           ),
-          leading: new Icon(Icons.star_border),
+          
           trailing:  new Text(
             grade['grade']==null?'':grade['grade'].toString(),
             style: new TextStyle(fontSize: 18.0,fontFamily: 'Zawgyi'),

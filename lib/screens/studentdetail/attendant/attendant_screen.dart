@@ -45,11 +45,13 @@ class Attendant_Screen extends State<AttendantScreen> {
           new SizedBox(
             height: 5.0,
           ),
-          new Container(
-            //padding: EdgeInsets.all(10.0),
-            padding: EdgeInsets.only(left: 30.0,right: 30.0),
+          new Card(
+            margin: EdgeInsets.only(left: 5.0,right: 5.0,top: 5.0),
+            elevation: 3.0,
+            child:new Container(
             width: double.infinity,
-            decoration: BoxDecoration(color: Colors.grey.shade200),
+            padding: EdgeInsets.only(left: 5.0,right: 5.0),
+            decoration: BoxDecoration(color: Colors.white),
             height: 45.0,
             child: new DropdownButtonHideUnderline(
               child: new DropdownButton<int>(
@@ -63,10 +65,12 @@ class Attendant_Screen extends State<AttendantScreen> {
                 },
               ),
             ),
+            ),
           ),
-          new Container(
+          new Card(
+            child:new Container(
             width: double.infinity,
-            height: 280.0,
+            height: 300.0,
             color: Colors.white,
             margin: EdgeInsets.all(2.0),
             child: FutureBuilder<List<StudentAttendance>>(
@@ -82,6 +86,7 @@ class Attendant_Screen extends State<AttendantScreen> {
                       );
               },
             ),
+          ),
           ),
         ],
       ),
@@ -124,22 +129,26 @@ class _AttendantScreen extends State<_AttScreen> {
     //print('gkfjgjfkgfjgfkg:${att.length}');
     
     //print('kdfjdfdjfdjf:${c.toString()}');
-    return new Container(
+    return // Container(
       //height: 500.0,
-      color: Colors.white54,
-      padding: EdgeInsets.all(5.0),
-      child: new Column(
-
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+      //child: 
+      new Column(
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
+        //mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          new Container(
+          new Card(
+            child: new Container(
+              height: 38.0,
             child: new ListTile(
               leading:new Container(
-                width:100.0,
-                child:(c==0?null:new Text('DATE',style: TextStyle(fontSize: 19.0,color: Colors.black),)),) ,
+                width:90.0,
+                padding: EdgeInsets.only(bottom: 50.0),
+                child:(c==0?null:new Text('DATE',style: TextStyle(fontFamily: 'Serif',fontSize: 17.0,color: Colors.black),)),) ,
               title: new Container(
+                padding: EdgeInsets.only(bottom: 50.0,),
                 child: new Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                     children: new List.generate(c, (i) {
                       int inde=i+1;
                       if (inde==1){
@@ -158,6 +167,7 @@ class _AttendantScreen extends State<_AttScreen> {
                 })),
               ),
             ),
+            ),
           ),
           new Container(
           child:new Expanded(            
@@ -165,9 +175,13 @@ class _AttendantScreen extends State<_AttScreen> {
               itemCount: att.length,
               itemBuilder: (context, index) {
                 List<String> d = att[index].status.split(',');
-                return Container(
+                DateTime myDatetime = DateTime.parse(att[index].date);
+                String date="${myDatetime.day}/${myDatetime.month}/${myDatetime.year}";
 
-                  child: new Card(
+                //return Container(
+
+                  //child: 
+                  return new Card(
                     elevation: 5.0,
                     margin: EdgeInsets.all(1.0),
                     child: new ListTile(
@@ -175,7 +189,7 @@ class _AttendantScreen extends State<_AttScreen> {
                         width: 100.0,
                         color: Colors.white,
                         child: new Text(
-                          att[index].date,
+                          date,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -190,14 +204,14 @@ class _AttendantScreen extends State<_AttScreen> {
                         })),
                       ),
                     ),
-                  ),
+                  //),
                 );
               },
             ),
           )
           ),
         ],
-      ),
+      //),
     );
   }
 }
@@ -216,7 +230,7 @@ class DataShow extends StatelessWidget {
             right: 4.0,
           ),
           child: CircleAvatar(
-            radius: 18.0,
+            radius: 15.0,
             backgroundColor: Colors.green,
             child: new Icon(
               Icons.done,
@@ -229,7 +243,7 @@ class DataShow extends StatelessWidget {
             right: 4.0,
           ),
           child: CircleAvatar(
-              radius: 18.0,
+              radius: 15.0,
               backgroundColor: Colors.red,
               child: new Icon(
                 Icons.clear,
@@ -256,12 +270,12 @@ class DataTitle extends StatelessWidget{
   Widget build(BuildContext context){
     if(title==0){
      return new CircleAvatar(
-       radius:20.0,
+       radius:14.0,
        child: new Text('1st'),
      );
     }else if(title==1){
       return new CircleAvatar(
-       radius:20.0,
+       radius:14.0,
        child: new Text('2st'),
      );
     }

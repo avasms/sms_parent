@@ -23,6 +23,8 @@ import 'package:sms_parent/screens/setting/setting_screen.dart';
 import 'package:sms_parent/util/dbhelper.dart';
 import 'package:sms_parent/screens/studentdetail/studentdetail_screen.dart';
 import 'package:sms_parent/screens/aboutschool/about_screen.dart';
+import 'package:sms_parent/screens/studentdetail/attendant/attendant_screen.dart';
+import 'package:sms_parent/screens/studentdetail/payment/payment_screen.dart';
 import 'package:onesignal/onesignal.dart';
 
 void main() async {
@@ -219,6 +221,23 @@ class _MyAppState extends State<MyApp> {
             studentId: _sid,
           );
         }));
+
+        //Define our Student Attendance Page.
+        /*router.define('attendant',handler: new Handler(
+          handlerFunc: (BuildContext context, Map<String, dynamic> params){
+            String _attId=params["studentId"]?.first;
+            return new AttendantScreen(studentId:_attId);
+          }
+        ));
+
+        //Define our Student Payment Page.
+        router.define('payment',handler: new Handler(
+          handlerFunc: (BuildContext context, Map<String, dynamic> params){
+            String _payId=params["studentId"]?.first;
+            return new PaymentScreen(studentId:_payId);
+          }
+        ));*/
+
     
         // Defind Router
         Application.router = router;
@@ -254,18 +273,18 @@ class _MyAppState extends State<MyApp> {
 //will delay initialization of the SDK
 //make sure to call before init()
 // For AVASMS Demo
- // await OneSignal.shared.init("cecb6df8-3335-4db1-a26b-ed4b7f1c9ae3", iOSSettings: settings);
+  await OneSignal.shared.init("cecb6df8-3335-4db1-a26b-ed4b7f1c9ae3", iOSSettings: settings);
  // For MKL
  // await OneSignal.shared.init("37676ea9-017c-40fa-a0cc-91ae64c4c44b", iOSSettings: settings);
   // For TMD
   //await OneSignal.shared.init("2710339c-8a41-4a17-898f-c506fd907dea", iOSSettings: settings);  
   // For FAME
-  await OneSignal.shared.init("9fbc00b1-ae16-421a-a99b-383942356955", iOSSettings: settings);  
+  //await OneSignal.shared.init("9fbc00b1-ae16-421a-a99b-383942356955", iOSSettings: settings);  
 // the SDK will now initialize
   await OneSignal.shared.consentGranted(true);
 //
 var status = await OneSignal.shared.getPermissionSubscriptionState();
-    print(status.subscriptionStatus.userId);
+    print("One Signal UserID:${status.subscriptionStatus.userId}");
 
       }
 }

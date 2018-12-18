@@ -53,7 +53,7 @@ class ViewLeaveDataScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18.0,
                         fontFamily: 'Zawgyi',
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     subtitle: new Container(

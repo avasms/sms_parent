@@ -105,6 +105,9 @@ class NoticeListState extends State<NoticeList> {
           temp = item.filePath.toString();
           ftype = temp.substring(temp.lastIndexOf('.'), temp.length);
         }
+
+        DateTime myDatetime = DateTime.parse(item.date);
+        String date="${myDatetime.day}/${myDatetime.month}/${myDatetime.year}";
          
         return GestureDetector(
           child: Card(
@@ -122,7 +125,7 @@ class NoticeListState extends State<NoticeList> {
                             fontWeight: FontWeight.bold),
                       ),
                       trailing: Text(
-                        '${item.date}',
+                        date,
                         style: TextStyle(fontSize: 16.0),
                       ),
                     ),

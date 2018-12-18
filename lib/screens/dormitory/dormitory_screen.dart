@@ -48,6 +48,11 @@ class StudentList extends StatelessWidget {
             elevation: 5.0,
             margin: EdgeInsets.all(8.0),
             child: new ExpansionTile(
+              leading: Icon(
+                      Icons.home,
+                      size: 29.0,
+                      color: Colors.black,
+                    ),
                 title: Text.rich(
                   TextSpan(
                     children: <TextSpan>[
@@ -57,7 +62,7 @@ class StudentList extends StatelessWidget {
                           style: TextStyle(fontFamily: 'Myanmar')),
                       TextSpan(
                           text: ' : ${item.name}',
-                          style: TextStyle(fontFamily: 'Zawgyi')),
+                          style: TextStyle(fontFamily: 'Zawgyi',color: Colors.black,fontWeight: FontWeight.w500)),
                     ],
                   ),
                 ),
@@ -69,12 +74,6 @@ class StudentList extends StatelessWidget {
                   ),
                   ListTile(
                     
-                    leading:new Padding(
-                      padding:EdgeInsets.only(bottom: 70.0),
-                      child: Icon(
-                      Icons.home,
-                      size: 35.0,
-                    ),),
                     title: new Container(
                       child: new Column(children: <Widget>[
                         new Row(

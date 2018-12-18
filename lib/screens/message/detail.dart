@@ -19,6 +19,8 @@ StateViewPage createState() => new StateViewPage();
       if(title == null){
         title = receiveData.receiverName;
       }
+      DateTime myDatetime = DateTime.parse(receiveData.sendDate);
+      String date="${myDatetime.day}/${myDatetime.month}/${myDatetime.year}";
     return Scaffold(
       appBar: AppBar(
         title: Text('$title'),
@@ -48,7 +50,7 @@ StateViewPage createState() => new StateViewPage();
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.only(left:35.0),
-                        child: Text(receiveData.sendDate,
+                        child: Text(date,
                         style: TextStyle(fontFamily: "Serif",fontSize: 16.0),
                           ),
                       ),

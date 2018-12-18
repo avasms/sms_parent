@@ -45,6 +45,7 @@ class Payment_screen extends StatelessWidget{
             elevation: 5.0,
             margin: EdgeInsets.all(8.0),
             child: new ExpansionTile(
+              leading: Icon(Icons.attach_money,size: 29.0,color: Colors.black,),
                 title: Text.rich(
                   TextSpan(
                     children: <TextSpan>[
@@ -54,7 +55,7 @@ class Payment_screen extends StatelessWidget{
                           style: TextStyle(fontFamily: 'Myanmar')),
                       TextSpan(
                           text: ' : ${item.payName}',
-                          style: TextStyle(fontFamily: 'Zawgyi')),
+                          style: TextStyle(fontFamily: 'Zawgyi',fontWeight: FontWeight.w500,color: Colors.black)),
                     ],
                   ),
                 ),

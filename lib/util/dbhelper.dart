@@ -37,7 +37,7 @@ class DBHelper {
   }
 
   void saveUserInfo(User user) async {
-    print(user);
+    print("User:$user");
     var dbClient = await db;
     await dbClient.transaction((txn) async {
       String query = 'INSERT INTO ParentInfo(userId,parentId,tokenId) VALUES (\"'+

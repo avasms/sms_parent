@@ -16,7 +16,7 @@ class AuthManager{
    var status = await OneSignal.shared.getPermissionSubscriptionState();
     print(status.subscriptionStatus.userId);
   String _oneSignalId = status.subscriptionStatus.userId;
-  print('Hello APO$_oneSignalId');
+  print('Hello APO:$_oneSignalId');
 
    // String url = "/student_data_list/5";
     //var rs = await HttpAPIManager.getWithUrl(url, Config.REQUEST_GET);
@@ -33,7 +33,7 @@ class AuthManager{
   if(response == null){
     return response;
   }
-  print(response.data);
+  print("Response Data:${response.data}");
   //Map userMap = json.decode(response.data["data"]);
   //var user = User.fromJson(userMap);
   //print('Howdy, ${user.tokenId}');
