@@ -61,12 +61,12 @@ class ExamSubjectList extends StatelessWidget {
                               ),
                           TextSpan(
                               text: ' : ${item.name}',
-                              style: TextStyle(fontFamily: 'Zawgyi')),
+                              style: TextStyle(fontFamily: 'Zawgyi',fontWeight: FontWeight.w600)),
                         ],
                       ),
                     ),
                
-               leading: Icon(Icons.text_fields),
+               leading: Icon(Icons.access_time,size: 26.0,color: Colors.black,),
                 backgroundColor:
                     Theme.of(context).accentColor.withOpacity(0.025),
                 children: <Widget>[

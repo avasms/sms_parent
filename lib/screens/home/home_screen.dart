@@ -327,6 +327,65 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+
+      /*new Card(
+        child: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed:(){
+                  Application.router.navigateTo(context, "attendant",
+                  transition: transitionType,replace: false);
+                } ,
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 30.0,
+                      child: Image(
+                        image: AssetImage('images/ferry.jpg'),
+                      ),
+                    ),
+                    new Text(AppTranslations.of(context).text("attendant_menu"),
+                        style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+
+      new Card(
+        child: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                onPressed:(){
+                  Application.router.navigateTo(context, "payment",
+                  transition: transitionType,replace: false);
+                } ,
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 30.0,
+                      child: Image(
+                        image: AssetImage('images/ferry.jpg'),
+                      ),
+                    ),
+                    new Text(AppTranslations.of(context).text("payment_menu"),
+                        style: TextStyle(fontFamily: 'Myanmar'))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),*/
+
       new Card(
         child: Center(
           child: Column(

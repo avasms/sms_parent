@@ -41,7 +41,7 @@ class ReceivedMsgList extends StatelessWidget {
       child: ListView.builder(
           cacheExtent: 200.0,
           itemCount: examList.length,
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(8.0),
           itemBuilder: (context, index) {
             Message item = examList[index];
 
@@ -57,8 +57,8 @@ class ReceivedMsgList extends StatelessWidget {
               children: <Widget>[
                 Divider(height: 2.0),
                 new Container(
-                  color: item.status=='UNREAD'? Colors.teal.shade50:Colors.white,
-                  //color: item.status=='UNREAD'?Colors.blueGrey[100]:Colors.white,
+                  //color: item.status=='UNREAD'? Colors.teal.shade50:Colors.white,
+                  color: item.status=='UNREAD'?const Color(0xE9EBEEEE):Colors.white,
                   child:  ListTile(
 
                     title: Text(
@@ -66,7 +66,7 @@ class ReceivedMsgList extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18.0,
                         fontFamily: 'Zawgyi',
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     subtitle: new Container(

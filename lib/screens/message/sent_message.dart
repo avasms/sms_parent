@@ -42,7 +42,7 @@ class ReceivedMsgList extends StatelessWidget {
         child: ListView.builder(
           cacheExtent: 200.0,
             itemCount: examList.length,
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(8.0),
             itemBuilder: (context, index) {
               Message item = examList[index];
               var string=item.messageText;
@@ -61,7 +61,7 @@ class ReceivedMsgList extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18.0,
                           fontFamily: 'Serif',
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       subtitle: new Container(

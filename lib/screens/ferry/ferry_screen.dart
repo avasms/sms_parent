@@ -46,6 +46,11 @@ class FerryList extends StatelessWidget {
             elevation: 5.0,
             margin: EdgeInsets.all(8.0),
             child: new ExpansionTile(
+              leading: Icon(
+                        Icons.directions_bus,
+                        size: 39.0,
+                        color: Colors.black,
+                      ),
                 title: Text.rich(
                   TextSpan(
                     children: <TextSpan>[
@@ -54,7 +59,7 @@ class FerryList extends StatelessWidget {
                           style: TextStyle(fontFamily: 'Myanmar')),
                       TextSpan(
                           text: ': ${(item.name==null)?'':item.name}',
-                          style: TextStyle(fontFamily: 'Zawgyi')),
+                          style: TextStyle(fontFamily: 'Zawgyi',fontWeight: FontWeight.w500,color: Colors.black)),
                     ],
                   ),
                 ),
@@ -65,13 +70,7 @@ class FerryList extends StatelessWidget {
                     height: 15.0,
                   ),
                   ListTile(
-                    leading: new Padding(
-                      padding: EdgeInsets.only(bottom: 70.0),
-                      child: Icon(
-                        Icons.directions_bus,
-                        size: 35.0,
-                      ),
-                    ),
+                    
                     title: new Container(
                       child: new Column(children: <Widget>[
                         new Row(

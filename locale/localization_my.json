@@ -10,8 +10,10 @@
     "ferry_menu": "ကြိုပို့ယာဉ်",
     "dormitory_menu": "အဆောင်",
     "about_menu": "About School",
+    "attendant_menu": "ေက်ာင္းေခၚခ်ိန္",
+    "payment_menu": "ေငြေပးေခ်မွု",
 
-    "english_setting":"အင်္ဂလိပ်",
+    "english_setting": "အင်္ဂလိပ်",
     "myanmar_setting":"Myanmar",
     "setting_setting":"Setting",
     "logout_setting":"Log Out",

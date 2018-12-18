@@ -108,6 +108,22 @@ class StudentListState extends State<StudentList> {
                                   transition: transitionType,
                                   replace: false);
                               break;
+                            /*case Config.ATTENDANT_SCREEN:
+                              Application.router.navigateTo(
+                                  context,
+                                  "attendant?studentId=${item.id.toString()}",
+                                  transition: transitionType,
+                                  replace: false);
+                              break;
+
+                            case Config.PAYMENT_SCREEN:
+                              Application.router.navigateTo(
+                                  context,
+                                  "payment?studentId=${item.id.toString()}",
+                                  transition: transitionType,
+                                  replace: false);
+                              break;*/
+
                             case Config.LEAVE_SCREEN:
                               Navigator.push(
                                 context,

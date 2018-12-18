@@ -70,7 +70,6 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
             children: <Widget>[
               new Expanded(
                 child: SingleChildScrollView(
-                
                   child: new Column(
         children: <Widget>[
           new Stack(
@@ -78,7 +77,7 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
             children: <Widget>[
               CircleAvatar(
                 backgroundImage: new NetworkImage(Config.BASE_URL +student.photoPath,),
-          radius: 80.0,
+          radius: 60.0,
         ),
         
             ],
@@ -119,6 +118,7 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
           ),
           new Container(
             height: MediaQuery.of(context).size.width,
+            //height:350.0,
             child: new TabBarView(
               controller: _controller,
               children: <Widget>[
