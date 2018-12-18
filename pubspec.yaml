@@ -55,6 +55,7 @@ flutter:
     - images/school.png
     - images/avasms_logo.png
     - images/payment.png
+    - images/attendant.png
     
     - locale/localization_en.json
     - locale/localization_my.json
@@ -69,7 +70,7 @@ flutter:
     - images/grade_menu.jpg
     - images/message.jpg
     - images/ba_school.jpg
-    - images/attendant.jpg
+    
     
   fonts:
     - family: Myanmar

@@ -83,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 30.0,
+                      backgroundColor: Colors.white,
                       child: Image(
                         image: AssetImage('images/noticeboard.jpg'),
                       ),
@@ -155,7 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Replace with a Row for horizontal icon + text
                   children: <Widget>[
                     CircleAvatar(
-                        radius: 30.0,
+                        radius: 25.0,
+                        backgroundColor: Colors.white,
                         child: Image(
                           image: AssetImage('images/student.jpg'),
                         )),
@@ -188,7 +190,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Replace with a Row for horizontal icon + text
                   children: <Widget>[
                     CircleAvatar(
-                        radius: 33.0,
+                        radius: 30.0,
+                        backgroundColor: Colors.white,
                         child: Image(
                           image: AssetImage('images/exam.jpg'),
                         )),
@@ -220,7 +223,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Replace with a Row for horizontal icon + text
                   children: <Widget>[
                     CircleAvatar(
-                        radius: 45.0,
+                        radius: 42.0,
+                        backgroundColor: Colors.white,
                         child: Image(
                           image: AssetImage('images/grade_menu.jpg'),
                         )),
@@ -252,7 +256,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Replace with a Row for horizontal icon + text
                   children: <Widget>[
                     CircleAvatar(
-                        radius: 30.0,
+                        radius: 27.0,
+                        backgroundColor: Colors.white,
                         child: Image(
                           image: AssetImage('images/timetable.jpg'),
                         )),
@@ -284,7 +289,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Replace with a Row for horizontal icon + text
                   children: <Widget>[
                     CircleAvatar(
-                        radius: 30.0,
+                        radius: 27.0,
+                        backgroundColor: Colors.white,
                         child: Image(
                           image: AssetImage('images/leave.jpg'),
                         )),
@@ -313,6 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 30.0,
+                      backgroundColor: Colors.white,
                       child: Image(
                         image: AssetImage('images/ferry.jpg'),
                       ),
@@ -343,10 +350,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: <Widget>[
                     CircleAvatar(
-                      radius: 30.0,
-                      child: Image(
-                        image: AssetImage('images/ferry.jpg'),
+                      radius: 25.0,
+                      backgroundColor: Colors.white,
+                      child:Image(
+                        image: AssetImage('images/attendant.png'),
                       ),
+                      //backgroundImage: new AssetImage('images/attendant.png'),
                     ),
                     new Text(AppTranslations.of(context).text("attendant_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
@@ -373,11 +382,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: <Widget>[
                     CircleAvatar(
-                      radius: 30.0,
-                      child: Image(
-                        image: AssetImage('images/ferry.jpg'),
+                      radius: 33.0,
+                      backgroundColor: Colors.white,
+                      //backgroundImage: new AssetImage('images/payment.png'),
+                      child:Image(
+                        image: AssetImage('images/payment.png'),
                       ),
-                    ),
+                      ),
                     new Text(AppTranslations.of(context).text("payment_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
                   ],
@@ -404,6 +415,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 30.0,
+                      backgroundColor: Colors.white,
                       child: Image(
                         image: AssetImage('images/hostle.jpg'),
                       ),
@@ -433,6 +445,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 30.0,
+                      backgroundColor: Colors.white,
                       child: Image(
                         image: AssetImage('images/school.png'),
                       ),
