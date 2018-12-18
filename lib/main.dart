@@ -223,7 +223,7 @@ class _MyAppState extends State<MyApp> {
         }));
 
         //Define our Student Attendance Page.
-        /*router.define('attendant',handler: new Handler(
+        router.define('attendant',handler: new Handler(
           handlerFunc: (BuildContext context, Map<String, dynamic> params){
             String _attId=params["studentId"]?.first;
             return new AttendantScreen(studentId:_attId);
@@ -236,7 +236,7 @@ class _MyAppState extends State<MyApp> {
             String _payId=params["studentId"]?.first;
             return new PaymentScreen(studentId:_payId);
           }
-        ));*/
+        ));
 
     
         // Defind Router
