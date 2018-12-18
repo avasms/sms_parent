@@ -328,14 +328,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      /*new Card(
+      new Card(
         child: new Center(
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
                 onPressed:(){
-                  Application.router.navigateTo(context, "attendant",
+                  Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                          Config.ATTENDANT_SCREEN,
                   transition: transitionType,replace: false);
                 } ,
                 padding: EdgeInsets.all(5.0),
@@ -364,7 +365,8 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               FlatButton(
                 onPressed:(){
-                  Application.router.navigateTo(context, "payment",
+                  Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                          Config.PAYMENT_SCREEN,
                   transition: transitionType,replace: false);
                 } ,
                 padding: EdgeInsets.all(5.0),
@@ -384,7 +386,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),*/
+      ),
 
       new Card(
         child: Center(
