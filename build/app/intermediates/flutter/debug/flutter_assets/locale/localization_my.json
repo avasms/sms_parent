@@ -1,0 +1,53 @@
+{
+   
+    "exam_menu": "စာမေးပွဲ",
+    "grade_menu": "အဆင့်",
+    "child_menu": "ကျောင်းသား/သူ",
+    "noticeboard_menu": "‌ကြေငြာစာ",
+    "message_menu": "ပန်ကြားစာ",
+    "timetable_menu": "အချိန်ဇယား",
+    "leave_menu": "ခွင့်တိုင်ရန်",
+    "ferry_menu": "ကြိုပို့ယာဉ်",
+    "dormitory_menu": "အဆောင်",
+    "about_menu": "About School",
+    "attendant_menu": "ေက်ာင္းေခၚခ်ိန္",
+    "payment_menu": "ေငြေပးေခ်မွု",
+
+    "english_setting": "အင်္ဂလိပ်",
+    "myanmar_setting":"Myanmar",
+    "setting_setting":"Setting",
+    "logout_setting":"Log Out",
+
+    "common_school": "ကျောင်းအမည်",
+    "common_class": "အတန်း",
+    "common_description": "ဖော်ပြချက်",
+    "common_name": "အမည်",
+
+    "room_no": "Room No.",
+    "teacher": "ဆရာအမည်",
+
+    "dormitory_name": "အဆောင်အမည်",
+
+    "ferry_name": "ယာဉ်အမည်",
+    "routes": "လမ်းကြောင်းများ",
+    "car_no": "Car No.",
+    "driver_name": "ယာဉ်မောင်း",
+
+    "send_menu": "စာပို့မည်",
+    "received_menu": "ရရှိသောစာများ",
+    "sent_menu": "ပို့ပြီးစာများ",
+
+    "create_leave_menu": "ခွင့်တိုင်မည်",
+    "view_leave_menu": "ခွင့်စာရင်း",
+
+    "pay_name": "ငွေပေးချေမှုပုံစံ",
+    "student_name": " ကျောင်းသား",
+    "class": "အတန်း",
+    "payment_date": "နေ့စွဲ",
+    "left_balance": "အရင်ကျန်ရှိငွေ",
+    "amount":   "ငွေပမာဏ",
+    "pay_amount": "ပေးငွေ",
+    "left_amount": "ကျန်ငွေ"
+
+    
+}
