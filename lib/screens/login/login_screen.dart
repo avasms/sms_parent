@@ -68,8 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.TOP,
               timeInSecForIos: 1,
-              backgroundColor: Colors.amber,
-              textColor: Colors.black);
+              backgroundColor: Colors.white,
+              textColor: Colors.red);
         } else {
           Application.router.navigateTo(context, "home",
               transition: transitionType, replace: true);
