@@ -70,7 +70,7 @@ class _AttendantScreen extends State<AttendantScreen> {
           new Card(
             child: new Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.778,
+              height: MediaQuery.of(context).size.width,
               color: Colors.white,
               margin: EdgeInsets.all(2.0),
               child: FutureBuilder<List<StudentAttendance>>(
@@ -123,9 +123,7 @@ class _Attendant extends State<_AttScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print('totalDate:$totaldate');
-    print('totalCount:$totalcount');
-    //print('dataCount:$datacount');
+    
   }
 
   @override
@@ -215,11 +213,7 @@ class _Attendant extends State<_AttScreen> {
                     child: Row(
                         children: List.generate(d.length, (index2) {
                       //print('hell$index2');
-                      //int first = 0;
-                      int second = 0;
-                      int total = 0;
-
-                      if (index2 == 0 || index2 == 1) {
+                     if (index2 == 0 || index2 == 1) {
                         if (d[index2] == 'present') {
                           datacount += 1;
                           print('total:$datacount');
