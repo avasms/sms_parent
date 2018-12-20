@@ -48,7 +48,25 @@
     "payment_date": "Payment Date",
     "amount": "Amount",
     "pay_amount": "Pay Amount",
-    "left_amount": "Left Amount"
+    "left_amount": "Left Amount",
+
+
+    "student_id":"Student ID",
+    "student_name":"Student Name",
+    "guest_id":"Guest ID",
+    "school_name":"School Name",
+    "nrc":"Nrc",
+    "birthday":"Birthday",
+    "admission_no":"Admission No",
+    "race":"Race",
+    "citizen":"Citizen",
+    "home_town":"HomeTown",
+    "gender":"Gender",
+    "current_address":"Current Address",
+    "religion":"Religion"
+
+
+
     
 
 

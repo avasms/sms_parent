@@ -10,8 +10,8 @@
     "ferry_menu": "ကြိုပို့ယာဉ်",
     "dormitory_menu": "အဆောင်",
     "about_menu": "About School",
-    "attendant_menu": "ေက်ာင္းေခၚခ်ိန္",
-    "payment_menu": "ေငြေပးေခ်မွု",
+    "attendant_menu": " ကျောင်းခေါ်ချိန်",
+    "payment_menu": " ငွေပေးချေမှု",
 
     "english_setting": "အင်္ဂလိပ်",
     "myanmar_setting":"Myanmar",
@@ -47,7 +47,22 @@
     "left_balance": "အရင်ကျန်ရှိငွေ",
     "amount":   "ငွေပမာဏ",
     "pay_amount": "ပေးငွေ",
-    "left_amount": "ကျန်ငွေ"
+    "left_amount": "ကျန်ငွေ",
+
+
+    "student_id":"ကျောင်းသား ID",
+    "student_name":"ကျောင်းသားနာမည်",
+    "guest_id":"ဧည့် ID",
+    "school_name":"ကျောင်းနာမည်",
+    "nrc":"မှတ်ပုံတင်အမှတ်",
+    "birthday":"မွေးသဣရာဇ်",
+    "admission_no":"ကျောင်းဝင်ခွင့်အမှတ်",
+    "race":"လူမျိုး",
+    "citizen":"နိုင်ငံသား",
+    "home_town":"ဇာတိမြို့",
+    "gender":"ကျား/ မ",
+    "current_address":"လက်ရှိလိပ်စာ",
+    "religion":"ကိုးကွယ်သည့်ဘာသာ"
 
     
 }
