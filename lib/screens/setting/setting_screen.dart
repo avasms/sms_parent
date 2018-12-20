@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
+import 'package:sms_parent/screens/login/login_screen.dart';
 
 class Setting extends StatefulWidget {
   String userId;
@@ -80,8 +81,8 @@ class SettingPage extends State<Setting> {
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIos: 3,
-              backgroundColor: Colors.red,
-              textColor: Colors.black);
+              backgroundColor: Colors.white,
+              textColor: Colors.teal);
         } else {
           // check old password and userid match
 
@@ -95,8 +96,8 @@ class SettingPage extends State<Setting> {
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIos: 3,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.black);
+                  backgroundColor: Colors.white,
+                  textColor: Colors.teal);
               setState(() {
                 _oldpassctrl.clear();
                 _passctrl.clear();
@@ -108,8 +109,8 @@ class SettingPage extends State<Setting> {
                   toastLength: Toast.LENGTH_SHORT,
                   gravity: ToastGravity.BOTTOM,
                   timeInSecForIos: 3,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.black);
+                  backgroundColor: Colors.white,
+                  textColor: Colors.teal);
             }
           });
         }
@@ -127,45 +128,74 @@ class SettingPage extends State<Setting> {
             height: 50.0,
             onPressed: () {
               _changePass();
-            },
-            color: Colors.blueAccent,
-            child: Text(
-              'Change',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ));
-
-    return Scaffold(
-      appBar: new AppBar(
-          backgroundColor: Colors.indigo.shade700,
-          title: new Text(
-            'Setting',
-            style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
-          )),
-      body: new ClipRect(
-        child: Card(
-          color: Colors.white,
-          child: Container(
-            padding: EdgeInsets.all(25.0),
-            child: Center(
-              child: Form(
-                key: _formKey,
-                child: ListView(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                  children: <Widget>[
-                    oldPassword,
-                    newPassword,
-                    confirmPassword,
-                    submit,
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+              _showDialog();
+                          },
+                          color: Colors.blueAccent,
+                          child: Text(
+                            'Change',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ));
+              
+                  return Scaffold(
+                    appBar: new AppBar(
+                        backgroundColor: Colors.indigo.shade700,
+                        title: new Text(
+                          'Setting',
+                          style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
+                        )),
+                    body: new ClipRect(
+                      child: Card(
+                        color: Colors.white,
+                        child: Container(
+                          padding: EdgeInsets.all(25.0),
+                          child: Center(
+                            child: Form(
+                              key: _formKey,
+                              child: ListView(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                                children: <Widget>[
+                                  oldPassword,
+                                  newPassword,
+                                  confirmPassword,
+                                  submit,
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              
+                void _showDialog() {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        //title: new Text('Are you go to login page?'),
+                        content: new Text('Are you go to login page?'),
+                        actions: <Widget>[
+                          new FlatButton(
+                            child: new Text('No'),
+                            onPressed: (){
+                              Navigator.pop(context);
+                            },
+                          ),
+                          new FlatButton(
+                            child: new Text('Yes'),
+                            onPressed: (){
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context)=>new LoginScreen()
+                              ));
+                            },
+                          ),
+                        ],
+                      );
+                    }
+                  );
+                }
 }

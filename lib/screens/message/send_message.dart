@@ -188,8 +188,8 @@ class MessageFormState extends State<MessageForm> {
           Fluttertoast.showToast(
               msg: 'Send Message Complete',
               toastLength: Toast.LENGTH_LONG,
-              backgroundColor: Colors.red,
-              textColor: Colors.black);
+              backgroundColor: Colors.white,
+              textColor: Colors.teal);
           setState(() {
             _clear1.clear();
             _clear2.clear();
