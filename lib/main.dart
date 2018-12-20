@@ -23,8 +23,8 @@ import 'package:sms_parent/screens/setting/setting_screen.dart';
 import 'package:sms_parent/util/dbhelper.dart';
 import 'package:sms_parent/screens/studentdetail/studentdetail_screen.dart';
 import 'package:sms_parent/screens/aboutschool/about_screen.dart';
-import 'package:sms_parent/screens/studentdetail/attendant/attendant_screen.dart';
-import 'package:sms_parent/screens/studentdetail/payment/payment_screen.dart';
+import 'package:sms_parent/screens/attendant/attendant.dart';
+import 'package:sms_parent/screens/payment/payment.dart';
 import 'package:onesignal/onesignal.dart';
 
 void main() async {

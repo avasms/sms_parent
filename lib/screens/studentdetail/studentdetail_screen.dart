@@ -10,7 +10,6 @@ import 'package:sms_parent/util/config.dart';
 
 class StudentDetailScreen extends StatefulWidget {
   final studentId;
-  
   const StudentDetailScreen({Key key, this.studentId}) : super(key: key);
   
   //_AboutScreen createState() => new _AboutScreen();
@@ -101,18 +100,20 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
           new Container(
             decoration: new BoxDecoration(color: Theme.of(context).primaryColor),
             child: new TabBar(
+            indicatorColor: Colors.redAccent,
               controller: _controller,
               tabs: [
                 new Tab(
-                  icon: const Icon(Icons.satellite),
+                  icon: const Icon(Icons.satellite,),
+                  
                 ),
-                new Tab(
+                /*new Tab(
                   icon: const Icon(Icons.schedule),
                 ),
                 new Tab(
                   icon: const Icon(Icons.payment),
                   //text: 'Address',
-                ),
+                ),*/
               ],
             ),
           ),
@@ -123,8 +124,8 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
               controller: _controller,
               children: <Widget>[
                 new InfoScreen(student: student),
-                new AttendantScreen(studentId: studId),
-                new PaymentScreen(studentId: studId,),
+                //new AttendantScreen(studentId: studId),
+                //new PaymentScreen(studentId: studId,),
               ],
             ),
           ),
