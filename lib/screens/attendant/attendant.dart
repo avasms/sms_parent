@@ -10,10 +10,18 @@ class AttendantScreen extends StatefulWidget {
   _AttendantScreen createState() => new _AttendantScreen();
 }
 
+class DataCount {
+  int count;
+  DataCount({this.count});
+}
+
+final List<DataCount> dc = [];
+
 class _AttendantScreen extends State<AttendantScreen> {
   String mName;
-  int _selectValue = 1;
+  int _selectValue;
   int datacount = 0;
+  int result = 0;
 
   static Map<int, String> month_map = {
     1: "January",
@@ -27,8 +35,15 @@ class _AttendantScreen extends State<AttendantScreen> {
     9: "September",
     10: "October",
     11: "November",
-    12: "December"
+    12: "December",
+  
   };
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +54,9 @@ class _AttendantScreen extends State<AttendantScreen> {
             AppTranslations.of(context).text("attendant_menu"),
             style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
           )),
-      body: new Column(
+      body:new Container(
+        height: MediaQuery.of(context).size.height,
+      child: new Column(
         children: <Widget>[
           new SizedBox(
             height: 5.0,
@@ -49,18 +66,25 @@ class _AttendantScreen extends State<AttendantScreen> {
           //: 3.0,
           // child:
           new Container(
-            width: 370.0,
+            width: 350.0,
             padding: EdgeInsets.all(15.0),
-            decoration: BoxDecoration(color: Colors.white),
+            decoration: new BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4.0),
+                border: Border.all(width: 1.0, color: Colors.blue),
+                shape: BoxShape.rectangle),
             height: 45.0,
             child: new DropdownButtonHideUnderline(
               child: new DropdownButton<int>(
+                style: Theme.of(context).textTheme.subhead,
                 hint: Text('Please Select Month'),
                 value: _selectValue,
                 items: getItemsList(),
                 onChanged: (int val) {
                   setState(() {
                     _selectValue = val;
+                    //datacount=dCount.count;
+                    //datachange(dc);
                   });
                 },
               ),
@@ -70,7 +94,7 @@ class _AttendantScreen extends State<AttendantScreen> {
           new Card(
             child: new Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height*0.75,
               color: Colors.white,
               margin: EdgeInsets.all(2.0),
               child: FutureBuilder<List<StudentAttendance>>(
@@ -78,11 +102,13 @@ class _AttendantScreen extends State<AttendantScreen> {
                     .viewStudentAttendance(widget.studentId, _selectValue),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) print(snapshot.error);
+
                   return snapshot.hasData
                       ? new _AttScreen(
                           attList: snapshot.data,
                           month: _selectValue,
-                          count: datacount)
+                          count: datacount,
+                          result: result)
                       : Center(
                           child: CircularProgressIndicator(),
                         );
@@ -91,6 +117,7 @@ class _AttendantScreen extends State<AttendantScreen> {
             ),
           ),
         ],
+      ),
       ),
     );
   }
@@ -103,46 +130,98 @@ class _AttendantScreen extends State<AttendantScreen> {
     }
     return obj;
   }
+
+  void datachange(List<DataCount> dc) {
+    if (dc.length == 0) {
+      //dc.add(new DataCount(count: 0));
+      result = 0;
+    } else {
+      result = dc[0].count;
+    }
+    print('Result:$result');
+    print('datalenght:${dc.length}');
+  }
 }
 
 class _AttScreen extends StatefulWidget {
   final attList;
   final month;
   final count;
-  _AttScreen({Key key, this.attList, this.month, this.count}) : super(key: key);
+  final result;
+  _AttScreen({Key key, this.attList, this.month, this.count, this.result})
+      : super(key: key);
   _Attendant createState() => new _Attendant();
 }
 
 class _Attendant extends State<_AttScreen> {
-  int totaldate = 0;
-  int totalcount = 0;
-  int totalpresent = 0;
-  int percentagecount = 0;
+  int totalDate = 0;
+  int totalDataCount = 0;
+  int totalPresent = 0;
+  int percentageCount = 0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    
   }
 
   @override
   Widget build(BuildContext context) {
     List<StudentAttendance> att = widget.attList;
+
+    int count = 0;
+    int cc = 0;
+    int datacount = 0;
+    if (att.length > 0) {
+      datacount = att[0].count;
+    }
+    totalDataCount = datacount;
+    setState(() {
+      for (int i = 0; i < att.length; i++) {
+        List<String> str = att[i].status.split(',');
+        for (int j = 0; j < str.length; j++) {
+          if (str[j] == 'present') {
+            count += 1;
+          }
+        }
+        cc = count;
+        totalDate = att.length;
+      }
+      totalPresent = cc;
+      double bb;
+      int aa = totalDate * totalDataCount;
+      if (aa == 0 || totalPresent == 0) {
+        bb = 0;
+      } else {
+        bb = totalPresent / aa;
+      }
+
+      //var aaa = bb.toStringAsFixed(2);
+      double aaa = bb * 100;
+      percentageCount = aaa.round();
+    });
+    print('count:$cc');
+
+    print('totalPresent:$totalPresent');
+    print('totalDate:$totalDate');
+    print('totalDataCount:$totalDataCount');
+    print('totalDataCount:$percentageCount');
+
+    //int datacount = 0;
     int c = 0;
-    int datacount = widget.count;
     if (att.length > 0) {
       c = att[0].count;
     }
-    // print('dataCount:$datacount');
     return new Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         new Card(
           child: new Container(
             height: 38.0,
             child: new ListTile(
               leading: new Container(
-                width: 90.0,
+                width: 100.0,
                 padding: EdgeInsets.only(bottom: 50.0),
                 child: (c == 0
                     ? null
@@ -163,7 +242,7 @@ class _Attendant extends State<_AttScreen> {
                     //mainAxisAlignment: MainAxisAlignment.start,
                     children: new List.generate(c, (i) {
                   int inde = i + 1;
-                  totalcount = inde;
+                  //totalDataCount = inde;
                   if (inde == 1) {
                     return new Text('${inde.toString()}st    ');
                   } else if (inde == 2) {
@@ -173,9 +252,6 @@ class _Attendant extends State<_AttScreen> {
                   } else {
                     return new Text('${inde.toString()}th    ');
                   }
-                  /*return DataTitle(
-                            title: c[inde].toString(),
-                          );*/
                 })),
               ),
             ),
@@ -186,7 +262,7 @@ class _Attendant extends State<_AttScreen> {
           child: ListView.builder(
             itemCount: att.length,
             itemBuilder: (context, index) {
-              totaldate = att.length;
+              //totalDate = att.length;
 
               List<String> d = att[index].status.split(',');
 
@@ -213,7 +289,7 @@ class _Attendant extends State<_AttScreen> {
                     child: Row(
                         children: List.generate(d.length, (index2) {
                       //print('hell$index2');
-                     if (index2 == 0 || index2 == 1) {
+                      /*if (index2 == 0 || index2 == 1) {
                         if (d[index2] == 'present') {
                           datacount += 1;
                           print('total:$datacount');
@@ -221,19 +297,9 @@ class _Attendant extends State<_AttScreen> {
                       }
                       print('totalAAA:$datacount');
                       //setState(() {
-                      totalpresent = datacount;
-                      //});
-                      new Container(
-                        child: new ListTile(
-                          leading: new Text('Percentage of Attendant'),
-                          trailing: new Text('${totalpresent}%'),
-                        ),
-                      );
-
-                      return DataShow(
-                        data: d[index2],
-                      );
-                      //percentageshow(datacount);
+                      totalPresent = datacount;
+                      //});*/
+                      return DataShow(data: d[index2], count: totalPresent);
                     })),
                   ),
                 ),
@@ -243,9 +309,26 @@ class _Attendant extends State<_AttScreen> {
           ),
         )),
         new Container(
+          width: 350.0,
+          height: 50.0,
+          decoration: new BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4.0),
+                border: Border.all(width: 1.0, color: Colors.blue),
+                shape: BoxShape.rectangle),
           child: new ListTile(
-            leading: new Text('Percentage of Attendant'),
-            trailing: new Text('${totalpresent}%'),
+            leading: new Text(
+              AppTranslations.of(context).text("percentage_of_attendance"),
+            style: TextStyle(fontFamily: 'Myanmar', color: Colors.black,fontSize: 17.0),
+            ),
+            //title:new Text(AppTranslations.of(context).text('percentage_of_attendance'),
+            //style: TextStyle(fontFamily: 'Myanmar',color: Colors.black),
+            //),
+            //trailing: new Text('${widget.result}%'),
+            trailing: new Text(
+              '${percentageCount.toString()}%',
+              style: TextStyle(fontSize: 17.0, color: Colors.black),
+            ),
           ),
         ),
       ],
@@ -253,32 +336,36 @@ class _Attendant extends State<_AttScreen> {
     );
   }
 
-  void percentageshow(int totalpresent) {
+  /*void percentageshow(int totalpresent) {
     //setState(() {
-    int aa = totaldate * totalcount;
+    int aa = totalDate * totalDataCount;
     double bb = totalpresent / aa;
     var aaa = bb.toStringAsFixed(2);
-    percentagecount = int.parse(aaa) * 100;
-    print('cutttttt:$percentagecount');
+    percentageCount = int.parse(aaa) * 100;
+    print('cutttttt:$percentageCount');
     //});
-  }
+  }*/
 }
 
 class DataShow extends StatelessWidget {
   //IconData data;
   //DataShow({this.data});
   String data;
-  DataShow({this.data});
+  int count;
+  DataShow({this.data, this.count});
 
   @override
   Widget build(BuildContext context) {
     if (data == 'present') {
+      /*dc.clear();
+      dc.add(new DataCount(count: count));
+      print('setstateCountLength:${dc.length} and ${dc[0].count}');*/
       return new Container(
           padding: EdgeInsets.only(
-            right: 4.0,
+            right: 5.0,
           ),
           child: CircleAvatar(
-            radius: 15.0,
+            radius: 16.0,
             backgroundColor: Colors.green,
             child: new Icon(
               Icons.done,
@@ -288,10 +375,10 @@ class DataShow extends StatelessWidget {
     } else if (data == 'absent') {
       return new Container(
           padding: EdgeInsets.only(
-            right: 4.0,
+            right: 5.0,
           ),
           child: CircleAvatar(
-              radius: 15.0,
+              radius: 16.0,
               backgroundColor: Colors.red,
               child: new Icon(
                 Icons.clear,
@@ -299,7 +386,7 @@ class DataShow extends StatelessWidget {
               )));
     } else {
       new Container(
-          padding: EdgeInsets.only(right: 4.0),
+          padding: EdgeInsets.only(right: 5.0),
           child: CircleAvatar(
             radius: 18.0,
             backgroundColor: Colors.yellow,

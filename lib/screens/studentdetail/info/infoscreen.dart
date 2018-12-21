@@ -15,6 +15,7 @@ class _Info extends State<InfoScreen> {
   Widget build(BuildContext context){
     StudentInfo stud=widget.student;
     return Scaffold(
+      //appBar: AppBar(backgroundColor: Colors.indigo.shade700,),
       body:new Card(
         margin: EdgeInsets.only(left: 6.0,top: 5.0,right: 5.0,bottom: 10.0),
       child:

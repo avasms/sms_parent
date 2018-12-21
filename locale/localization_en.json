@@ -63,10 +63,11 @@
     "home_town":"HomeTown",
     "gender":"Gender",
     "current_address":"Current Address",
-    "religion":"Religion"
+    "religion":"Religion",
 
+    "percentage_of_attendance":"Percentage of Attendance",
 
-
+    "detail":"Detail"
     
 
 
