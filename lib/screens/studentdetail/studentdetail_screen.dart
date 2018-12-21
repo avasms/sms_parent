@@ -7,6 +7,7 @@ import 'package:sms_parent/models/studentInfo.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:sms_parent/util/config.dart';
+import 'package:sms_parent/util/app_translation.dart';
 
 class StudentDetailScreen extends StatefulWidget {
   final studentId;
@@ -20,6 +21,11 @@ class _AboutStudent extends State<StudentDetailScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.indigo.shade700,
+      appBar:AppBar(title: new Text(
+            AppTranslations.of(context).text("detail"),
+            style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
+          )),
       body: FutureBuilder<StudentInfo>(
         future: new ApiCommonDao().viewStudentInfo(widget.studentId),
         builder: (context, snapshot) {
@@ -60,9 +66,7 @@ class _AboutScreen extends State<About> with SingleTickerProviderStateMixin{
     StudentInfo student=widget.stud; 
     final studId=student.id;
     return new Scaffold(
-      appBar:AppBar(
-        title: Text('Detail'),
-      ),
+      
       body:new Stack(
         children: <Widget>[
           new Column(
