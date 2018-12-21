@@ -70,8 +70,9 @@ class _AttendantScreen extends State<AttendantScreen> {
           //),
           new Card(
             child: new Container(
-              width: double.infinity,
+
               height: MediaQuery.of(context).size.height * 0.6,
+
               color: Colors.white,
               margin: EdgeInsets.all(2.0),
               child: FutureBuilder<List<StudentAttendance>>(
@@ -216,10 +217,7 @@ class _Attendant extends State<_AttScreen> {
                     //width: 150.0,
                     child: Row(
                         children: List.generate(d.length, (index2) {
-                      //print('hell$index2');
-                      //int first = 0;
-                      int second = 0;
-                      int total = 0;
+  
 
                       return DataShow(
                         data: d[index2],
