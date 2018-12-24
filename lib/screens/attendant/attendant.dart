@@ -216,42 +216,12 @@ class _Attendant extends State<_AttScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         new Card(
-                elevation: 5.0,
-                margin: EdgeInsets.all(1.0),
-                child: new ListTile(
-                  leading: new Container(
-                    width: 80.0,
-                    color: Colors.white,
-                    child: (c == 0
-                    ? null
-                    : new Text(
-                        'DATE',
-                        style: TextStyle(
-                            fontFamily: 'Serif',
-                            fontSize: 17.0,
-                            color: Colors.black),
-                      ))
-                  ),
-                  title: new SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                        children: List.generate(c, (i) {
-                      int aa=i+1;
-                      print('AttendanceCount::$aa');
-
-                      return DataTitle(count: aa,);
-                    })),
-                  ),
-                ),
-                //),
-              ),
-        /*new Card(
-          child: new Container(
-            height: 40.0,
-            child: new ListTile(
-              leading: new Container(
-                width: 80.0,
-                padding: EdgeInsets.only(bottom: 50.0),
+          elevation: 5.0,
+          margin: EdgeInsets.all(1.0),
+          child: new ListTile(
+            leading: new Container(
+                width: 100.0,
+                color: Colors.white,
                 child: (c == 0
                     ? null
                     : new Text(
@@ -260,35 +230,22 @@ class _Attendant extends State<_AttScreen> {
                             fontFamily: 'Serif',
                             fontSize: 17.0,
                             color: Colors.black),
-                      )),
-              ),
-              title: new Container(
-                padding: EdgeInsets.only(
-                  bottom: 50.0,
-                ),
-                child: new SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: new Row(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
-                      //mainAxisAlignment: MainAxisAlignment.start,
-                      children: new List.generate(c, (i) {
-                    int inde = i + 1;
-                    //totalDataCount = inde;
-                    if (inde == 1) {
-                      return  Text('$inde st') ;
-                   } else if (inde == 2) {
-                      return  Text('$inde nd') ;
-                    } else if (inde == 3) {
-                      return  Text('$inde rd') ;
-                    } else {
-                      return  Text('$inde th') ;
-                    }
-                  })),
-                ),
-              ),
+                      ))),
+            title: new SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  children: List.generate(c, (i) {
+                int aa = i + 1;
+                print('AttendanceCount::$aa');
+
+                return DataTitle(
+                  count: aa,
+                );
+              })),
             ),
           ),
-        ),*/
+          //),
+        ),
         new Container(
             child: new Expanded(
           child: ListView.builder(
@@ -309,7 +266,7 @@ class _Attendant extends State<_AttScreen> {
                 margin: EdgeInsets.all(1.0),
                 child: new ListTile(
                   leading: new Container(
-                    width: 80.0,
+                    width: 100.0,
                     color: Colors.white,
                     child: new Text(
                       date,
@@ -322,7 +279,9 @@ class _Attendant extends State<_AttScreen> {
                         children: List.generate(d.length, (index2) {
                       //print('hell$index2');
 
-                      return DataShow(data: d[index2],);
+                      return DataShow(
+                        data: d[index2],
+                      );
                     })),
                   ),
                 ),
@@ -355,26 +314,17 @@ class _Attendant extends State<_AttScreen> {
       //),
     );
   }
-
-  /*void percentageshow(int totalpresent) {
-    //setState(() {
-    int aa = totalDate * totalDataCount;
-    double bb = totalpresent / aa;
-    var aaa = bb.toStringAsFixed(2);
-    percentageCount = int.parse(aaa) * 100;
-    print('cutttttt:$percentageCount');
-    //});
-  }*/
 }
 
 class DataShow extends StatelessWidget {
   String data;
-  DataShow({this.data,});
+  DataShow({
+    this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
     if (data == 'present') {
-      
       return new Container(
           padding: EdgeInsets.only(
             right: 5.0,
@@ -400,7 +350,7 @@ class DataShow extends StatelessWidget {
                 color: Colors.white,
               )));
     } else {
-      new Container(
+      return Container(
           padding: EdgeInsets.only(right: 5.0),
           child: CircleAvatar(
             radius: 16.0,
@@ -419,55 +369,58 @@ class DataTitle extends StatelessWidget {
   DataTitle({this.count});
   @override
   Widget build(BuildContext context) {
-    if(count==1){
+    if (count == 1) {
       return new Container(
           padding: EdgeInsets.only(
-            right: 7.0,
+            right: 6.0,
           ),
           child: new CircleAvatar(
-        radius: 15.0,
-        backgroundColor: Colors.transparent,
-        child: new Text('${count.toString()}st',style:
-         TextStyle(color: Colors.black),),
-      ));
+            radius: 15.0,
+            backgroundColor: Colors.transparent,
+            child: new Text(
+              '${count.toString()}st',
+              style: TextStyle(color: Colors.black),
+            ),
+          ));
+    } else if (count == 2) {
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 6.0,
+          ),
+          child: new CircleAvatar(
+            radius: 15.0,
+            backgroundColor: Colors.transparent,
+            child: new Text(
+              '${count.toString()}nd',
+              style: TextStyle(color: Colors.black),
+            ),
+          ));
+    } else if (count == 3) {
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 6.0,
+          ),
+          child: new CircleAvatar(
+            radius: 15.0,
+            backgroundColor: Colors.transparent,
+            child: new Text(
+              '${count.toString()}rd',
+              style: TextStyle(color: Colors.black),
+            ),
+          ));
+    } else {
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 6.0,
+          ),
+          child: new CircleAvatar(
+            radius: 15.0,
+            backgroundColor: Colors.transparent,
+            child: new Text(
+              '${count.toString()}th',
+              style: TextStyle(color: Colors.black),
+            ),
+          ));
     }
-    else if(count==2){
-      return new Container(
-          padding: EdgeInsets.only(
-            right: 7.0,
-          ),
-          child: new CircleAvatar(
-        radius: 15.0,
-        backgroundColor: Colors.transparent,
-        child: new Text('${count.toString()}nd',style:
-         TextStyle(color: Colors.black),),
-      ));
-    } else if(count==3){
-      return new Container(
-          padding: EdgeInsets.only(
-            right: 7.0,
-          ),
-          child: new CircleAvatar(
-        radius: 15.0,
-        backgroundColor: Colors.transparent,
-        child: new Text('${count.toString()}rd',style:
-         TextStyle(color: Colors.black),),
-      ));
-    }
-    else{
-      return new Container(
-          padding: EdgeInsets.only(
-            right: 7.0,
-          ),
-          child: new CircleAvatar(
-        radius: 15.0,
-        backgroundColor: Colors.transparent,
-        child: new Text('${count.toString()}th',style:
-         TextStyle(color: Colors.black),),
-      ));
-    }
-
-      
-      
   }
 }
