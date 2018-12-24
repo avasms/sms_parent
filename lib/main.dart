@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
     // Message
     super.initState();
     _getOneSignalData();
-        _initMessageNotiState();
+    _initMessageNotiState();
       }
     
       Future<void> _initMessageNotiState() async {
