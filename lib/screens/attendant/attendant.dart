@@ -36,7 +36,6 @@ class _AttendantScreen extends State<AttendantScreen> {
     10: "October",
     11: "November",
     12: "December",
-  
   };
 
   @override
@@ -54,70 +53,70 @@ class _AttendantScreen extends State<AttendantScreen> {
             AppTranslations.of(context).text("attendant_menu"),
             style: TextStyle(fontFamily: 'Myanmar', color: Colors.white),
           )),
-      body:new Container(
+      body: new Container(
         height: MediaQuery.of(context).size.height,
-      child: new Column(
-        children: <Widget>[
-          new SizedBox(
-            height: 5.0,
-          ),
-          //new Card(
-          //margin: EdgeInsets.only(left: 5.0, right: 5.0, top: 10.0),
-          //: 3.0,
-          // child:
-          new Container(
-            width: 350.0,
-            padding: EdgeInsets.all(15.0),
-            decoration: new BoxDecoration(
+        child: new Column(
+          children: <Widget>[
+            new SizedBox(
+              height: 5.0,
+            ),
+            //new Card(
+            //margin: EdgeInsets.only(left: 5.0, right: 5.0, top: 10.0),
+            //: 3.0,
+            // child:
+            new Container(
+              width: 350.0,
+              padding: EdgeInsets.all(15.0),
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(4.0),
+                  border: Border.all(width: 1.0, color: Colors.blue),
+                  shape: BoxShape.rectangle),
+              height: 45.0,
+              child: new DropdownButtonHideUnderline(
+                child: new DropdownButton<int>(
+                  style: Theme.of(context).textTheme.subhead,
+                  hint: Text('Please Select Month'),
+                  value: _selectValue,
+                  items: getItemsList(),
+                  onChanged: (int val) {
+                    setState(() {
+                      _selectValue = val;
+                      //datacount=dCount.count;
+                      //datachange(dc);
+                    });
+                  },
+                ),
+              ),
+            ),
+            //),
+            new Card(
+              child: new Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.75,
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(4.0),
-                border: Border.all(width: 1.0, color: Colors.blue),
-                shape: BoxShape.rectangle),
-            height: 45.0,
-            child: new DropdownButtonHideUnderline(
-              child: new DropdownButton<int>(
-                style: Theme.of(context).textTheme.subhead,
-                hint: Text('Please Select Month'),
-                value: _selectValue,
-                items: getItemsList(),
-                onChanged: (int val) {
-                  setState(() {
-                    _selectValue = val;
-                    //datacount=dCount.count;
-                    //datachange(dc);
-                  });
-                },
-              ),
-            ),
-          ),
-          //),
-          new Card(
-            child: new Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height*0.75,
-              color: Colors.white,
-              margin: EdgeInsets.all(2.0),
-              child: FutureBuilder<List<StudentAttendance>>(
-                future: new ApiCommonDao()
-                    .viewStudentAttendance(widget.studentId, _selectValue),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) print(snapshot.error);
+                margin: EdgeInsets.all(2.0),
+                child: FutureBuilder<List<StudentAttendance>>(
+                  future: new ApiCommonDao()
+                      .viewStudentAttendance(widget.studentId, _selectValue),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) print(snapshot.error);
 
-                  return snapshot.hasData
-                      ? new _AttScreen(
-                          attList: snapshot.data,
-                          month: _selectValue,
-                          count: datacount,
-                          result: result)
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        );
-                },
+                    return snapshot.hasData
+                        ? new _AttScreen(
+                            attList: snapshot.data,
+                            month: _selectValue,
+                            count: datacount,
+                            result: result)
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }
@@ -207,21 +206,51 @@ class _Attendant extends State<_AttScreen> {
     print('totalDataCount:$totalDataCount');
     print('totalDataCount:$percentageCount');
 
-    //int datacount = 0;
     int c = 0;
     if (att.length > 0) {
       c = att[0].count;
     }
+    print('AttendanceCount:$c');
     return new Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         new Card(
+                elevation: 5.0,
+                margin: EdgeInsets.all(1.0),
+                child: new ListTile(
+                  leading: new Container(
+                    width: 80.0,
+                    color: Colors.white,
+                    child: (c == 0
+                    ? null
+                    : new Text(
+                        'DATE',
+                        style: TextStyle(
+                            fontFamily: 'Serif',
+                            fontSize: 17.0,
+                            color: Colors.black),
+                      ))
+                  ),
+                  title: new SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                        children: List.generate(c, (i) {
+                      int aa=i+1;
+                      print('AttendanceCount::$aa');
+
+                      return DataTitle(count: aa,);
+                    })),
+                  ),
+                ),
+                //),
+              ),
+        /*new Card(
           child: new Container(
-            height: 38.0,
+            height: 40.0,
             child: new ListTile(
               leading: new Container(
-                width: 100.0,
+                width: 80.0,
                 padding: EdgeInsets.only(bottom: 50.0),
                 child: (c == 0
                     ? null
@@ -237,26 +266,29 @@ class _Attendant extends State<_AttScreen> {
                 padding: EdgeInsets.only(
                   bottom: 50.0,
                 ),
-                child: new Row(
-                    //crossAxisAlignment: CrossAxisAlignment.start,
-                    //mainAxisAlignment: MainAxisAlignment.start,
-                    children: new List.generate(c, (i) {
-                  int inde = i + 1;
-                  //totalDataCount = inde;
-                  if (inde == 1) {
-                    return new Text('${inde.toString()}st    ');
-                  } else if (inde == 2) {
-                    return new Text('${inde.toString()}nd    ');
-                  } else if (inde == 3) {
-                    return new Text('${inde.toString()}rd    ');
-                  } else {
-                    return new Text('${inde.toString()}th    ');
-                  }
-                })),
+                child: new SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: new Row(
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      //mainAxisAlignment: MainAxisAlignment.start,
+                      children: new List.generate(c, (i) {
+                    int inde = i + 1;
+                    //totalDataCount = inde;
+                    if (inde == 1) {
+                      return  Text('$inde st') ;
+                   } else if (inde == 2) {
+                      return  Text('$inde nd') ;
+                    } else if (inde == 3) {
+                      return  Text('$inde rd') ;
+                    } else {
+                      return  Text('$inde th') ;
+                    }
+                  })),
+                ),
               ),
             ),
           ),
-        ),
+        ),*/
         new Container(
             child: new Expanded(
           child: ListView.builder(
@@ -277,29 +309,20 @@ class _Attendant extends State<_AttScreen> {
                 margin: EdgeInsets.all(1.0),
                 child: new ListTile(
                   leading: new Container(
-                    width: 100.0,
+                    width: 80.0,
                     color: Colors.white,
                     child: new Text(
                       date,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  title: new Container(
-                    //width: 150.0,
+                  title: new SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                         children: List.generate(d.length, (index2) {
                       //print('hell$index2');
-                      /*if (index2 == 0 || index2 == 1) {
-                        if (d[index2] == 'present') {
-                          datacount += 1;
-                          print('total:$datacount');
-                        }
-                      }
-                      print('totalAAA:$datacount');
-                      //setState(() {
-                      totalPresent = datacount;
-                      //});*/
-                      return DataShow(data: d[index2], count: totalPresent);
+
+                      return DataShow(data: d[index2],);
                     })),
                   ),
                 ),
@@ -312,19 +335,16 @@ class _Attendant extends State<_AttScreen> {
           width: 350.0,
           height: 50.0,
           decoration: new BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(4.0),
-                border: Border.all(width: 1.0, color: Colors.blue),
-                shape: BoxShape.rectangle),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4.0),
+              border: Border.all(width: 1.0, color: Colors.blue),
+              shape: BoxShape.rectangle),
           child: new ListTile(
             leading: new Text(
               AppTranslations.of(context).text("percentage_of_attendance"),
-            style: TextStyle(fontFamily: 'Myanmar', color: Colors.black,fontSize: 17.0),
+              style: TextStyle(
+                  fontFamily: 'Myanmar', color: Colors.black, fontSize: 17.0),
             ),
-            //title:new Text(AppTranslations.of(context).text('percentage_of_attendance'),
-            //style: TextStyle(fontFamily: 'Myanmar',color: Colors.black),
-            //),
-            //trailing: new Text('${widget.result}%'),
             trailing: new Text(
               '${percentageCount.toString()}%',
               style: TextStyle(fontSize: 17.0, color: Colors.black),
@@ -348,18 +368,13 @@ class _Attendant extends State<_AttScreen> {
 }
 
 class DataShow extends StatelessWidget {
-  //IconData data;
-  //DataShow({this.data});
   String data;
-  int count;
-  DataShow({this.data, this.count});
+  DataShow({this.data,});
 
   @override
   Widget build(BuildContext context) {
     if (data == 'present') {
-      /*dc.clear();
-      dc.add(new DataCount(count: count));
-      print('setstateCountLength:${dc.length} and ${dc[0].count}');*/
+      
       return new Container(
           padding: EdgeInsets.only(
             right: 5.0,
@@ -388,7 +403,7 @@ class DataShow extends StatelessWidget {
       new Container(
           padding: EdgeInsets.only(right: 5.0),
           child: CircleAvatar(
-            radius: 18.0,
+            radius: 16.0,
             backgroundColor: Colors.yellow,
             child: new Icon(
               Icons.clear,
@@ -400,20 +415,59 @@ class DataShow extends StatelessWidget {
 }
 
 class DataTitle extends StatelessWidget {
-  final title;
-  DataTitle({this.title});
+  final count;
+  DataTitle({this.count});
   @override
   Widget build(BuildContext context) {
-    if (title == 0) {
-      return new CircleAvatar(
-        radius: 14.0,
-        child: new Text('1st'),
-      );
-    } else if (title == 1) {
-      return new CircleAvatar(
-        radius: 14.0,
-        child: new Text('2st'),
-      );
+    if(count==1){
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 7.0,
+          ),
+          child: new CircleAvatar(
+        radius: 15.0,
+        backgroundColor: Colors.transparent,
+        child: new Text('${count.toString()}st',style:
+         TextStyle(color: Colors.black),),
+      ));
     }
+    else if(count==2){
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 7.0,
+          ),
+          child: new CircleAvatar(
+        radius: 15.0,
+        backgroundColor: Colors.transparent,
+        child: new Text('${count.toString()}nd',style:
+         TextStyle(color: Colors.black),),
+      ));
+    } else if(count==3){
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 7.0,
+          ),
+          child: new CircleAvatar(
+        radius: 15.0,
+        backgroundColor: Colors.transparent,
+        child: new Text('${count.toString()}rd',style:
+         TextStyle(color: Colors.black),),
+      ));
+    }
+    else{
+      return new Container(
+          padding: EdgeInsets.only(
+            right: 7.0,
+          ),
+          child: new CircleAvatar(
+        radius: 15.0,
+        backgroundColor: Colors.transparent,
+        child: new Text('${count.toString()}th',style:
+         TextStyle(color: Colors.black),),
+      ));
+    }
+
+      
+      
   }
 }
