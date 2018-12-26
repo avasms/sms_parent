@@ -1,0 +1,74 @@
+{
+   
+    "exam_menu": "Exam",
+    "grade_menu": "Grade",
+    "child_menu": "Student",
+    "noticeboard_menu": "Noticeboard",
+    "message_menu": "Message",
+    "timetable_menu": "Timetable",
+    "leave_menu": "Leave",
+    "ferry_menu": "Ferry",
+    "dormitory_menu": "Dormitory",
+    "about_menu": "About School",
+    "attendant_menu": "Attendant",
+    "payment_menu": "Payment",
+
+    "english_setting":"English",
+    "myanmar_setting":"Myanmar",
+    "setting_setting":"Setting",
+    "logout_setting":"Log Out",
+
+    "common_school": "School Name",
+    "common_class": "Class Name",
+    "common_description": "Description",
+    "common_name": "Name",
+    
+    "room_no": "Room No.",
+    "teacher": "Teacher",
+
+    "dormitory_name": "Dormitory Name",
+
+    "ferry_name": "Ferry Name",
+    "routes": "Routes",
+    "car_no": "Car No",
+    "driver_name": "Driver",
+
+    "send_menu": "Send Msg",
+    "received_menu": "Received Msg",
+    "sent_menu": "Sent Msg",
+
+    "create_leave_menu": "Create Leave",
+    "view_leave_menu": "View Leave",
+
+    "pay_name": "Pay Name",
+    "student_name": "Student Name",
+    "class": "Class",
+    "date": "Date",
+    "left_balance": "Left Balance",
+    "payment_date": "Payment Date",
+    "amount": "Amount",
+    "pay_amount": "Pay Amount",
+    "left_amount": "Left Amount",
+
+
+    "student_id":"Student ID",
+    "student_name":"Student Name",
+    "guest_id":"Guest ID",
+    "school_name":"School Name",
+    "nrc":"Nrc",
+    "birthday":"Birthday",
+    "admission_no":"Admission No",
+    "race":"Race",
+    "citizen":"Citizen",
+    "home_town":"HomeTown",
+    "gender":"Gender",
+    "current_address":"Current Address",
+    "religion":"Religion",
+
+    "percentage_of_attendance":"Percentage of Attendance",
+
+    "detail":"Detail"
+    
+
+
+}

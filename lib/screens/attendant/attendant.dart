@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sms_parent/util/app_translation.dart';
 import 'package:sms_parent/dao/apicommondao.dart';
 import 'package:sms_parent/models/studentAttendance.dart';
-import 'package:sms_parent/screens/studentdetail/attendant/attendant_screen.dart';
 
 class AttendantScreen extends StatefulWidget {
   final studentId;
@@ -81,6 +80,7 @@ class _AttendantScreen extends State<AttendantScreen> {
                   items: getItemsList(),
                   onChanged: (int val) {
                     setState(() {
+                      datacount = 0;
                       _selectValue = val;
                       //datacount=dCount.count;
                       //datachange(dc);
@@ -89,7 +89,7 @@ class _AttendantScreen extends State<AttendantScreen> {
                 ),
               ),
             ),
-            //),
+
             new Card(
               child: new Container(
                 width: double.infinity,
@@ -210,7 +210,6 @@ class _Attendant extends State<_AttScreen> {
     if (att.length > 0) {
       c = att[0].count;
     }
-    print('AttendanceCount:$c');
     return new Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -277,11 +276,7 @@ class _Attendant extends State<_AttScreen> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                         children: List.generate(d.length, (index2) {
-                      //print('hell$index2');
-
-                      return DataShow(
-                        data: d[index2],
-                      );
+                      return DataShow(data: d[index2]);
                     })),
                   ),
                 ),
