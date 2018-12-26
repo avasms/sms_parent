@@ -22,6 +22,7 @@ StateViewPage createState() => new StateViewPage();
     return Scaffold(
       appBar: AppBar(
         title: Text('$title'),
+        backgroundColor: Colors.indigo.shade700,
       ),
       body: Stack(
         children: <Widget>[

@@ -273,11 +273,11 @@ class _MyAppState extends State<MyApp> {
 //will delay initialization of the SDK
 //make sure to call before init()
 // For AVASMS Demo
-  await OneSignal.shared.init("cecb6df8-3335-4db1-a26b-ed4b7f1c9ae3", iOSSettings: settings);
+  //await OneSignal.shared.init("cecb6df8-3335-4db1-a26b-ed4b7f1c9ae3", iOSSettings: settings);
  // For MKL
  // await OneSignal.shared.init("37676ea9-017c-40fa-a0cc-91ae64c4c44b", iOSSettings: settings);
   // For TMD
-  //await OneSignal.shared.init("2710339c-8a41-4a17-898f-c506fd907dea", iOSSettings: settings);  
+  await OneSignal.shared.init("2710339c-8a41-4a17-898f-c506fd907dea", iOSSettings: settings);  
   // For FAME
   //await OneSignal.shared.init("9fbc00b1-ae16-421a-a99b-383942356955", iOSSettings: settings);  
 // the SDK will now initialize

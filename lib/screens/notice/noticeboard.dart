@@ -73,7 +73,10 @@ class NoticeListState extends State<NoticeList> {
       if (ftype == '.pdf' || ftype == '.PDF') {
         return Center(
           child: RaisedButton(
-              child: Text("Open PDF"),
+              child: new Text(
+            AppTranslations.of(context).text("open_pdf"),
+            style: TextStyle(fontFamily: 'Myanmar', color: Colors.black),
+          ),
               onPressed: () {
                 _launchUrl(filePath);
                               }

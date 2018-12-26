@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _parentId = res;
     });
 
-   getUserCode().then((res) {
+    getUserCode().then((res) {
       _userId = res;
       ApiCommonDao().getUnreadMessageCount(res).then((val) {
         print(val);
@@ -38,10 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       });
     });
-    
+
     _checkInternet();
   }
-  
+
   void _checkInternet() async {
     var connectivityResult = await (new Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
@@ -334,25 +334,27 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-
       new Card(
         child: new Center(
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
-                onPressed:(){
-                  Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                onPressed: () {
+                  Application.router.navigateTo(
+                      context,
+                      "student?parentId=$_parentId&userId=$_userId&screenType=" +
                           Config.ATTENDANT_SCREEN,
-                  transition: transitionType,replace: false);
-                } ,
+                      transition: transitionType,
+                      replace: false);
+                },
                 padding: EdgeInsets.all(5.0),
                 child: Column(
                   children: <Widget>[
                     CircleAvatar(
                       radius: 25.0,
                       backgroundColor: Colors.white,
-                      child:Image(
+                      child: Image(
                         image: AssetImage('images/attendant.png'),
                       ),
                       //backgroundImage: new AssetImage('images/attendant.png'),
@@ -366,18 +368,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-
       new Card(
         child: new Center(
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
-                onPressed:(){
-                  Application.router.navigateTo(context, "student?parentId=$_parentId&userId=$_userId&screenType=" +
+                onPressed: () {
+                  Application.router.navigateTo(
+                      context,
+                      "student?parentId=$_parentId&userId=$_userId&screenType=" +
                           Config.PAYMENT_SCREEN,
-                  transition: transitionType,replace: false);
-                } ,
+                      transition: transitionType,
+                      replace: false);
+                },
                 padding: EdgeInsets.all(5.0),
                 child: Column(
                   children: <Widget>[
@@ -385,10 +389,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       radius: 33.0,
                       backgroundColor: Colors.white,
                       //backgroundImage: new AssetImage('images/payment.png'),
-                      child:Image(
+                      child: Image(
                         image: AssetImage('images/payment.png'),
                       ),
-                      ),
+                    ),
                     new Text(AppTranslations.of(context).text("payment_menu"),
                         style: TextStyle(fontFamily: 'Myanmar'))
                   ],
@@ -398,7 +402,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-
       new Card(
         child: Center(
           child: Column(
@@ -545,10 +548,14 @@ class _HomeScreenState extends State<HomeScreen> {
     getUserCode().then((res) {
       _userId = res;
       ApiCommonDao().getUnreadMessageCount(res).then((val) {
-        print(val);
-       // setState(() {
-          _count = val;
-      //  });
+       
+            _count = val;
+        
+        print('apo$val');
+        print('apo$_count');
+        // setState(() {
+      
+        //  });
       });
     });
     return _count;

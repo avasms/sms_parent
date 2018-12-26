@@ -23,7 +23,7 @@
     "common_description": "Description",
     "common_name": "Name",
     
-    "room_no": "Room No.",
+    "room_no": "Room No",
     "teacher": "Teacher",
 
     "dormitory_name": "Dormitory Name",
@@ -41,7 +41,6 @@
     "view_leave_menu": "View Leave",
 
     "pay_name": "Pay Name",
-    "student_name": "Student Name",
     "class": "Class",
     "date": "Date",
     "left_balance": "Left Balance",
@@ -67,7 +66,9 @@
 
     "percentage_of_attendance":"Percentage of Attendance",
 
-    "detail":"Detail"
+    "detail":"Detail",
+
+    "open_pdf":"Open PDF"
     
 
 

@@ -23,7 +23,7 @@
     "common_description": "ဖော်ပြချက်",
     "common_name": "အမည်",
 
-    "room_no": "Room No.",
+    "room_no": "အခန်းနံပါတ်",
     "teacher": "ဆရာအမည်",
 
     "dormitory_name": "အဆောင်အမည်",
@@ -66,7 +66,9 @@
 
     "percentage_of_attendance":"ကျောင်းတက်ရာခိုင်နှုန်း",
     
-    "detail":"ကျောင်းသားအချက်အလက်"
+    "detail":"ကျောင်းသားအချက်အလက်",
+
+    "open_pdf":"ဖိုင်ကြည့်ရန်"
 
     
 }

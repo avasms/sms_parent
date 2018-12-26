@@ -29,6 +29,7 @@ class TimeTable extends StatelessWidget {
             bottom: TabBar(
               labelColor: Colors.white,
               isScrollable: true,
+              indicatorColor: Colors.white,
               tabs: [
                 Tab(text: 'MON',
                 ),
